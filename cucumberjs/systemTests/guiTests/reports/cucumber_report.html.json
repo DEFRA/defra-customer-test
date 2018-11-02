@@ -1,0 +1,117 @@
+[
+  {
+    "elements": [
+      {
+        "id": "cm-xxx-login-customer-identity;cm-xxx-login-d365-ui",
+        "keyword": "Scenario",
+        "line": 7,
+        "name": "CM-XXX Login D365 UI",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 1252421
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "Framework/cust/cucumberjs/systemTests/guiTests/support/hooks.js:11"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Given ",
+            "name": "the CRM application has been launched",
+            "result": {
+              "status": "passed",
+              "duration": 1937634467
+            },
+            "line": 10,
+            "match": {
+              "location": "Framework/cust/cucumberjs/systemTests/guiTests/step_definitions/application-steps.js:14"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "And ",
+            "name": "I am on the CRM login page",
+            "result": {
+              "status": "passed",
+              "duration": 50668807
+            },
+            "line": 11,
+            "match": {
+              "location": "Framework/cust/cucumberjs/systemTests/guiTests/step_definitions/login-crm-steps.js:10"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I login into customer identity service",
+            "result": {
+              "status": "passed",
+              "duration": 4212888929
+            },
+            "line": 12,
+            "match": {
+              "location": "Framework/cust/cucumberjs/systemTests/guiTests/step_definitions/login-crm-steps.js:62"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "Then ",
+            "name": "I am logged in to Customer Master test",
+            "result": {
+              "status": "passed",
+              "duration": 10510943935
+            },
+            "line": 13,
+            "match": {
+              "location": "Framework/cust/cucumberjs/systemTests/guiTests/step_definitions/homepage-steps.js:10"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "After ",
+            "result": {
+              "status": "passed",
+              "duration": 267915
+            },
+            "hidden": true,
+            "match": {
+              "location": "Framework/cust/cucumberjs/systemTests/guiTests/support/hooks.js:16"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@desktop",
+            "line": 4
+          },
+          {
+            "name": "@phone",
+            "line": 5
+          },
+          {
+            "name": "@tablet",
+            "line": 6
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "cm-xxx-login-customer-identity",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CM-XXX Login Customer Identity",
+    "tags": [],
+    "uri": "/Users/pratamsrey/Desktop/CUSTOMERS DEFRA/Automation Framework/cust/cucumberjs/systemTests/guiTests/loginCRM.feature"
+  }
+]
