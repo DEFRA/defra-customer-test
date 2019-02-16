@@ -1,92 +1,204 @@
 {
 	"Contact": [
 		{
-			"testidentifier": "BasicContactTest",
+			"testidentifier": "BasicContact",
 			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-",
+			"isCitizen": true,
 			"title": "1",
-			"firstname": "AdminB",
-			"middlename": "Is",
-			"lastname": "InvitorB",
-			"dob": "02/12/1999",
+			"firstname": "Basic ",
+			"middlename": "Contact",
+			"lastname": "Citizen",
+			"source": 2,
+			"email": "",
+			"dob": "1980-12-02",
 			"gender": "2",
-			"telephone": "004412345678",
-			"type": "3",
-			"uprn": "200010019924",
+			"telephone": "02089754212",
 			"buildingname": "Horizon House",
 			"buildingnumber": "123",
+			"subbuildingname": null,
 			"street": "Deanery Road",
 			"locality": null,
+			"county": null,
 			"town": null,
-			"postcode": "TW67YT",
-			"country": "GBR",
-			"fromcompanieshouse": "true"
+			"postcode": "TW6 7YT",
+			"country": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
+			"tacsacceptedversion": "1.0",
+			"tacsacceptedon": "2018-10-17",
+			"privacypolicyacceptedversion": "1.0",
+			"privacypolicyacceptedon": "2018-10-17",
+			"cookiespolicyacceptedversion": "1.0",
+			"cookiespolicyacceptedon": "2018-10-17"
+		},
+		{
+			"testidentifier": "ContactMissingFirstName",
+			"firstname": ""
+		},
+		{
+			"testidentifier": "ContactMissingLastName",
+			"lastname": ""
+		},
+		{
+			"testidentifier": "ContactWithDuplicateEmail",
+			"email": "01tester@citizen.com"
+		},
+		{
+			"testidentifier": "DuplicateB2cObjectId",
+			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-de6a96ac11a8"
+		},
+		{
+			"testidentifier": "InvalidB2cObjectId",
+			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-47541258"
+		},
+		{
+			"testidentifier": "ContactMissingTnCDate",
+			"tacsacceptedon": ""
+		},
+		{
+			"testidentifier": "ContactMissingCorAddress",
+			"buildingname": null,
+			"buildingnumber": null,
+			"subbuildingname": null,
+			"street": null,
+			"locality": null,
+			"county": null,
+			"town": null,
+			"postcode": null,
+			"country": null
 		},
 		{
 			"testidentifier": "WrogPostcodeTest",
-			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-",
-			"title": "1",
-			"firstname": "Test",
-			"middlename": "mid",
-			"lastname": "Brendan",
-			"dob": "02/12/1999",
-			"gender": "2",
-			"telephone": "004412345678",
-			"type": "3",
-			"uprn": "200010019924",
-			"buildingname": "Horizon House",
-			"buildingnumber": "123",
-			"street": "Deanery Road",
-			"locality": null,
-			"town": null,
-			"postcode": "ZZZZZ",
-			"country": "GBR",
-			"fromcompanieshouse": "true"
+			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-",	
+			"postcode": "ZZZZZ"
 		}
 	],
 	"Organisation": [
 		{
-			"testidentifier": "BasicOrganisationTest",
-			"orgv1name": "AutoOrgv1Test2",
-			"orgv1type": 910400000,
-			"orgv1crn": "29111422",
-			"orgv1email": "AutoOrgv1Test1@test.com",
-			"orgv1telephone": "+4421459012",
-			"orgv1valwithcompanieshouse": false,
-			"orgv1addtype": 1,
-			"orgv1adduprn": "123",
-			"orgv1addbuildingname": "Auto1 Horizon House",
-			"orgv1addbuildingno": "Auto1 123",
-			"orgv1addstreet": "Auto1 Deanery Road",
-			"orgv1addlocality": "asda",
-			"orgv1town": "Bristol",
-			"orgv1county": "Avon",
-			"orgv1dependentlocality": "asdasa",
-			"orgv1subbuildingname": "AutoSubbuilding1",
-			"orgv1postcode": "TW67YT",
-			"orgv1country": "GBR",
-			"orgv1fromcompanieshouse": true
+			"testidentifier": "BasicOrgDetails",
+			"orgIsUK": true,
+			"orgName": "Org LTD",
+			"orgType": 910400001,
+			"orgCRN": "29325992",
+			"orgEmail": "AutoOrgv1Test1@test.com",
+			"orgTelephone": "+4421459012",
+			"orgValWithCompaniesHouse": false,
+			"orgAddType": 1,
+			"orgAdduprn": "123",
+			"orgRegaddbuildingname": "Reg Building Name",
+			"orgRegaddbuildingno": "Reg 123",
+			"orgRegsubbuildingname": "Reg Subbuilding1",
+			"orgRegaddstreet": "Reg Street",
+			"orgRegaddlocality": "Reg Locality",
+			"orgRegcounty": "Reg County",
+			"orgRegtown": "Reg Town",
+			"orgRegcountry": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
+			"orgRegpostcode": "TW6 7YT",
+			"orgCoraddbuildingname": "Cor Building Name",
+			"orgCoraddbuildingno": "Cor 123",
+			"orgCorsubbuildingname": "Cor Subbuilding1",
+			"orgCoraddstreet": "Cor Street",
+			"orgCoraddlocality": "Cor Locality",
+			"orgCorcounty": "Cor County",
+			"orgCortown": "Cor Town",
+			"orgCorcountry": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
+			"orgCorpostcode": "TW6 7YT",
+			"orgBiladdbuildingname": "Bill Building Name",
+			"orgBiladdbuildingno": "Bill 123",
+			"orgBilsubbuildingname": "Bill Subbuilding1",
+			"orgBiladdstreet": "Bill Street",
+			"orgBiladdlocality": "Bill Locality",
+			"orgBilcounty": "Bill County",
+			"orgBiltown": "Bill Town",
+			"orgBilcountry": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
+			"orgBilpostcode": "TW6 7YT",
+			"orgBusaddbuildingname": "Bus Building Name",
+			"orgBusaddbuildingno": "Bus 123",
+			"orgBussubbuildingname": "Bus Subbuilding1",
+			"orgBusaddstreet": "Bus Street",
+			"orgBusaddlocality": "Bus Locality",
+			"orgBuscounty": "Bus County",
+			"orgBustown": "Bus Town",
+			"orgBuscountry": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
+			"orgBuspostcode": "TW6 7YT",
+			"orgDependentLocality": "Reg Dep Locality",
+			"orgFromCompaniesHouse": true
+		},
+		{
+			"testidentifier": "MissingOrgNameCheck",
+			"orgName": ""	
+		},
+		{
+			"testidentifier": "DetailsSoleTraderCheck",
+			"orgName": "Org Sole Trader",
+			"orgType": 910400000
+		},
+		{
+			"testidentifier": "MissingOrgTypeCheck",
+			"orgName": "Org Test",
+			"orgType": ""			
+		},
+		{
+			"testidentifier": "MissingCRNCheck",
+			"orgCRN": ""			
 		},
 		{
 			"testidentifier": "DuplicateCRNCheck",
-			"orgv1name": "AutoOrgv1Test2",
-			"orgv1type": 910400000,
-			"orgv1crn": "123010",
-			"orgv1email": "AutoOrgv1Test1@test.com",
-			"orgv1telephone": "+4421459012",
-			"orgv1valwithcompanieshouse": false,
-			"orgv1addtype": 1,
-			"orgv1adduprn": "123",
-			"orgv1addbuildingname": "Auto1 Horizon House",
-			"orgv1addbuildingno": "Auto1 123",
-			"orgv1addstreet": "Auto1 Deanery Road",
-			"orgv1addlocality": "asda",
-			"orgv1town": "Bristol",
-			"orgv1county": "Avon",
-			"orgv1dependentlocality": "asdasa",
-			"orgv1subbuildingname": "AutoSubbuilding1",
-			"orgv1postcode": "TW67YT",
-			"orgv1country": "GBR",
-			"orgv1fromcompanieshouse": true
+			"orgCRN": "29111422"		
+		},
+		{
+			"testidentifier": "CRNGreaterThanCheck",
+			"orgCRN": "45123569875"		
+		},
+		{
+			"testidentifier": "CRNLessThanCheck",
+			"orgCRN": "54267"		
+		},
+		{
+			"testidentifier": "MissingRegAddressCheck",
+			"orgCRN": "54682157",
+			"orgName": "Org Missing Reg Address",
+			"orgRegaddbuildingname": "",
+			"orgRegaddbuildingno": "",
+			"orgRegsubbuildingname": "",
+			"orgRegaddstreet": "",
+			"orgRegaddlocality": "",
+			"orgRegcounty": "",
+			"orgRegtown": "",
+			"orgRegcountry": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
+			"orgRegpostcode": ""		
+		},
+		{
+			"testidentifier": "BasicOrgOthersTest",
+			"orgName": "Org OTHERS Sole Trader",
+			"orgType": 910400000,
+			"orgCRN": "",
+			"orgEmail": "SoleTraderOrg@test.com"
+		},
+		{
+			"testidentifier": "NonUKOrgDetailsCheck",
+			"orgv1isUK": false,
+			"orgName": "Org Non-UK",
+			"orgType": 910400001,
+			"orgEmail": "NonUKOrgv1@test.com",
+			"orgTelephone": "+4421459012",
+			"orgRegaddbuildingname": "",
+			"orgRegaddbuildingno": "",
+			"orgRegsubbuildingname": "",
+			"orgRegaddstreet": "Grosse Strasse",
+			"orgRegaddlocality": "",
+			"orgRegcounty": "",
+			"orgRegtown": "Colon",
+			"orgRegcountry": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
+			"orgRegpostcode": ""
+		},
+		{
+			"testidentifier": "NonUKMissingOrgNameCheck",
+			"orgv1isUK": false,
+			"orgName": "",
+			"orgType": 910400005,
+			"orgEmail": "NonUKOrgv1@test.com",
+			"orgTelephone": "+4421459012",
+			"orgValWithCompaniesHouse": false,
+			"orgFromCompaniesHouse": true
 		}
 	]
 }

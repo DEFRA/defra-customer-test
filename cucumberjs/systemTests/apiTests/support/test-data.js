@@ -19,97 +19,145 @@ class TestData {
 		return actualAsset.b2cobjectid;
 	}
 
+	getCustID(testDataObj) {
+		const actualAsset = testDataObj;
+		return actualAsset;
+	}
+	getIsCitizen(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.isCitizen;
+	}
+
 	getTitle(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.title;
 	}
-
 	
 	getFirstName(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.firstname;
 	}
-
 	
 	getMiddleName(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.middlename;
 	}
 
-	
 	getLastName(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.lastname;
 	}
 
+	getSource(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.source;
+	}
+
+	getEmail(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.email;
+	}
 	
 	getDOB(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.dob;
 	}
-
 	
 	getGender(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.gender;
 	}
 
-	
 	getTelephone(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.telephone;
 	}
 
-	
+	getTacsacceptedversion(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.tacsacceptedversion;
+	}
+
+	getTacsacceptedone(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.tacsacceptedon;
+	}
+
+	getPrivacypolicyacceptedversion(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.privacypolicyacceptedversion;
+	}
+
+	getPrivacypolicyacceptedon(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.privacypolicyacceptedon;
+	}
+
+	getCookiespolicyacceptedversion(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.cookiespolicyacceptedversion;
+	}
+
+	getCookiespolicyacceptedon(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.cookiespolicyacceptedon;
+	}
+
+	getCounty(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.county;
+	}
+
+	getDependentlocality(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.dependentlocality;
+	}
+
+	getSubbuildingname(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.subbuildingname;
+	}
+
 	getType(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.type;
 	}
-
-
 	
 	getUPRN(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.uprn;
 	}
 
-	
 	getBuildingName(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.buildingname;
 	}
-
 	
 	getBuildingNumber(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.buildingnumber;
 	}
-
 	
 	getStreet(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.street;
 	}
-
 	
 	getLocality(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.locality;
 	}
-
 	
 	getTown(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.town;
 	}
-
 	
 	getPostcode(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.postcode;
 	}
 
-	
 	getCountry(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.country;
@@ -121,82 +169,131 @@ class TestData {
 		return actualAsset.fromcompanieshouse;
 	}
 
-	getorgv1name(testDataObj) {
+	getOrgIsUK(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1name;
-	}
-	getorgv1type(testDataObj) {
+		return actualAsset.orgIsUK;
+}
+	getOrgName(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1type;
+		return actualAsset.orgName;
 	}
-	getorgv1crn(testDataObj) {
+	getOrgType(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1crn;
+		return actualAsset.orgType;
 	}
-	getorgv1email(testDataObj) {
+	getOrgCRN(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1email;
+		return actualAsset.orgCRN;
 	}
-	getorgv1telephone(testDataObj) {
+	getOrgEmail(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1telephone;
+		return actualAsset.orgEmail;
 	}
-	getorgv1valwithcompanieshouse(testDataObj) {
+	getOrgTelephone(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1valwithcompanieshouse;
+		return actualAsset.orgTelephone;
 	}
-	getorgv1addtype(testDataObj) {
+	getOrgValWithCompaniesHouse(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1addtype;
+		return actualAsset.orgValWithCompaniesHouse;
 	}
-	getorgv1adduprn(testDataObj) {
+	getOrgAddType(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1adduprn;
+		return actualAsset.orgAddType;
 	}
-	getorgv1addbuildingname(testDataObj) {
+	getOrgAdduprn(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1addbuildingname;
+		return actualAsset.orgAdduprn;
 	}
-	getorgv1addbuildingno(testDataObj) {
+
+
+	getOrgRegBuildingName(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1addbuildingno;
+		return actualAsset.orgRegaddbuildingname;
 	}
-	getorgv1addstreet(testDataObj) {
+	getOrgRegBuildingNo(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1addstreet;
+		return actualAsset.orgRegaddbuildingno;
 	}
-	getorgv1addlocality(testDataObj) {
+	getOrgRegSubBuildingName(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1addlocality;
+		return actualAsset.orgRegsubbuildingname;
 	}
-	getorgv1town(testDataObj) {
+	getOrgRegStreet(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1town;
+		return actualAsset.orgRegaddstreet;
 	}
-	getorgv1county(testDataObj) {
+	getOrgRegLocality(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1county;
+		return actualAsset.orgRegaddlocality;
 	}
-	getorgv1dependentlocality(testDataObj) {
+	getOrgRegCounty(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1dependentlocality;
+		return actualAsset.orgRegcounty;
 	}
-	getorgv1subbuildingname(testDataObj) {
+	getOrgRegTown(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1subbuildingname;
+		return actualAsset.orgRegtown;
 	}
-	getorgv1postcode(testDataObj) {
+	getOrgRegCountry(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1postcode;
+		return actualAsset.orgRegcountry;
 	}
-	getorgv1country(testDataObj) {
+	getOrgRegPostcode(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1country;
+		return actualAsset.orgRegpostcode;
 	}
-	getorgv1fromcompanieshouse(testDataObj) {
+
+
+	getOrgCorBuildingName(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
-		return actualAsset.orgv1fromcompanieshouse;
+		return actualAsset.orgCoraddbuildingname;
 	}
+	getOrgCorBuildingNo(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.orgCoraddbuildingno;
+	}
+	getOrgCorSubBuildingName(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.orgCorsubbuildingname;
+	}
+	getOrgCorStreet(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.orgCoraddstreet;
+	}
+	getOrgCorLocality(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.orgCoraddlocality;
+	}
+	getOrgCorCounty(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.orgCorcounty;
+	}
+	getOrgCorTown(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.orgCortown;
+	}
+	getOrgCorCountry(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.orgCorcountry;
+	}
+	getOrgCorPostcode(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.orgCorpostcode;
+	}
+
+
+
+	getOrgDependentLocality(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.orgDependentLocality;
+	}
+	
+	getOrgFromCompaniesHouse(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.fromcompanieshouse;
+	}
+
 	
 }
 
