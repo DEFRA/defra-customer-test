@@ -64,7 +64,7 @@ return options;
             const tenant = 'defradev.onmicrosoft.com' // AAD Tenant name.
             const authorityUrl = authorityHostUrl + '/' + tenant
             const clientId = clientID // Application Id of app registered under AAD.
-            const clientSecret = 'lUvlF1kKTQhuB4mgo5td1AxaRCPHDLF5zoRk1eauZ5U=' // Secret generated for app. Read this environment constiable.
+            const clientSecret = '' // Secret generated for app. Read this environment constiable.
             const resource = 'https://defra-custmstr-dev.crm4.dynamics.com' // URI that identifies the resource for which the token is valid.
 
             const AuthenticationContext = AdalNode.AuthenticationContext
