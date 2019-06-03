@@ -2,12 +2,12 @@
 	"Contact": [
 		{
 			"testidentifier": "BasicContact",
-			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-",
-			"isCitizen": true,
+			"b2cobjectid": "7b1ad2d0-7946-11e8-",
+			"isCitizen": false,
 			"title": "1",
-			"firstname": "Basic ",
-			"middlename": "Contact",
-			"lastname": "Citizen",
+			"firstname": "Simon",
+			"middlename": "Citizen Contact",
+			"lastname": "Peter",
 			"source": 2,
 			"email": "",
 			"dob": "1980-12-02",
@@ -28,6 +28,10 @@
 			"privacypolicyacceptedon": "2018-10-17",
 			"cookiespolicyacceptedversion": "1.0",
 			"cookiespolicyacceptedon": "2018-10-17"
+		},
+		{
+			"testidentifier": "BasicContactCitizen",
+			"isCitizen": true
 		},
 		{
 			"testidentifier": "ContactMissingFirstName",
@@ -54,21 +58,38 @@
 			"tacsacceptedon": ""
 		},
 		{
+			"testidentifier": "ContactInvalidTnCDate",
+			"tacsacceptedon": "10:11:2018"
+		},
+		{
 			"testidentifier": "ContactMissingCorAddress",
-			"buildingname": null,
-			"buildingnumber": null,
-			"subbuildingname": null,
-			"street": null,
-			"locality": null,
-			"county": null,
-			"town": null,
-			"postcode": null,
-			"country": null
+			"isCitizen": true,
+			"buildingname": "",
+			"buildingnumber": "",
+			"subbuildingname": "",
+			"street": "",
+			"locality": "",
+			"county": "",
+			"town": "",
+			"postcode": "",
+			"country": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)"
 		},
 		{
 			"testidentifier": "WrogPostcodeTest",
 			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-",	
 			"postcode": "ZZZZZ"
+		},
+		{
+			"testidentifier": "AccesReqVMD-licence",
+			"lobserviceid": "A65E89E7-66B6-E811-A954-000D3A29B5DE"
+		},
+		{
+			"testidentifier": "AccesReqVMD-Reports",
+			"lobserviceid": "A65E89E7-66B6-E811-A954-000D3A29B5DE"
+		},
+		{
+			"testidentifier": "AccesReqVMD-SecureMsg",
+			"lobserviceid": "A65E89E7-66B6-E811-A954-000D3A29B5DE"
 		}
 	],
 	"Organisation": [
@@ -77,6 +98,7 @@
 			"orgIsUK": true,
 			"orgName": "Org LTD",
 			"orgType": 910400001,
+			"charityNo": "",
 			"orgCRN": "29325992",
 			"orgEmail": "AutoOrgv1Test1@test.com",
 			"orgTelephone": "+4421459012",
@@ -132,8 +154,31 @@
 			"orgType": 910400000
 		},
 		{
-			"testidentifier": "MissingOrgTypeCheck",
-			"orgName": "Org Test",
+			"testidentifier": "CharityOrgDetails",
+			"orgName": "Prince's Trust",
+			"orgType": 910400007,
+			"charityNo": "124560"
+		},
+		{                      
+			"testidentifier": "CharityOrgNoGreaterThan",
+			"charityNo": "1234567891011"
+		},
+		{
+			"testidentifier": "CharityOrgNoAlphaNumeric",
+			"charityNo": "a1025a45"
+		},
+		{
+			"testidentifier": "CharityOrgNoDuplicate",
+			"charityNo": "1245646"
+		},
+		{
+			"testidentifier": "LLPOrgDetails",
+			"orgName": "LLP Org-",
+			"orgType": 910400003
+		},
+		{
+			"testidentifier": "MissingOrgType",
+			"orgName": "Missing Org TYPE ",
 			"orgType": ""			
 		},
 		{
@@ -174,10 +219,10 @@
 			"orgEmail": "SoleTraderOrg@test.com"
 		},
 		{
-			"testidentifier": "NonUKOrgDetailsCheck",
+			"testidentifier": "BasicNonUkOrg",
 			"orgv1isUK": false,
-			"orgName": "Org Non-UK",
-			"orgType": 910400001,
+			"orgName": "Non-UK Org",
+			"orgType": 910400004,
 			"orgEmail": "NonUKOrgv1@test.com",
 			"orgTelephone": "+4421459012",
 			"orgRegaddbuildingname": "",

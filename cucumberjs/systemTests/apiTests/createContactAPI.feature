@@ -9,7 +9,7 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
 
   #1
   @api2-Done
-  Scenario Outline: Creating a new contact - Citizen
+  Scenario Outline: Creating a new contact - CITIZEN
     # Given I am a Web API user
     When I create a new <ValidationType> with expected message outcome <StatusMsg>
     # Then a new Contact record should be created
@@ -35,31 +35,33 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
     # Then a new Contact record is NOT created
     Examples:
       | ValidationType         | StatusMsg                     |
-      | ContactMissingLastName | LastName is a required field. | 
+      | ContactMissingLastName | LastName is a required field. |
 
   #4
-  @api2xx
-  Scenario Outline: Creating a new Contact with MISSING Corresponding-Address
+  @api2-Done
+  Scenario Outline: Creating a new CITIZEN Contact with MISSING Corresponding-Address
     # Given I am a Web API user
-    When I create a new <ValidationType> Contact with <StatusMsg> for duplication check
+    # When I create a new <ValidationType> Contact with <StatusMsg> for duplication check
+    When I create a new <ValidationType> with expected message outcome <StatusMsg>
     # Then a new Organisation record is NOT created
     Examples:
-      | ValidationType           | StatusMsg                                                                  |
-      | ContactMissingCorAddress | \\"status\\":\\"success\\",\\"code\\":412,\\"message\\":\\"Missing name\\" | 
+      | ValidationType           | StatusMsg                                        |
+      | ContactMissingCorAddress | Correspondence address is required for a Contact |
 
   #5
   @api2-Done
-  Scenario Outline: Creating a new Contact with MISSING T&C Date
+  Scenario Outline: Creating a new Contact with MISSING/INVALID T&C Date
     # Given I am a Web API user
     When I create a new <ValidationType> with expected message outcome <StatusMsg>
     # Then a new Organisation record is NOT created
     Examples:
-      | ValidationType        | StatusMsg        |
-      | ContactMissingTnCDate | An error occurred while validating input parameters: Microsoft.OData.ODataException: Cannot convert the literal | 
+      | ValidationType        | StatusMsg                                                     |
+      | ContactMissingTnCDate | DateTime is less than minumum value supported by CrmDateTime. |
+      | ContactInvalidTnCDate | DateTime is less than minumum value supported by CrmDateTime. |
 
   #6        
   @api2-Done
-  Scenario Outline: Creating a new Contact using an already existing/duplicated 'b2cobjectid'
+  Scenario Outline: Creating a new Contact using an already EXISTING/DUPLICATE 'b2cobjectid'
     # Given I am a Web API user
     When I create a new <ValidationType> with expected message outcome <StatusMsg>
     # Then a new Organisation record is NOT created
@@ -69,7 +71,7 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
 
   #7
   @api2-Done
-  Scenario Outline: Creating a new Contact using an invalid 'b2cobjectid'
+  Scenario Outline: Creating a new Contact using an INVALID 'b2cobjectid'
     # Given I am a Web API user
     When I create a new <ValidationType> with expected message outcome <StatusMsg>
     # Then a new Organisation record is NOT created
@@ -79,7 +81,7 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
 
   #8
   @api2-Done
-  Scenario Outline: Creating a new Contact using an already existing/duplicated 'email address'
+  Scenario Outline: Creating a new Contact using an already EXISTING/DUPLICATE 'EMAIL-ADDRESS'
     # Given I am a Web API user
     When I create a new <ValidationType> with expected message outcome <StatusMsg>
     # Then a new Organisation record is NOT created

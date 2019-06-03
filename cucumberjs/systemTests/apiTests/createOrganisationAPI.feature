@@ -8,7 +8,7 @@ Feature: CREATE ORGANISATION AS a Web API User
   The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines
   
   #1
-  @api2-Done
+  @api2-Donex
   Scenario Outline: Creating a UK registered Organisation (LTD / PLC / LLP) with basic details
     # Given I am a Web API user
     When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
@@ -19,7 +19,7 @@ Feature: CREATE ORGANISATION AS a Web API User
 
   #2
   @api2-Done
-  Scenario Outline: Creating an Organisation with missing Organisations-Name
+  Scenario Outline: Creating an Organisation with MISSING Organisations-Name
     # Given I am a Web API user
     When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
     # Then a new Organisation record is created
@@ -27,19 +27,19 @@ Feature: CREATE ORGANISATION AS a Web API User
       | ValidationType      | StatusMsg        |
       | MissingOrgNameCheck | Name is required |
 
-  #3 ?????
-  @api2xx
-  Scenario Outline: Creating an Organisation with missing Organisations-Type
+  #3
+  @api2-Done
+  Scenario Outline: Creating an Organisation with MISSING Organisations-Type
     # Given I am a Web API user
     When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
     # Then a new Organisation record is created
     Examples:
-      | ValidationData  | StatusMsg                                           |
-      | MissingOrgType  | \"status\":\"failure\",\"code\":400,\"message\":\"\ |
-
+      | ValidationType  | StatusMsg                                           |
+      | MissingOrgType  | An error occurred while validating input parameters |
+        
   #4
   @api2-Done
-  Scenario Outline: Creating an Organisation (LTD / PLC / LLP) with missing Company-House-Number
+  Scenario Outline: Creating an Organisation (LTD / PLC / LLP) with MISSING Company-House-Number
     # Given I am a Web API user
     When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
     # Then a new Organisation record is created
@@ -48,19 +48,19 @@ Feature: CREATE ORGANISATION AS a Web API User
       | MissingCRNCheck | Company House Number is required for these UK business Types |
 
   #5
-  @api2-issues-dup-not-working-as-expected
-  Scenario Outline: Creating an Organisation (LTD / PLC / LLP) using a Company-House-Number which already exists
+  @api2-Done
+  Scenario Outline: Creating an Organisation (LTD / PLC / LLP) using already EXISTING/DUPLICATE Company-House-Number
     # Given I am a Web API user
     When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
     # When I create a new <ValidationType> organisation with <StatusMsg> for duplication check
     # Then a new Organisation record is NOT created
     Examples:
-      | ValidationType    | StatusMsg                          |
-      | DuplicateCRNCheck | "Company house id already exists." |
+      | ValidationType    | StatusMsg                                                    |
+      | DuplicateCRNCheck | An account with the specified Company Number already exists! |
 
   #6
   @api2-Done
-  Scenario Outline: Creating an Organisation (LTD / PLC / LLP) with Company-House-Number Greater-than 8 characters
+  Scenario Outline: Creating an Organisation (LTD / PLC / LLP) using Company-House-Number GREATER-THAN-8-CHARACTERS
     # Given I am a Web API user
     When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
     # Then a new Organisation record is created
@@ -70,7 +70,7 @@ Feature: CREATE ORGANISATION AS a Web API User
 
   #7
   @api2-Done
-  Scenario Outline: Creating an Organisation (LTD / PLC / LLP) with Company-House-Number Less-than 8 characters
+  Scenario Outline: Creating an Organisation (LTD / PLC / LLP) with Company-House-Number LESS-THAN-8-CHARACTERS
     # Given I am a Web API user
     When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
     # Then a new Organisation record is created
@@ -80,7 +80,7 @@ Feature: CREATE ORGANISATION AS a Web API User
 
   #8
   @api2-Done
-  Scenario Outline: Creating an Organisation with missing Registration-Address
+  Scenario Outline: Creating an Organisation with MISSING Registration-Address
     # Given I am a Web API user
     When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
     # Then a new Organisation record is created
@@ -105,15 +105,29 @@ Feature: CREATE ORGANISATION AS a Web API User
     When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
     # Then a new Organisation record is created
     Examples:
-      | ValidationType    | StatusMsg                                            |
-      | BasicNonUkOrgTest | \"status\":\"success\",\"code\":200,\"message\":\"\" |
+      | ValidationType | StatusMsg |
+      | BasicNonUkOrg  | error     |
 
   #11
   @api2-todo
-  Scenario Outline: Creating a new NON-UK Organisation with missing Organisation-Name
+  Scenario Outline: Creating a new NON-UK Organisation with MISSING Organisation-Name
     # Given I am a Web API user
     When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
     # Then a new Organisation record is created
     Examples:
       | ValidationType           | StatusMsg         |
       | BasicNonUkMissingOrgName | Name is required  |
+
+  #12
+  @api2-Done
+  Scenario Outline: Creating a UK registered Organisation (Charity / LLP) with basic details
+    # Given I am a Web API user
+    When I send an API request to create a new <ValidationType> organisation with <StatusMsg>
+    # Then a new Organisation record is created
+    Examples:
+      | ValidationType           | StatusMsg                                                    |
+      | CharityOrgDetails        | error                                                        |
+      | LLPOrgDetails            | error                                                        |
+      | CharityOrgNoGreaterThan  | entity exceeded the maximum allowed length of '8'.           |
+      | CharityOrgNoAlphaNumeric | Charity Number can only be digits.                           |
+      | CharityOrgNoDuplicate    | An account with the specified Charity Number already exists! |
