@@ -169,6 +169,11 @@ class TestData {
 		return actualAsset.fromcompanieshouse;
 	}
 
+	getLOBserviceID(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.lobserviceid;
+	}
+
 	getOrgIsUK(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
 		return actualAsset.orgIsUK;
@@ -180,6 +185,10 @@ class TestData {
 	getOrgType(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
 		return actualAsset.orgType;
+	}
+	getCharityNo(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.charityNo;
 	}
 	getOrgCRN(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
