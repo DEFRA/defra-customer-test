@@ -1,0 +1,72 @@
+[
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating a Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 936778
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)",
+            "result": {
+              "status": "passed",
+              "duration": 3991260512
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value) Citizen",
+            "result": {
+              "status": "passed",
+              "duration": 4942519726
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  }
+]

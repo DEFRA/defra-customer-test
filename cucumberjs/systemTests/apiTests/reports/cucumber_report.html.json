@@ -1,0 +1,2718 @@
+[
+  {
+    "description": "I want to be able to consume the D365 WebAPI Actions\nSO that I can create a contact record in D365 Customer Master.\n\nAcceptance Criteria:\nThe D365 WebAPI Create Contact Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---with-basiccontact",
+        "keyword": "Scenario",
+        "line": 17,
+        "name": "Creating a UK - CITIZEN - with BasicContact",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 427421
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome metadata#contacts(contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 1496779801
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---with-contactmissingfirstname",
+        "keyword": "Scenario",
+        "line": 18,
+        "name": "Creating a UK - CITIZEN - with ContactMissingFirstName",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 207292
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new ContactMissingFirstName with expected message outcome Firstname is a required field",
+            "result": {
+              "status": "passed",
+              "duration": 305324382
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---with-contactmissinglastname",
+        "keyword": "Scenario",
+        "line": 19,
+        "name": "Creating a UK - CITIZEN - with ContactMissingLastName",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 101191
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new ContactMissingLastName with expected message outcome LastName is a required field",
+            "result": {
+              "status": "passed",
+              "duration": 402744032
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---with-contactmissingcoraddress",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Creating a UK - CITIZEN - with ContactMissingCorAddress",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 131398
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new ContactMissingCorAddress with expected message outcome Correspondence address is required for a Contact",
+            "result": {
+              "status": "passed",
+              "duration": 206068556
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---with-contactmissingtncdate",
+        "keyword": "Scenario",
+        "line": 21,
+        "name": "Creating a UK - CITIZEN - with ContactMissingTnCDate",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 113652
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new ContactMissingTnCDate with expected message outcome DateTime is less than minumum value supported by CrmDateTime.",
+            "result": {
+              "status": "passed",
+              "duration": 132468975
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---with-contactinvalidtncdate",
+        "keyword": "Scenario",
+        "line": 22,
+        "name": "Creating a UK - CITIZEN - with ContactInvalidTnCDate",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 108366
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new ContactInvalidTnCDate with expected message outcome DateTime is less than minumum value supported by CrmDateTime.",
+            "result": {
+              "status": "passed",
+              "duration": 386334742
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---with-duplicateb2cobjectid",
+        "keyword": "Scenario",
+        "line": 23,
+        "name": "Creating a UK - CITIZEN - with DuplicateB2cObjectId",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 89864
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new DuplicateB2cObjectId with expected message outcome A record that has the attribute values B2C Object Id already exists.",
+            "result": {
+              "status": "passed",
+              "duration": 348012924
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---with-invalidb2cobjectid",
+        "keyword": "Scenario",
+        "line": 24,
+        "name": "Creating a UK - CITIZEN - with InvalidB2cObjectId",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 58902
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new InvalidB2cObjectId with expected message outcome B2C - Object - ID must be a valid Guid format.",
+            "result": {
+              "status": "passed",
+              "duration": 293357332
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---with-contactwithduplicateemail",
+        "keyword": "Scenario",
+        "line": 25,
+        "name": "Creating a UK - CITIZEN - with ContactWithDuplicateEmail",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 112897
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new ContactWithDuplicateEmail with expected message outcome A record that has the attribute values Principal Email Address already exists.",
+            "result": {
+              "status": "passed",
+              "duration": 343390578
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---with-missingbuildnameno",
+        "keyword": "Scenario",
+        "line": 26,
+        "name": "Creating a UK - CITIZEN - with MissingBuildNameNo",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 87976
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new MissingBuildNameNo with expected message outcome Correspondence Address BuildingNumber orBuildingName is required",
+            "result": {
+              "status": "passed",
+              "duration": 245073041
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-contact--cm-146-as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE CONTACT -CM-146 As a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createContactAPI.feature"
+  },
+  {
+    "description": "  As an external API user \n  I want to be able to consume the D365 WebAPI Actions\n  So that I can create an Organisation record in D365 Customer Master.\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "creating-an-organisation-as-a-web-api-user;creating-a-charity-organisation-(england-&-wales)-with-charity_basicdetails-details",
+        "keyword": "Scenario",
+        "line": 182,
+        "name": "Creating a Charity Organisation (England & Wales) with Charity_BasicDetails details",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 434218
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a EnW charity organisation with Charity_BasicDetails and metadata#accounts(accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 1057902410
+            },
+            "line": 178,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 175
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "creating-an-organisation-as-a-web-api-user;creating-a-charity-organisation-(england-&-wales)-with-charityno_greaterthan-details",
+        "keyword": "Scenario",
+        "line": 183,
+        "name": "Creating a Charity Organisation (England & Wales) with CharityNo_GreaterThan details",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 146501
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a EnW charity organisation with CharityNo_GreaterThan and entity exceeded the maximum allowed length of '8'.",
+            "result": {
+              "status": "passed",
+              "duration": 188131575
+            },
+            "line": 178,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 175
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "creating-an-organisation-as-a-web-api-user;creating-a-charity-organisation-(england-&-wales)-with-charityno_duplicated-details",
+        "keyword": "Scenario",
+        "line": 184,
+        "name": "Creating a Charity Organisation (England & Wales) with CharityNo_Duplicated details",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 187281
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a EnW charity organisation with CharityNo_Duplicated and An account with the specified E&W Charity Number already exists!",
+            "result": {
+              "status": "passed",
+              "duration": 577829053
+            },
+            "line": 178,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 175
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "creating-an-organisation-as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATING an ORGANISATION AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createOrganisationAPI.feature"
+  },
+  {
+    "description": "  As an external API user \n  I want to be able to consume the D365 WebAPI Actions\n  So that I can create an Organisation record in D365 Customer Master.\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "creating-an-organisation-as-a-web-api-user;creating-a-charity-organisation-(england-&-wales)-with-charity_basicdetails-details",
+        "keyword": "Scenario",
+        "line": 182,
+        "name": "Creating a Charity Organisation (England & Wales) with Charity_BasicDetails details",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 377203
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a EnW charity organisation with Charity_BasicDetails and metadata#accounts(accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 969215451
+            },
+            "line": 178,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 175
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "creating-an-organisation-as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATING an ORGANISATION AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createOrganisationAPI.feature"
+  },
+  {
+    "description": "  As an external API user \n  I want to be able to consume the D365 WebAPI Actions\n  So that I can create an Organisation record in D365 Customer Master.\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "creating-an-organisation-as-a-web-api-user;creating-a-charity-organisation-(england-&-wales)-with-charity_basicdetails-details",
+        "keyword": "Scenario",
+        "line": 182,
+        "name": "Creating a Charity Organisation (England & Wales) with Charity_BasicDetails details",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 422135
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a EnW charity organisation with Charity_BasicDetails and metadata#accounts(accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 3927256773
+            },
+            "line": 178,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 175
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "creating-an-organisation-as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATING an ORGANISATION AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createOrganisationAPI.feature"
+  },
+  {
+    "description": "  As an external API user \n  I want to be able to consume the D365 WebAPI Actions\n  So that I can create an Organisation record in D365 Customer Master.\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "creating-an-organisation-as-a-web-api-user;creating-a-charity-organisation-(england-&-wales)-with-charityno_greaterthan-details",
+        "keyword": "Scenario",
+        "line": 183,
+        "name": "Creating a Charity Organisation (England & Wales) with CharityNo_GreaterThan details",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 542206
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a EnW charity organisation with CharityNo_GreaterThan and entity exceeded the maximum allowed length of '8'.",
+            "result": {
+              "status": "passed",
+              "duration": 420908317
+            },
+            "line": 178,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 175
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "creating-an-organisation-as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATING an ORGANISATION AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createOrganisationAPI.feature"
+  },
+  {
+    "description": "  As an external API user \n  I want to be able to consume the D365 WebAPI Actions\n  So that I can create an Organisation record in D365 Customer Master.\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "creating-an-organisation-as-a-web-api-user;creating-a-charity-organisation-(england-&-wales)-with-charityno_duplicated-details",
+        "keyword": "Scenario",
+        "line": 184,
+        "name": "Creating a Charity Organisation (England & Wales) with CharityNo_Duplicated details",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 651705
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a EnW charity organisation with CharityNo_Duplicated and An account with the specified E&W Charity Number already exists!",
+            "result": {
+              "status": "failed",
+              "duration": 961240187,
+              "error_message": "AssertionError: expected '\"An account with the specified Charity Number already exists!\"' to include 'An account with the specified E&W Charity Number already exists!'\n    at ActiveDirectoryAuthService.requestCreateCharityOrg (C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\pageobjects\\crm-token.js:1516:39)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
+            },
+            "line": 178,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 175
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "creating-an-organisation-as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATING an ORGANISATION AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createOrganisationAPI.feature"
+  },
+  {
+    "description": "  As an external API user \n  I want to be able to consume the D365 WebAPI Actions\n  So that I can create an Organisation record in D365 Customer Master.\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "creating-an-organisation-as-a-web-api-user;creating-a-charity-organisation-(england-&-wales)-with-charityno_duplicated-details",
+        "keyword": "Scenario",
+        "line": 184,
+        "name": "Creating a Charity Organisation (England & Wales) with CharityNo_Duplicated details",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 612436
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a EnW charity organisation with CharityNo_Duplicated and An account with the specified E&W Charity Number already exists!",
+            "result": {
+              "status": "passed",
+              "duration": 837782180
+            },
+            "line": 178,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneXX",
+            "line": 175
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "creating-an-organisation-as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATING an ORGANISATION AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createOrganisationAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-relationship---citizen",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating Relationship - CITIZEN",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 396083
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 5412323637
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Citizen",
+            "result": {
+              "status": "failed",
+              "duration": 19275274982,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-relationship---citizen",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating Relationship - CITIZEN",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 557687
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 11636491911
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Citizen",
+            "result": {
+              "status": "passed",
+              "duration": 6104077534
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 621875
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 19539116061,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Citizen",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 415716
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 19479213228,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Citizen",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-relationship---non-citizen-<contacttype>",
+        "keyword": "Scenario",
+        "line": 19,
+        "name": "Creating Relationship - NON-CITIZEN <ContactType>",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 379469
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 336305130305,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Empl_Employer",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-empl_employer-relationship",
+        "keyword": "Scenario",
+        "line": 19,
+        "name": "Creating a Empl_Employer Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 451209
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 2781669127
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 2682831283
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Empl_Employer",
+            "result": {
+              "status": "passed",
+              "duration": 3409150447
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-agent_agentcust-relationship",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Creating a Agent_AgentCust Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 464425
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 1422833601
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 927112537
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Agent_AgentCust",
+            "result": {
+              "status": "failed",
+              "duration": 439907289916,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-agent_agentcust-relationship",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Creating a Agent_AgentCust Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 515398
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 825563662,
+              "error_message": "AssertionError: expected '\"A record that has the attribute values Principal Email Address already exists. The entity key UniqueEmailAddress requires that this set of attributes contains unique values. Select unique values and try again.\"' to include '(contactid,defra_uniquereference)/$entity'\n    at ActiveDirectoryAuthService.requestCreateContact (C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\pageobjects\\crm-token.js:347:39)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Agent_AgentCust",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-agent_agentcust-relationship",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Creating a Agent_AgentCust Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 387776
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 4529561376
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 14477282656,
+              "error_message": "Error: connect ECONNREFUSED 104.40.215.231:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1117:14)"
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Agent_AgentCust",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-agent_agentcust-relationship",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Creating a Agent_AgentCust Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 506713
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 905988773
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 1645822690
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Agent_AgentCust",
+            "result": {
+              "status": "passed",
+              "duration": 2376530477
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating a Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 564861
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 429806019319,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Citizen",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating a Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 540319
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 5051994778
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Citizen",
+            "result": {
+              "status": "passed",
+              "duration": 3531331097
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-empl_employer-relationship",
+        "keyword": "Scenario",
+        "line": 19,
+        "name": "Creating a Empl_Employer Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 907704
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "passed",
+              "duration": 1099264133
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 330206932461,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Empl_Employer",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-agent_agentcust-relationship",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Creating a Agent_AgentCust Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 265062
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 11088981849,
+              "error_message": "Error: getaddrinfo ENOTFOUND defra-custmstr-test.crm4.dynamics.com defra-custmstr-test.crm4.dynamics.com:443\n    at GetAddrInfoReqWrap.onlookup [as oncomplete] (dns.js:57:26)"
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Agent_AgentCust",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-agent_agentcust-relationship",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Creating a Agent_AgentCust Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 536164
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 19446125057,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Agent_AgentCust",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-agent_agentcust-relationship",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Creating a Agent_AgentCust Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 943574
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 19444521093,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Agent_AgentCust",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-agent_agentcust-relationship",
+        "keyword": "Scenario",
+        "line": 20,
+        "name": "Creating a Agent_AgentCust Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 834454
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContact with expected message outcome (contactid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "failed",
+              "duration": 329361381176,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 13,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I send an API request to create a new LTD organisation with Basic_Org and (accountid,defra_uniquereference)/$entity",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:55"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value)/$entity Agent_AgentCust",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 15,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 10
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating a Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 454230
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)",
+            "result": {
+              "status": "passed",
+              "duration": 9182693655
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value) Citizen",
+            "result": {
+              "status": "failed",
+              "duration": 14817827407,
+              "error_message": "Error: connect ECONNREFUSED 104.40.215.231:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1117:14)"
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating a Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 735905
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)",
+            "result": {
+              "status": "failed",
+              "duration": 444665286986,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value) Citizen",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating a Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 496142
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)",
+            "result": {
+              "status": "failed",
+              "duration": 27047656752,
+              "error_message": "Error: connect ECONNREFUSED 104.40.215.231:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1117:14)"
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value) Citizen",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating a Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 829168
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)",
+            "result": {
+              "status": "failed",
+              "duration": 19525836918,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value) Citizen",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating a Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 535787
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)",
+            "result": {
+              "status": "passed",
+              "duration": 4016266941
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value) Citizen",
+            "result": {
+              "status": "failed",
+              "duration": 13273699338,
+              "error_message": "Error: connect ECONNREFUSED 104.40.215.231:443\n    at TCPConnectWrap.afterConnect [as oncomplete] (net.js:1117:14)"
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating a Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 625274
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)",
+            "result": {
+              "status": "failed",
+              "duration": 333072049989,
+              "error_message": "Error: read ECONNRESET\n    at TLSWrap.onStreamRead (internal/stream_base_commons.js:111:27)"
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value) Citizen",
+            "result": {
+              "status": "skipped"
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  },
+  {
+    "description": "  I want to be able to call the defra_relationship endpoint\n\n  SO that I can develop relationships between D365 records (Contact & Organisations)\n\n  Acceptance Criteria:\n  The D365 WebAPI Create organisation Actions can be called using the Microsoft provided guidelines",
+    "elements": [
+      {
+        "id": "create-relationship---as-a-web-api-user;creating-a-citizen-relationship",
+        "keyword": "Scenario",
+        "line": 35,
+        "name": "Creating a Citizen Relationship",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 936778
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new BasicContactCitizen with expected message outcome (contactid,defra_uniquereference)",
+            "result": {
+              "status": "passed",
+              "duration": 3991260512
+            },
+            "line": 30,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:41"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I call defra relationship action with (_defra_connectiondetailsid_value) Citizen",
+            "result": {
+              "status": "passed",
+              "duration": 4942519726
+            },
+            "line": 31,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:76"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@api2-DoneX",
+            "line": 27
+          }
+        ],
+        "type": "scenario"
+      }
+    ],
+    "id": "create-relationship---as-a-web-api-user",
+    "keyword": "Feature",
+    "line": 1,
+    "name": "CREATE RELATIONSHIP - AS a Web API User",
+    "tags": [],
+    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared/cucumberjs/systemTests/apiTests/createRelationshipAPI.feature"
+  }
+]

@@ -24,11 +24,18 @@ module.exports = function () {
         await this.activeDirectoryAuthService.requestCreateInvitation(token, Role);
     });
 
-    this.defineStep(/^I create access request for Contact to (.*?)$/, { timeout: 2000000 }, async function (ServiceRef) {
+    this.defineStep(/^I create access request for Contact to (.*?) with no (.*?)$/, { timeout: 2000000 }, async function (ServiceRef, StatusMsg) {
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         // use async with await for all step definitions , assertions, page objects to avoid any timeouts or obj not found conditon due to time out
-        await this.activeDirectoryAuthService.createAccessRequest(token, ServiceRef);
+        await this.activeDirectoryAuthService.createAccessRequest(token, ServiceRef, StatusMsg);
+    });
+                     
+    this.defineStep(/^I create access request using (.*?) for Contact to (.*?) with no (.*?)$/, { timeout: 2000000 }, async function (SearchRef, ServiceRef, StatusMsg) {
+        //generate token
+        const token = await this.activeDirectoryAuthService.getToken();
+        // use async with await for all step definitions , assertions, page objects to avoid any timeouts or obj not found conditon due to time out
+        await this.activeDirectoryAuthService.createAccessRequest(token, SearchRef, ServiceRef, StatusMsg);
     });
 
     this.defineStep(/^I create a new (.*?) with expected message outcome (.*?)$/, { timeout: 2000000 }, async function (ValidationType, StatusMsg) {
@@ -38,24 +45,43 @@ module.exports = function () {
         await this.activeDirectoryAuthService.requestCreateContact(token, ValidationType, StatusMsg);    
     });
 
-    this.defineStep(/^I send an API request to create a new (.*?) organisation with (.*?)$/, { timeout: 2000000 }, async function (validationtype, statusmsg) {
+    // this.defineStep(/^I send an API request to create a new (.*?) organisation with (.*?)$/, { timeout: 2000000 }, async function (validationtype, statusmsg) {
+    //     //generate token
+    //     const token = await this.activeDirectoryAuthService.getToken();
+    //     //console.log(token)
+    //     await this.activeDirectoryAuthService.requestCreateOrg(token, validationtype, statusmsg);     
+    // });
+  
+    this.defineStep(/^I send an API request to create a new (.*?) organisation with (.*?) and (.*?)$/, { timeout: 2000000 }, async function (orgtype, validationtype, statusmsg) {
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
-        await this.activeDirectoryAuthService.requestCreateOrg(token, validationtype, statusmsg);     
+        await this.activeDirectoryAuthService.requestCreateOrgNEW(token, orgtype, validationtype, statusmsg);     
     });
 
-    this.defineStep(/^I call defra relationship action with (.*?) (.*?)$/, { timeout: 2000000 }, async function (StatusMsgCreate, ContactType) {
-
+    this.defineStep(/^I make an API request to create a new (.*?) organisation with (.*?) and (.*?)$/, { timeout: 2000000 }, async function (orgtype, validationtype, statusmsg) {
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
-        await this.activeDirectoryAuthService.requestCreateRelationship(token, StatusMsgCreate, ContactType);
+        await this.activeDirectoryAuthService.requestCreateOrgOTHERS(token, orgtype, validationtype, statusmsg);     
+    });
+
+    this.defineStep(/^I send an API request to create a (.*?) charity organisation with (.*?) and (.*?)$/, { timeout: 2000000 }, async function (charityType, validationtype, statusmsg) {
+        //generate token
+        const token = await this.activeDirectoryAuthService.getToken();
+        //console.log(token)
+        await this.activeDirectoryAuthService.requestCreateCharityOrg(token, charityType, validationtype, statusmsg);     
+    });
+
+    this.defineStep(/^I call defra relationship action with (.*?) (.*?)$/, { timeout: 2000000 }, async function (StatusMsgCreate, RoleType) {
+        //generate token
+        const token = await this.activeDirectoryAuthService.getToken();
+        //console.log(token)
+        await this.activeDirectoryAuthService.requestCreateRelationship(token, StatusMsgCreate, RoleType);
         
     });
 
     this.defineStep(/^I call defra (.*?) enrolement action with (.*?)$/, { timeout: 2000000 }, async function (ServAndServRole, StatusMsg) {
-
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
@@ -71,7 +97,6 @@ module.exports = function () {
     });
 
     this.defineStep(/^I call defra relationship action an existing contact organisation relationship with (.*?)$/, { timeout: 2000000 }, async function (StatusMsg) {
-
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
@@ -81,7 +106,6 @@ module.exports = function () {
     });
 
     this.defineStep(/^I call defra relationship action an existing contact organisation relationship with (.*?)$/, { timeout: 2000000 }, async function (StatusMsg) {
-
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
@@ -91,7 +115,6 @@ module.exports = function () {
     });
 
     this.defineStep(/^I call defra createemail success action with (.*?)$/, { timeout: 2000000 }, async function (StatusMsg) {
-
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
@@ -99,7 +122,6 @@ module.exports = function () {
     });
 
     this.defineStep(/^I call defra createemail for an organisation success action with (.*?)$/, { timeout: 2000000 }, async function (StatusMsg) {
-
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
@@ -109,7 +131,6 @@ module.exports = function () {
     });
 
     this.defineStep(/^I call defra createemail action for an organisation with no email with (.*?)$/, { timeout: 2000000 }, async function (StatusMsg) {
-
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
