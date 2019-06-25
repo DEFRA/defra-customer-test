@@ -2,7 +2,7 @@ Feature: Create ACCESS REQUEST via the Web API
 I want to be able to call the defra_createaccessrequest endpoint
 So that I can create an Access request bewtween a Contact and an LOB service
 
- @api2-DoneZZ
+ @api2-Done
  Scenario Outline: Creating Access request between a Contact and an LOB-service
     # Given I am a Web API user 
     # And I have created a post request payload in JSON format 
@@ -16,7 +16,7 @@ So that I can create an Access request bewtween a Contact and an LOB service
       | BasicContact   | error           | BasicOrgDetails   | VMD-SecureMsg    | All-refs  |
 
 
- @api2-DoneZZ
+ @api2-Done
  Scenario Outline: Creating Access request between a Contact and an LOB-service, with missing <>
     # Given I am a Web API user 
     # And I have created a post request payload in JSON format 
