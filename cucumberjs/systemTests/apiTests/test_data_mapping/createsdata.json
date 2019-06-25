@@ -6,10 +6,10 @@
 			"isCitizen": false,
 			"title": "1",
 			"firstname": "Simon",
-			"middlename": "Citizen Contact",
+			"middlename": "",
 			"lastname": "Peter",
 			"source": 2,
-			"email": "",
+			"email": "@test.co.uk",
 			"dob": "1980-12-02",
 			"gender": "2",
 			"telephone": "02089754212",
@@ -31,7 +31,10 @@
 		},
 		{
 			"testidentifier": "BasicContactCitizen",
-			"isCitizen": true
+			"isCitizen": true,
+			"firstname": "Citizen101",
+			"middlename": "",
+			"lastname": "Contact"
 		},
 		{
 			"testidentifier": "ContactMissingFirstName",
@@ -80,47 +83,50 @@
 			"postcode": "ZZZZZ"
 		},
 		{
-			"testidentifier": "AccesReqVMD-licence",
+			"testidentifier": "VMD-licencing",
 			"lobserviceid": "A65E89E7-66B6-E811-A954-000D3A29B5DE"
 		},
 		{
-			"testidentifier": "AccesReqVMD-Reports",
-			"lobserviceid": "A65E89E7-66B6-E811-A954-000D3A29B5DE"
+			"testidentifier": "VMD-AdverseEvent",
+			"lobserviceid": "39c4599e-27de-e811-a842-000d3ab4f534"
 		},
 		{
-			"testidentifier": "AccesReqVMD-SecureMsg",
-			"lobserviceid": "A65E89E7-66B6-E811-A954-000D3A29B5DE"
+			"testidentifier": "VMD-SecureMsg",
+			"lobserviceid": "a99fcef9-66b6-e811-a954-000d3a29b5de"
 		}
 	],
 	"Organisation": [
 		{
 			"testidentifier": "BasicOrgDetails",
 			"orgIsUK": true,
-			"orgName": "Org LTD",
-			"orgType": 910400001,
+			"orgName": "Org-",
+			"orgType": "",
 			"charityNo": "",
+			"charityNoEnW": "",
+			"charityNoNI": "",
+			"charityNoScot": "",
 			"orgCRN": "29325992",
-			"orgEmail": "AutoOrgv1Test1@test.com",
+			"orgEmail": "@test.com",
 			"orgTelephone": "+4421459012",
 			"orgValWithCompaniesHouse": false,
 			"orgAddType": 1,
 			"orgAdduprn": "123",
 			"orgRegaddbuildingname": "Reg Building Name",
 			"orgRegaddbuildingno": "Reg 123",
-			"orgRegsubbuildingname": "Reg Subbuilding1",
+			"orgRegsubbuildingname": "",
 			"orgRegaddstreet": "Reg Street",
-			"orgRegaddlocality": "Reg Locality",
-			"orgRegcounty": "Reg County",
-			"orgRegtown": "Reg Town",
+			"orgRegaddlocality": "",
+			"orgRegcounty": "",
+			"orgRegtown": "",
 			"orgRegcountry": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
 			"orgRegpostcode": "TW6 7YT",
 			"orgCoraddbuildingname": "Cor Building Name",
 			"orgCoraddbuildingno": "Cor 123",
-			"orgCorsubbuildingname": "Cor Subbuilding1",
+			"orgCorsubbuildingname": "",
 			"orgCoraddstreet": "Cor Street",
-			"orgCoraddlocality": "Cor Locality",
-			"orgCorcounty": "Cor County",
-			"orgCortown": "Cor Town",
+			"orgCoraddlocality": "",
+			"orgCorcounty": "",
+			"orgCortown": "",
 			"orgCorcountry": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
 			"orgCorpostcode": "TW6 7YT",
 			"orgBiladdbuildingname": "Bill Building Name",
@@ -145,36 +151,71 @@
 			"orgFromCompaniesHouse": true
 		},
 		{
+			"testidentifier": "BasicOrg_LTD",
+			"orgType": "910400001"
+		},
+		{
+			"testidentifier": "BasicOrg_PLC",
+			"orgType": "910400002"
+		},
+		{
+			"testidentifier": "BasicOrg_LLP",
+			"orgType": "910400003"
+		},
+		{
+			"testidentifier": "BasicOrg_Sole",
+			"orgType": "910400000"
+		},
+		{
+			"testidentifier": "BasicOrg_Gov",
+			"orgType": "910400006"
+		},
+		{
+			"testidentifier": "BasicOrg_NotFor",
+			"orgType": "910400005"
+		},
+		{
+			"testidentifier": "BasicOrg_Comp",
+			"orgType": "910400004"
+		},
+		{
+			"testidentifier": "BasicOrg_Char",
+			"orgType": "910400007"
+		},
+		{
 			"testidentifier": "MissingOrgNameCheck",
 			"orgName": ""	
 		},
 		{
 			"testidentifier": "DetailsSoleTraderCheck",
 			"orgName": "Org Sole Trader",
-			"orgType": 910400000
+			"orgType": "910400000"
 		},
 		{
 			"testidentifier": "CharityOrgDetails",
-			"orgName": "Prince's Trust",
-			"orgType": 910400007,
-			"charityNo": "124560"
+			"orgName": "Prince's Trust ",
+			"charityNo": "12456"
 		},
 		{                      
 			"testidentifier": "CharityOrgNoGreaterThan",
 			"charityNo": "1234567891011"
 		},
 		{
-			"testidentifier": "CharityOrgNoAlphaNumeric",
-			"charityNo": "a1025a45"
+			"testidentifier": "CharityNoNumericOnly",
+			"charityNo": "12456"
 		},
 		{
-			"testidentifier": "CharityOrgNoDuplicate",
-			"charityNo": "1245646"
+			"testidentifier": "CharityNoAlphabitOnly",
+			"charityNo": "aghbnhud"
+		},
+		{
+			"testidentifier": "CharityNoDuplicate",
+			"charityNo": "12456468"
 		},
 		{
 			"testidentifier": "LLPOrgDetails",
 			"orgName": "LLP Org-",
-			"orgType": 910400003
+			"orgType": "910400003"
 		},
 		{
 			"testidentifier": "MissingOrgType",
@@ -199,7 +240,7 @@
 		},
 		{
 			"testidentifier": "MissingRegAddressCheck",
-			"orgCRN": "54682157",
+			"orgCRN": "54682",
 			"orgName": "Org Missing Reg Address",
 			"orgRegaddbuildingname": "",
 			"orgRegaddbuildingno": "",
@@ -208,42 +249,82 @@
 			"orgRegaddlocality": "",
 			"orgRegcounty": "",
 			"orgRegtown": "",
-			"orgRegcountry": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
+			"orgRegcountry": "",
 			"orgRegpostcode": ""		
 		},
 		{
-			"testidentifier": "BasicOrgOthersTest",
-			"orgName": "Org OTHERS Sole Trader",
-			"orgType": 910400000,
-			"orgCRN": "",
+			"testidentifier": "MissingStreetCheck",
+			"orgName": "Org Street Address",
+			"orgRegaddstreet": ""	
+		},
+		{
+			"testidentifier": "Missing_Postcode",
+			"orgName": "Org Missing Postcode",
+			"orgRegpostcode": ""	
+		},
+		{
+			"testidentifier": "MissingBuildingNameAndNo",
+			"orgName": "Org Missing Name and No",
+			"orgRegaddbuildingname": "",
+			"orgRegaddbuildingno": ""	
+		},
+		{
+			"testidentifier": "BasicOrgSoleTrader",
+			"orgName": "Org SOLE TRADER ",
 			"orgEmail": "SoleTraderOrg@test.com"
 		},
 		{
-			"testidentifier": "BasicNonUkOrg",
-			"orgv1isUK": false,
-			"orgName": "Non-UK Org",
-			"orgType": 910400004,
-			"orgEmail": "NonUKOrgv1@test.com",
-			"orgTelephone": "+4421459012",
-			"orgRegaddbuildingname": "",
-			"orgRegaddbuildingno": "",
-			"orgRegsubbuildingname": "",
-			"orgRegaddstreet": "Grosse Strasse",
-			"orgRegaddlocality": "",
-			"orgRegcounty": "",
-			"orgRegtown": "Colon",
-			"orgRegcountry": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)",
-			"orgRegpostcode": ""
+			"testidentifier": "BasicOrgGovernment",
+			"orgName": "Org GOVERNMENT ",
+			"orgEmail": "governmentOrg@test.com"
 		},
 		{
-			"testidentifier": "NonUKMissingOrgNameCheck",
-			"orgv1isUK": false,
-			"orgName": "",
-			"orgType": 910400005,
-			"orgEmail": "NonUKOrgv1@test.com",
-			"orgTelephone": "+4421459012",
-			"orgValWithCompaniesHouse": false,
-			"orgFromCompaniesHouse": true
+			"testidentifier": "BasicOrgNotForProfit",
+			"orgName": "Org NOT-FOR-PROFIT ",
+			"orgEmail": "notforprofitOrg@test.com"
+		},
+		{
+			"testidentifier": "BasicOrgCompAuthority",
+			"orgName": "Org COMPETENT AUTHORITY ",
+			"orgEmail": "competentOrg@test.com"
+		},
+		{
+			"testidentifier": "UKOrg_NoneUKAddr",
+			"orgRegaddbuildingno": "101",
+			"orgRegaddstreet": "Schuring Strasse",
+			"orgRegcountry": "/defra_countries(c49bf73a-fa9c-e811-a950-000d3a3a2566)",
+			"orgRegpostcode": "ZX12455",
+			"orgCoraddbuildingno": "22",
+			"orgCoraddstreet": "Kepen Strasse",
+			"orgCorcountry": "/defra_countries(c49bf73a-fa9c-e811-a950-000d3a3a2566)",
+			"orgCorpostcode": "ST12455"
+		},
+		{
+			"testidentifier": "NoneUK_Org",
+			"orgIsUK": false,
+			"orgCRN": "",
+			"orgName": "None UK Org",
+			"orgRegaddbuildingname": "",
+			"orgRegaddbuildingno": "",
+			"orgRegaddstreet": "",
+			"orgRegcountry": "/defra_countries(c49bf73a-fa9c-e811-a950-000d3a3a2566)",
+			"orgRegpostcode": "",
+			"orgCoraddbuildingname": "",
+			"orgCoraddbuildingno": "",
+			"orgCoraddstreet": "",
+			"orgCorcountry": "/defra_countries(c49bf73a-fa9c-e811-a950-000d3a3a2566)",
+			"orgCorpostcode": ""
+		},
+		{
+			"testidentifier": "NoneUKOrg_WithAdd",
+			"orgIsUK": false,
+			"orgCRN": "",
+			"orgName": "None UK Org with Address",
+			"orgRegaddbuildingname": "",
+			"orgRegaddbuildingno": "101",
+			"orgRegaddstreet": "Kerpen Strass",
+			"orgRegcountry": "/defra_countries(c49bf73a-fa9c-e811-a950-000d3a3a2566)",
+			"orgRegpostcode": "zx12545"
 		}
 	]
 }

@@ -163,7 +163,6 @@ class TestData {
 		return actualAsset.country;
 	}
 
-	
 	getFromCompaniesHouse(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.fromcompanieshouse;
@@ -189,6 +188,18 @@ class TestData {
 	getCharityNo(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
 		return actualAsset.charityNo;
+	}
+	getCharityNoEnW(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.charityNoEnW;
+	}
+	getCharityNoNI(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.charityNoNI;
+	}
+	getCharityNoScot(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.charityNoScot;
 	}
 	getOrgCRN(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
@@ -252,7 +263,6 @@ class TestData {
 		const actualAsset = this.getAssetOrg(testDataObj);
 		return actualAsset.orgRegpostcode;
 	}
-
 
 	getOrgCorBuildingName(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);

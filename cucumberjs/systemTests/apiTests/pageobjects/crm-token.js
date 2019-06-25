@@ -83,14 +83,14 @@ class ActiveDirectoryAuthService {
         // get me the B2CObjID for BasicContactTest testIdentifier from createcontact.json
         var b2cObjectID = this.testdata.getB2CObjectID("BasicContact");
         var isCitizen = this.testdata.getIsCitizen("BasicContact");
-        const title = this.testdata.getTitle("BasicContact");
+        var title = this.testdata.getTitle("BasicContact");
         var firstName = this.testdata.getFirstName("BasicContact");
-        const middleName = this.testdata.getMiddleName("BasicContact");
+        var middleName = this.testdata.getMiddleName("BasicContact");
         var lastName = this.testdata.getLastName("BasicContact");
-        const source = this.testdata.getSource("BasicContact");
-        const DOB = this.testdata.getDOB("BasicContact");
-        const gender = this.testdata.getGender("BasicContact");
-        const telephone = this.testdata.getTelephone("BasicContact");
+        var source = this.testdata.getSource("BasicContact");
+        var DOB = this.testdata.getDOB("BasicContact");
+        var gender = this.testdata.getGender("BasicContact");
+        var telephone = this.testdata.getTelephone("BasicContact");
         var email = this.testdata.getEmail("BasicContact");
         var buildingName = this.testdata.getBuildingName("BasicContact");
         var buildingNumber = this.testdata.getBuildingNumber("BasicContact");
@@ -101,17 +101,16 @@ class ActiveDirectoryAuthService {
         var postcode = this.testdata.getPostcode("BasicContact");
         var tacsacceptedversion = this.testdata.getTacsacceptedversion("BasicContact");
         var tacsacceptedon = this.testdata.getTacsacceptedone("BasicContact")
+        var privacyPolicyVersio  = this.testdata.getPrivacypolicyacceptedversion("BasicContact");
+        var privacyPolicyDate = this.testdata.getPrivacypolicyacceptedon("BasicContact")
+        var cookiesVersion = this.testdata.getCookiespolicyacceptedversion("BasicContact");
+        var cookiesDate = this.testdata.getCookiespolicyacceptedon("BasicContact")
 
         //generate random 12 digit number - used to generate unique Postman token 
         const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
 
         // apended in B2CObjID to generate random unique B2CObjectId   
         const elevenDigitRandomNum = Math.floor(Math.pow(10, 11 - 1) + Math.random() * (Math.pow(10, 11) - Math.pow(10, 11 - 1) - 1));
-
-        // console.log("");
-        // let randonOne = Math.floor(Math.pow(10, 2 - 1) + Math.random() * (Math.pow(10, 2) - Math.pow(10, 2 - 1) - 1));
-        // let randonTwo = Math.floor(Math.pow(10, 2 - 1) + Math.random() * (Math.pow(10, 2) - Math.pow(10, 2 - 1) - 1));
-        // let postFix = "de6a" + randonOne + "ac" + randonTwo + "a8";
 
         console.log("");
         let midRandon = Math.floor(Math.pow(10, 2 - 1) + Math.random() * (Math.pow(10, 2) - Math.pow(10, 2 - 1) - 1));
@@ -120,61 +119,74 @@ class ActiveDirectoryAuthService {
         let postFix = "8d" + midRandon + "-de6a" + randonOne + "ac" + randonTwo + "a8";
 
         let b2cObject;
-        //const emailRandom = Math.random().toString(36) + "@gmail.com";
-        let emailAddress;
 
         switch (validationtype) {
             case "BasicContact":
                 console.log("---  TESTING Creating a BASIC Contact ---");
+                // b2cObject = b2cObjectID + postFix;
                 b2cObject = b2cObjectID + postFix;
-                emailAddress = Math.random().toString(36) + "@gmail.com";
-                //console.log("*** b2cObject:    " + b2cObject);
-                //console.log("*** emailAddress: " + emailAddress);
+                console.log("--- b2cObject: " + b2cObject);
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = (Math.random().toString().slice(2,5)) + "contact" + (Math.random().toString().slice(2,5)) + contEmail;
+                console.log("*** emailAddress: " + email);
                 break;
             case "BasicContactCitizen":
                 console.log("---  TESTING Creating a BASIC Contact - CITIZEN ---");    
                 console.log("");
                 b2cObject = b2cObjectID + postFix;
-                emailAddress = Math.random().toString(36) + "@gmail.com";
-                // console.log("*** emailAddress: " + emailAddress);
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = (Math.random().toString().slice(2,5)) + "contact" + (Math.random().toString().slice(2,5)) + contEmail;
                 isCitizen = this.testdata.getIsCitizen("BasicContactCitizen");
-                console.log("*** isCitizen:    " + isCitizen);               
+                firstName = this.testdata.getFirstName("BasicContactCitizen");
+                middleName = this.testdata.getMiddleName("BasicContactCitizen");
+                lastName = this.testdata.getLastName("BasicContactCitizen");    
+                console.log("--- isCitizen: " + isCitizen);   
+                console.log("--- firstName: " + firstName);   
+                console.log("--- lastName: " + lastName);         
+                console.log("*** emailAddress: " + email);    
                 break;
             case "ContactMissingFirstName":
                 console.log("---  TESTING Creating Contact with MISSING FirstName ---");
                 firstName = this.testdata.getFirstName("ContactMissingFirstName");
                 console.log("--- Contact FirstName: " + firstName);
                 b2cObject = b2cObjectID + postFix;
-                emailAddress = Math.random().toString(36) + "@gmail.com";
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
                 break;
             case "ContactMissingLastName":
                 console.log("---  TESTING Creating Contact with MISSING LastName ---");
                 lastName = this.testdata.getLastName("ContactMissingLastName");
                 console.log("--- Contact LastName: " + lastName);
                 b2cObject = b2cObjectID + postFix;
-                emailAddress = Math.random().toString(36) + "@gmail.com";
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
                 break;
             case "DuplicateB2cObjectId":
                 console.log("---  TESTING Duplicate B2CObjectID ---");
                 b2cObject = this.testdata.getB2CObjectID("DuplicateB2cObjectId");
-                emailAddress = Math.random().toString(36) + "@gmail.com";
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
+                console.log("*** emailAddress: " + email);
                 console.log("--- B2CObjectID: " + b2cObject);
                 break;
             case "InvalidB2cObjectId":
                 console.log("--- TESTING Invalide B2CObjectID ---");
                 b2cObject = this.testdata.getB2CObjectID("InvalidB2cObjectId");
-                emailAddress = Math.random().toString(36) + "@gmail.com";
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
+                console.log("*** emailAddress: " + email);
                 console.log("--- InvalidB2cObjectId: " + b2cObject);
                 break;
             case "ContactWithDuplicateEmail":
                 console.log("--- TESTING Duplicate B2CObjectID ---");
-                emailAddress = this.testdata.getEmail("ContactWithDuplicateEmail");
-                console.log("--- Duplicate Email: " + emailAddress);
+                email = this.testdata.getEmail("ContactWithDuplicateEmail");
+                console.log("--- Duplicate Email: " + email);
                 break;
             case "ContactMissingTnCDate":
                 console.log("--- TESTING creating Contact with MISSING TandC Date ---");
                 b2cObject = b2cObjectID + postFix;
-                emailAddress = Math.random().toString(36) + "@gmail.com";
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
                 tacsacceptedon = this.testdata.getTacsacceptedone("ContactMissingTnCDate");
                 console.log("--- TandC Date: " + tacsacceptedon);
                 console.log("");
@@ -182,7 +194,8 @@ class ActiveDirectoryAuthService {
             case "ContactInvalidTnCDate":
                 console.log("--- TESTING creating Contact with INVALID TandC Date ---");
                 b2cObject = b2cObjectID + postFix;
-                emailAddress = Math.random().toString(36) + "@gmail.com";
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
                 tacsacceptedon = this.testdata.getTacsacceptedone("ContactInvalidTnCDate");
                 console.log("--- TandC Date: " + tacsacceptedon);
                 console.log("");
@@ -194,20 +207,50 @@ class ActiveDirectoryAuthService {
                 buildingName = this.testdata.getBuildingName("ContactMissingCorAddress");
                 buildingNumber = this.testdata.getBuildingNumber("ContactMissingCorAddress");
                 street = this.testdata.getStreet("ContactMissingCorAddress");
-                locality = this.testdata.getLocality("ContactMissingCorAddress");
-                town = this.testdata.getTown("ContactMissingCorAddress");
                 country = this.testdata.getCountry("ContactMissingCorAddress");
                 postcode = this.testdata.getPostcode("ContactMissingCorAddress");
-                emailAddress = Math.random().toString(36) + "@gmail.com";
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
+                console.log("*** emailAddress: " + email);
                 console.log("");
+                break;
+            case "MissingBuildNameNo":
+                console.log("--- TESTING creating a new CITIZEN Contact with MISSING Building Name OR Number fields ---");            
+                b2cObject = b2cObjectID + postFix;     
+                isCitizen = this.testdata.getIsCitizen("ContactMissingCorAddress");
+                buildingName = this.testdata.getBuildingName("ContactMissingCorAddress");
+                buildingNumber = this.testdata.getBuildingNumber("ContactMissingCorAddress");
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
+                console.log("*** emailAddress: " + email);
+                console.log("buildingName: " + buildingName);
+                console.log("buildingNumber: " + buildingNumber);
+                console.log("");
+                break;
+            case "MissingStreet":
+                console.log("--- TESTING creating a new CITIZEN Contact with MISSING street field ---");            
+                b2cObject = b2cObjectID + postFix;     
+                street = this.testdata.getStreet("ContactMissingCorAddress");
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
+                console.log("*** emailAddress: " + email);
+                console.log("");
+                console.log("street: " + street);
+                break;
+            case "MissingCountry":
+                console.log("--- TESTING creating a new CITIZEN Contact with MISSING Country field ---");            
+                b2cObject = b2cObjectID + postFix;     
+                country = this.testdata.getCountry("ContactMissingCorAddress");
+                var contEmail = this.testdata.getEmail("BasicContact");
+                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
+                console.log("*** emailAddress: " + email);
+                console.log("");
+                console.log("country: " + country);
                 break;
             default:
                 console.log("Invalide data TYPE !!");
                 break;
         }
-
-        console.log("*** b2cObject:    " + b2cObject);
-        console.log("*** emailAddress: " + emailAddress);
 
         //options for api response :- need to change postman token so used random 12 digit in the end
         const options = {
@@ -225,7 +268,24 @@ class ActiveDirectoryAuthService {
                 Authorization: 'Bearer ' + token,
                 Accept: 'application/json'
             },
-            body: { 'defra_title': title, 'defra_b2cobjectid': b2cObject, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'defra_cmcreateascitizen': isCitizen, 'defra_cmcreationsource': source, 'defra_addrcorbuildingname': buildingName, 'defra_addrcorbuildingnumber': buildingNumber, 'defra_addrcorstreet': street, 'defra_addrcorlocality': locality, 'defra_addrcortown': town, 'defra_addrcorcountry@odata.bind': country, 'defra_addrcorpostcode': postcode, 'defra_tacsacceptedversion': tacsacceptedversion, 'defra_tacsacceptedon': tacsacceptedon, 'emailaddress1': emailAddress, 'birthdate': DOB, 'address1_telephone1': telephone },
+            body: { 
+             'defra_title': title, 'defra_b2cobjectid': b2cObject, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
+             'defra_cmcreateascitizen': isCitizen,
+             'defra_cmcreationsource': source,
+             'defra_addrcorbuildingname': buildingName,
+             'defra_addrcorbuildingnumber': buildingNumber,
+             'defra_addrcorstreet': street,
+             'defra_addrcorlocality': locality,
+             'defra_addrcortown': town,
+             'defra_addrcorcountry@odata.bind': country,
+             'defra_addrcorpostcode': postcode,
+             'defra_tacsacceptedversion': tacsacceptedversion,
+             'defra_tacsacceptedon': tacsacceptedon,
+             'defra_cookiespolicyacceptedversion': cookiesVersion,
+             'defra_cookiespolicyacceptedon': cookiesDate,
+             'defra_privacypolicyacceptedversion': privacyPolicyVersio,
+             'defra_privacypolicyacceptedon': privacyPolicyDate      
+             },
             json: true
         };
 
@@ -239,7 +299,8 @@ class ActiveDirectoryAuthService {
 
             //console.log("Contact-ID: " + JSON.stringify(response.body["contactid"]));
             console.log("");
-            console.log("Response BODY: " + JSON.stringify(initializePromise.body));
+            console.log("Assertion TEXT: " + statusMsg);
+            console.log("Response BODY : " + JSON.stringify(initializePromise.body));
             console.log("");
 
             contactID = JSON.stringify(initializePromise.body["contactid"]);
@@ -270,19 +331,20 @@ class ActiveDirectoryAuthService {
             console.log("--- Contact-ID: " + contactID);
 
             // chai.expect(JSON.stringify(response.body)).to.contain(statusMsg);
-            chai.expect(JSON.stringify(initializePromise.body)).to.not.contain(statusMsg);
+            chai.expect(JSON.stringify(initializePromise.body)).contain(statusMsg);
         }
         else if (statusCodeVal !== 200 || statusCodeVal !== 201) {
             console.log("");
             console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
             console.log("TEXT:       " + initializePromise.statusMessage);
 
-            //chai.expect(JSON.stringify(response).to.contain(statusMsg));
-            var errorText = JSON.stringify(initializePromise.body.error["message"]);
             console.log("");
-            console.log("** ERROR MESSAGE: " + JSON.stringify(errorText));
+            var errorText = JSON.stringify(initializePromise.body.error["message"]);
+            console.log("--- Assertion TEXT: " + statusMsg);
+            console.log("--- Responce BODY : " + errorText);
 
-            chai.expect(errorText).contains(statusMsg);
+            chai.expect(errorText).to.contains(statusMsg);
+            console.log("-- END --")
         }
 
     }
@@ -315,16 +377,16 @@ class ActiveDirectoryAuthService {
         var orgRegtown = this.testdata.getOrgRegTown("BasicOrgDetails");
         var orgRegcountry = this.testdata.getOrgRegCountry("BasicOrgDetails");
         var orgRegpostcode = this.testdata.getOrgRegPostcode("BasicOrgDetails");
-        // const orgCoraddbuildingname = this.testdata.getOrgCorBuildingName(null);
-        // const orgCoraddbuildingno = this.testdata.getOrgCorBuildingNo(null);
-        // const orgCorsubbuildingname = this.testdata.getOrgCorSubBuildingName(null);
-        // const orgCoraddstreet = this.testdata.getOrgCorStreet(null);
-        // const orgCoraddlocality = this.testdata.getOrgCorLocality(null);
-        // const orgcorcounty = this.testdata.getOrgCorCounty(null);
-        // const orgCortown = this.testdata.getOrgCorTown(null);
-        // const orgCorcountry = this.testdata.getOrgCorCountry(null);   
-        // const orgCorpostcode = this.testdata.getOrgCorPostcode(null);  
-        // const orgv1isUK = this.testdata.getorgv1isUK(validationType);
+        // Organisation Correespondence Address Registration Details
+        var orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("BasicOrgDetails");
+        var orgCoraddbuildingno = this.testdata.getOrgCorBuildingNo("BasicOrgDetails");
+        var orgCorsubbuildingname = this.testdata.getOrgCorSubBuildingName("BasicOrgDetails");
+        var orgCoraddstreet = this.testdata.getOrgCorStreet("BasicOrgDetails");
+        var orgCoraddlocality = this.testdata.getOrgCorLocality("BasicOrgDetails");
+        var orgCorcounty = this.testdata.getOrgCorCounty("BasicOrgDetails");
+        var orgCortown = this.testdata.getOrgCorTown("BasicOrgDetails");
+        var orgCorcountry = this.testdata.getOrgCorCountry("BasicOrgDetails");   
+        var orgCorpostcode = this.testdata.getOrgCorPostcode("BasicOrgDetails");  
 
         switch (validationtype) {
 
@@ -333,6 +395,33 @@ class ActiveDirectoryAuthService {
                 orgName = orgName + " " + Math.random().toString(36).substr(2, 5);
                 orgEmail = Math.random().toString(36) + "@gmail.com";
                 orgCRN = Math.random().toString().slice(2,10);
+                console.log("ORGANISATION CRN:- " + orgCRN);
+                break;
+            case "BasicOrg_LTD":
+                console.log("--- Creating a Basic LTD-Organisation ---");
+                orgName = orgName + "LTD" + "-" + Math.random().toString(36).substr(2, 5);
+                orgType = this.testdata.getOrgType("BasicOrg_LTD");
+                orgEmail = Math.random().toString(36) + "@ltdtest.com";
+                orgCRN = Math.random().toString().slice(2,10);
+                console.log("ORGANISATION TypeID:- " + orgType);
+                console.log("ORGANISATION CRN:- " + orgCRN);
+                break;
+            case "BasicOrg_PLC":
+                console.log("--- Creating a Basic PLC-Organisation ---");
+                orgName = orgName + "PLC" + "-" + Math.random().toString(36).substr(2, 5);
+                orgType = this.testdata.getOrgType("BasicOrg_PLC");
+                orgEmail = Math.random().toString(36) + "@plctest.com";
+                orgCRN = Math.random().toString().slice(2,10);
+                console.log("ORGANISATION TypeID:- " + orgType);
+                console.log("ORGANISATION CRN:- " + orgCRN);
+                break;
+            case "BasicOrg_LLP":
+                console.log("--- Creating a Basic LLP-Organisation ---");
+                orgName = orgName + "LLP" + "-" + Math.random().toString(36).substr(2, 5);
+                orgType = this.testdata.getOrgType("BasicOrg_LLP");
+                orgEmail = Math.random().toString(36) + "@llptest.com";
+                orgCRN = Math.random().toString().slice(2,10);
+                console.log("ORGANISATION TypeID:- " + orgType);
                 console.log("ORGANISATION CRN:- " + orgCRN);
                 break;
             case "MissingOrgNameCheck":
@@ -347,8 +436,9 @@ class ActiveDirectoryAuthService {
                 orgName = name + (Math.random().toString().slice(2,4));
                 orgType = this.testdata.getOrgType("MissingOrgType");
                 orgCRN = Math.random().toString().slice(2,10);
-                console.log("--- Org TYPE: " + orgType);
                 console.log("--- Org NAME: " + orgName);
+                console.log("--- Org TYPE: " + orgType);
+                console.log("--- Org CRN : " + orgCRN);
                 break;
             case "MissingCRNCheck":
                 console.log("--- Missing CRN TEST ---");
@@ -368,52 +458,14 @@ class ActiveDirectoryAuthService {
                 console.log("--- CRN LESS THAN 8 Char TEST ---");
                 orgCRN = this.testdata.getOrgCRN("CRNLessThanCheck");
                 break;
-            case "CharityOrgDetails":
-                console.log("--- Create Charity Organisation TEST --- ");
-                var name = this.testdata.getOrgName("CharityOrgDetails");
-                orgName = name + " " + (Math.random().toString().slice(2,4));
-                orgType = this.testdata.getOrgType("CharityOrgDetails");
-                var chaNum = this.testdata.getCharityNo("CharityOrgDetails");
-                charityNo = chaNum + (Math.random().toString().slice(2,4));
-                orgCRN = "";
-                console.log("Organisation NAME: " + orgName);
-                console.log("Charity NUMBER   : " + charityNo);
-                break;
-            case "CharityOrgNoGreaterThan":
-                console.log("--- Creating a Charity Organisation with Charity-Number GREATER than 8 characters long TEST ---");
-                var name = this.testdata.getOrgName("CharityOrgDetails");
-                orgName = name + " " + (Math.random().toString().slice(2,4));
-                orgType = this.testdata.getOrgType("CharityOrgDetails");
-                charityNo = this.testdata.getCharityNo("CharityOrgNoGreaterThan");
-                orgCRN = "";
-                console.log("Charity NUMBER: " + charityNo);
-                break;
-            case "CharityOrgNoAlphaNumeric":
-                console.log("--- Creating a Charity Organisation with charity-Number in Alphanumeric charachters TEST ---");
-                var name = this.testdata.getOrgName("CharityOrgDetails");
-                orgName = name + " " + (Math.random().toString().slice(2,4));
-                orgType = this.testdata.getOrgType("CharityOrgDetails");
-                charityNo = this.testdata.getCharityNo("CharityOrgNoAlphaNumeric");
-                orgCRN = "";
-                console.log("Charity NUMBER: " + charityNo);
-                break;
-            case "CharityOrgNoDuplicate":
-                console.log("--- Create Charity Organisation with Duplicate charity Number TEST ---");
-                var name = this.testdata.getOrgName("CharityOrgDetails");
-                orgName = name + " " + (Math.random().toString().slice(2,4));
-                orgType = this.testdata.getOrgType("CharityOrgDetails");
-                charityNo = this.testdata.getCharityNo("CharityOrgNoDuplicate");
-                orgCRN = "";
-                console.log("Charity NUMBER: " + charityNo);
-                break;
-            case "LLPOrgDetails":
+            case "LLP_OrgDetails":
                 console.log("--- Create Charity Organisation TEST ---");
-                name = this.testdata.getOrgName("LLPOrgDetails");
+                var name = this.testdata.getOrgName("LLPOrgDetails");
                 orgName = name + (Math.random().toString().slice(2,4));
                 orgType = this.testdata.getOrgType("LLPOrgDetails");
                 orgCRN = Math.random().toString().slice(2,10);
                 break;
-            case "MissingRegAddressCheck":
+            case "MissingRegAddress":
                 console.log("--- MISSING Registered Address TEST ---");
                 orgName = this.testdata.getOrgName("MissingRegAddressCheck");
                 orgCRN = this.testdata.getOrgCRN("MissingRegAddressCheck");
@@ -424,16 +476,53 @@ class ActiveDirectoryAuthService {
                 orgRegaddlocality = this.testdata.getOrgRegLocality("MissingRegAddressCheck");
                 orgRegcounty = this.testdata.getOrgRegCounty("MissingRegAddressCheck");
                 orgRegtown = this.testdata.getOrgRegTown("MissingRegAddressCheck");
-                orgRegpostcode = this.testdata.getOrgRegPostcode("MissingRegAddressCheck");     
+                orgRegpostcode = this.testdata.getOrgRegPostcode("MissingRegAddressCheck"); 
                 console.log("Missing Registered ADDRESS!! ");     
                 break;
-            case "BasicOrgOthersTest":
-                console.log("--- OTHER Org i.e Sole Trader TEST ---");
-                name = this.testdata.getOrgName("BasicOrgOthersTest");
+            case "MissingStreet":
+                console.log("--- MISSING Registered Address TEST ---");
+                orgName = this.testdata.getOrgName("MissingStreetCheck");
+                orgCRN = this.testdata.getOrgCRN("MissingStreetCheck");
+                orgRegaddstreet = this.testdata.getOrgRegStreet("MissingStreetCheck");  
+                console.log("Missing STREET in ADDRESS!! ");     
+                break;
+            case "MissingBuildingNameAndNo":
+                console.log("--- MISSING Building name and Number in Address TEST ---");
+                orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("MissingRegAddressCheck");
+                orgRegaddbuildingno = this.testdata.getOrgRegBuildingNo("MissingRegAddressCheck");
+                console.log("Missing Building Name and Number in ADDRESS!! ");     
+                break;
+            case "BasicOrg_SoleTrader":
+                console.log("--- Creating a 'SOLE TRADER' Organisation TEST ---");
+                name = this.testdata.getOrgName("BasicOrgSoleTrader");
                 orgName = name + (Math.random().toString().slice(2,4));
-                orgType = this.testdata.getOrgType("BasicOrgOthersTest");
-                orgCRN = this.testdata.getOrgCRN("BasicOrgOthersTest");
-                orgEmail = this.testdata.getOrgEmail("BasicOrgOthersTest");
+                orgType = this.testdata.getOrgType("BasicOrgSoleTrader");
+                orgCRN = this.testdata.getOrgCRN("BasicOrgSoleTrader");
+                orgEmail = this.testdata.getOrgEmail("BasicOrgSoleTrader");
+                break;
+            case "BasicOrg_Government":
+                console.log("--- Creating a 'GOVERNMENT' Organisation TEST ---");
+                name = this.testdata.getOrgName("BasicOrgGovernment");
+                orgName = name + (Math.random().toString().slice(2,4));
+                orgType = this.testdata.getOrgType("BasicOrgGovernment");
+                orgCRN = this.testdata.getOrgCRN("BasicOrgGovernment");
+                orgEmail = this.testdata.getOrgEmail("BasicOrgGovernment");
+                break;
+            case "BasicOrg_NotForProfit":
+                console.log("--- Creating a 'NOT-FOR-PROFIT' Organisation TEST ---");
+                name = this.testdata.getOrgName("BasicOrgNotForProfit");
+                orgName = name + (Math.random().toString().slice(2,4));
+                orgType = this.testdata.getOrgType("BasicOrgNotForProfit");
+                orgCRN = this.testdata.getOrgCRN("BasicOrgNotForProfit");
+                orgEmail = this.testdata.getOrgEmail("BasicOrgNotForProfit");
+                break;
+            case "BasicOrg_CompAuthority":
+                console.log("--- Creating a 'COMPETENT-AUTHORITY' Organisation TEST ---");
+                name = this.testdata.getOrgName("BasicOrgCompAuthority");
+                orgName = name + (Math.random().toString().slice(2,4));
+                orgType = this.testdata.getOrgType("BasicOrgCompAuthority");
+                orgCRN = this.testdata.getOrgCRN("BasicOrgCompAuthority");
+                orgEmail = this.testdata.getOrgEmail("BasicOrgCompAuthority");
                 break;
             default:
                 console.log("Invalide data TYPE !!");
@@ -454,12 +543,34 @@ class ActiveDirectoryAuthService {
                 Authorization: 'Bearer ' + token,
                 Accept: 'application/json'
             },
-            //DEV-test enviroment
-            // body: { 'name': orgName, 'defra_isuk': orgIsUK, 'defra_cminterimorganisationtypevalue': orgType, 'defra_cmcrn': orgCRN, 'defra_charitynumber': charityNo, 'emailaddress1': orgEmail, 'defra_addrregbuildingname': orgRegaddbuildingname, 'defra_addrregbuildingnumber': orgRegaddbuildingno, 'defra_addrregsubbuildingname': orgRegsubbuildingname, 'defra_addrregstreet': orgRegaddstreet, 'defra_addrreglocality': orgRegaddlocality, 'defra_addrregcounty': orgRegcounty, 'defra_addrregtown': orgRegtown, 'defra_addrregcountry@odata.bind': orgRegcountry, 'defra_addrregpostcode': orgRegpostcode },
-            // json: true
 
             //System-test enviroment
-            body: { 'name': orgName, 'defra_isuk': orgIsUK, 'defra_cminterimorganisationtypevalue': orgType, 'defra_charitynumber': charityNo, 'defra_cmcrn': orgCRN, 'emailaddress1': orgEmail, 'defra_addrregbuildingname': orgRegaddbuildingname, 'defra_addrregbuildingnumber': orgRegaddbuildingno, 'defra_addrregsubbuildingname': orgRegsubbuildingname, 'defra_addrregstreet': orgRegaddstreet, 'defra_addrreglocality': orgRegaddlocality, 'defra_addrregcounty': orgRegcounty, 'defra_addrregtown': orgRegtown, 'defra_addrregcountry@odata.bind': orgRegcountry, 'defra_addrregpostcode': orgRegpostcode },
+            body: { 
+                'name': orgName,
+                'defra_isuk': orgIsUK,
+                'defra_type': orgType,
+                // 'defra_charitynumber': charityNo,
+                'defra_cmcrn': orgCRN,
+                'emailaddress1': orgEmail,
+                'defra_addrregbuildingname': orgRegaddbuildingname,
+                'defra_addrregbuildingnumber': orgRegaddbuildingno,
+                'defra_addrregsubbuildingname': orgRegsubbuildingname,
+                'defra_addrregstreet': orgRegaddstreet,
+                'defra_addrreglocality': orgRegaddlocality,
+                'defra_addrregcounty': orgRegcounty,
+                'defra_addrregtown': orgRegtown,
+                'defra_addrregcountry@odata.bind': orgRegcountry,
+                'defra_addrregpostcode': orgRegpostcode, 
+                'defra_addrcorbuildingname': orgCoraddbuildingname,
+                'defra_addrcorbuildingnumber': orgCoraddbuildingno,
+                'defra_addrcorsubbuildingname': orgCorsubbuildingname,
+                'defra_addrcorstreet': orgCoraddstreet,
+                'defra_addrcorlocality': orgCoraddlocality,
+                'defra_addrcorcounty': orgCorcounty,
+                'defra_addrcortown': orgCortown,
+                'defra_addrcorcountry@odata.bind': orgCorcountry,
+                'defra_addrcorpostcode': orgCorpostcode 
+                },
             json: true
         };
 
@@ -528,10 +639,896 @@ class ActiveDirectoryAuthService {
         }
         else if (error) throw new Error(error);
 
+    }  
+
+    //**************USE THIS**********************/
+    async requestCreateOrgNEW(token, orgtype, validationtype, statusMsg) {
+
+        let today = new Date().toLocaleString();
+        //generate random 12 digit number for unique Postman Token
+        const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
+        const eightDigitRandomNum = Math.floor(Math.pow(10, 8 - 1) + Math.random() * (Math.pow(10, 8) - Math.pow(10, 8 - 1) - 1));
+        // console.log(elevenDigitRandomNum);
+
+        //const emailRandom = Math.random().toString(36) + "@gmail.com";
+        const emailRandomNo = Math.random().toString(36);
+        //options for api response :- need to change postman token so used random 12 digit in the end
+
+        var orgIsUK = this.testdata.getOrgIsUK("BasicOrgDetails");
+        var orgName = this.testdata.getOrgName("BasicOrgDetails");   
+        var orgType = this.testdata.getOrgType("BasicOrgDetails");
+        var charityNo = this.testdata.getCharityNo("BasicOrgDetails");
+        var orgCRN = this.testdata.getOrgCRN("BasicOrgDetails");
+        var orgEmail = this.testdata.getOrgEmail("BasicOrgDetails");
+        var orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("BasicOrgDetails");
+        var orgRegaddbuildingno = this.testdata.getOrgRegBuildingNo("BasicOrgDetails");
+        var orgRegsubbuildingname = this.testdata.getOrgRegSubBuildingName("BasicOrgDetails");
+        var orgRegaddstreet = this.testdata.getOrgRegStreet("BasicOrgDetails");
+        var orgRegaddlocality = this.testdata.getOrgRegLocality("BasicOrgDetails");
+        var orgRegcounty = this.testdata.getOrgRegCounty("BasicOrgDetails");
+        var orgRegtown = this.testdata.getOrgRegTown("BasicOrgDetails");
+        var orgRegcountry = this.testdata.getOrgRegCountry("BasicOrgDetails");
+        var orgRegpostcode = this.testdata.getOrgRegPostcode("BasicOrgDetails");
+        // --- Organisation Correespondence Address Registration Details ---
+        var orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("BasicOrgDetails");
+        var orgCoraddbuildingno = this.testdata.getOrgCorBuildingNo("BasicOrgDetails");
+        var orgCorsubbuildingname = this.testdata.getOrgCorSubBuildingName("BasicOrgDetails");
+        var orgCoraddstreet = this.testdata.getOrgCorStreet("BasicOrgDetails");
+        var orgCoraddlocality = this.testdata.getOrgCorLocality("BasicOrgDetails");
+        var orgCorcounty = this.testdata.getOrgCorCounty("BasicOrgDetails");
+        var orgCortown = this.testdata.getOrgCorTown("BasicOrgDetails");
+        var orgCorcountry = this.testdata.getOrgCorCountry("BasicOrgDetails");   
+        var orgCorpostcode = this.testdata.getOrgCorPostcode("BasicOrgDetails");      
+
+        if(orgtype == "LTD"){
+            console.log("--- Creating a Basic LTD-Organisation ---");
+            orgType = this.testdata.getOrgType("BasicOrg_LTD");
+        }
+        if(orgtype == "PLC"){
+            console.log("--- Creating a Basic PLC-Organisation ---");
+            orgType = this.testdata.getOrgType("BasicOrg_PLC"); 
+        }
+        if(orgtype == "LLP"){
+            console.log("--- Creating a Basic LLP-Organisation ---");
+            orgType = this.testdata.getOrgType("BasicOrg_LLP");                
+        }  
+
+        switch (validationtype) {
+            case "Basic_Org":             
+                orgName = orgName + orgtype + "-" + Math.random().toString(36).substr(2, 5);
+                orgEmail = Math.random().toString(36) + "@ltdtest.com";
+                orgCRN = Math.random().toString().slice(2,10);
+                break;
+             case "MissingOrgName":
+                console.log("*** MISSING Organisation Name TEST ***");
+                orgName = this.testdata.getOrgName("MissingOrgNameCheck");
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;
+                console.log("--- Organisation Name :- " + orgName);
+                console.log("--- Organisation Email:- " + orgEmail);
+                break;
+            case "MissingOrgType":
+                console.log("--- MISSING Org Type TEST --");
+                var name = this.testdata.getOrgName("MissingOrgType");
+                orgName = orgtype + " - " + name + (Math.random().toString().slice(2,4));
+                orgType = this.testdata.getOrgType("MissingOrgType");
+                orgCRN = Math.random().toString().slice(2,10);
+                console.log("--- Org NAME: " + orgName);
+                console.log("--- Org TYPE: " + orgType);
+                console.log("--- Org CRN : " + orgCRN);
+                break;
+            case "MissingCRNCheck":
+                console.log("*** Missing CRN TEST ***");
+                orgCRN = this.testdata.getOrgCRN("MissingCRNCheck");
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;
+                console.log("--- Org CRN  : " + orgCRN);
+                console.log("--- Org email: " + orgEmail);
+                break;
+            case "DuplicateCRNCheck":
+                console.log("--- Duplicated Organisation CRN TEST ---");
+                orgCRN = this.testdata.getOrgCRN("DuplicateCRNCheck");
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;
+                console.log("--- Duplicate Email: " + orgEmail);
+                console.log("--- Duplicate CRN  : " + orgCRN);
+                break;
+            case "CRNGreaterThan":
+                console.log("--- CRN GREATER THAN 8 Char TEST ---");
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;
+                orgCRN = this.testdata.getOrgCRN("CRNGreaterThanCheck");
+                console.log("--- CRN characters : " + orgCRN);
+                break;
+            case "CRNLessThan":
+                console.log("--- CRN LESS THAN 8 Char TEST ---");
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;
+                orgCRN = this.testdata.getOrgCRN("CRNLessThanCheck");
+                console.log("--- CRN characters: " + orgCRN);
+                break;
+            case "LLP_OrgDetails":
+                console.log("--- Create Charity Organisation TEST ---");
+                var name = this.testdata.getOrgName("LLPOrgDetails");
+                orgName = name + (Math.random().toString().slice(2,4));
+                orgType = this.testdata.getOrgType("LLPOrgDetails");
+                orgCRN = Math.random().toString().slice(2,10);
+                break;
+            case "MissingRegAddress":
+                console.log("--- MISSING Registered Address TEST ---");
+                orgName = this.testdata.getOrgName("MissingRegAddressCheck");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;       
+                orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("MissingRegAddressCheck");
+                orgRegaddbuildingno = this.testdata.getOrgRegBuildingNo("MissingRegAddressCheck");
+                orgRegaddstreet = this.testdata.getOrgRegStreet("MissingRegAddressCheck");
+                orgRegpostcode = this.testdata.getOrgRegPostcode("MissingRegAddressCheck");   
+                console.log("Org Building Name:   " + orgRegsubbuildingname);
+                console.log("Org Building Number: " + orgRegaddbuildingno);
+                console.log("Org Street:          " + orgRegaddstreet);
+                console.log("Org Postcode:        " + orgRegpostcode);
+                break;
+            case "MissingStreet":  
+                console.log("--- MISSING Street TEST ---");
+                orgName = this.testdata.getOrgName("MissingStreetCheck");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;   
+                orgRegaddstreet = this.testdata.getOrgRegStreet("MissingStreetCheck");  
+                console.log("Org Street: " + orgRegaddstreet);   
+                break;
+            case "MissingPostCode":  
+                console.log("--- MISSING Post-Code in Address TEST ---");
+                orgName = this.testdata.getOrgName("Missing_Postcode");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email; 
+                orgRegpostcode = this.testdata.getOrgRegPostcode("Missing_Postcode");    
+                break;
+            case "MissingBuildingNameAndNo":
+                console.log("--- MISSING Building name and Number in Address TEST ---");
+                orgName = this.testdata.getOrgName("MissingBuildingNameAndNo");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email; 
+                orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("MissingBuildingNameAndNo");
+                orgRegaddbuildingno = this.testdata.getOrgRegBuildingNo("MissingBuildingNameAndNo");
+                console.log("Org Building Name  : " + orgRegaddbuildingname);    
+                console.log("Org Building Number: " + orgRegaddbuildingno);    
+                break;
+            case "UKOrg_NonUk_Addr":          
+                orgName = orgName + orgtype + "-" + Math.random().toString(36).substr(2, 5) + "-UK";
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = "UK-" + orgtype + (Math.random().toString().slice(2,5)) + email; 
+                orgCRN = Math.random().toString().slice(2,10);
+                orgIsUK = this.testdata.getOrgIsUK ("UKOrg_NoneUKAddr");
+                orgRegaddbuildingno  = this.testdata.getOrgRegBuildingNo("UKOrg_NoneUKAddr")
+                orgRegcountry = this.testdata.getOrgRegCountry("UKOrg_NoneUKAddr")
+                orgRegaddstreet = this.testdata.getOrgRegStreet ("UKOrg_NoneUKAddr")
+                orgCoraddbuildingno  = this.testdata.getOrgCorBuildingNo("UKOrg_NoneUKAddr")
+                orgCorcountry = this.testdata.getOrgCorCountry("UKOrg_NoneUKAddr")
+                orgCoraddstreet = this.testdata.getOrgCorStreet ("UKOrg_NoneUKAddr")
+                break;
+            case "NonUkOrg_NoAdd":         
+                orgIsUK = this.testdata.getOrgIsUK ("NoneUK_Org");
+                orgName = orgName + orgtype + "-" + Math.random().toString(36).substr(2, 5) + "-Non-UK";
+                orgCRN = this.testdata.getOrgCRN("NoneUK_Org");
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = "NonUK_" + orgtype + (Math.random().toString().slice(2,5)) + email; 
+                orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("NoneUK_Org")
+                orgRegaddbuildingno  = this.testdata.getOrgRegBuildingNo("NoneUK_Org")
+                orgRegcountry = this.testdata.getOrgRegCountry("NoneUK_Org")
+                orgRegaddstreet = this.testdata.getOrgRegStreet ("NoneUK_Org")
+                orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("NoneUK_Org")
+                orgCoraddbuildingno  = this.testdata.getOrgCorBuildingNo("NoneUK_Org")
+                orgCorcountry = this.testdata.getOrgCorCountry("NoneUK_Org")
+                orgCoraddstreet = this.testdata.getOrgCorStreet ("NoneUK_Org")
+
+                console.log("IsUK     : " + orgIsUK);    
+                console.log("Org Name : " + orgName);  
+                console.log("Org CRN  : " + orgCRN);  
+                console.log("Org Email: " + orgEmail);  
+                console.log("");
+                console.log("Reg Building Name  : " + orgRegaddbuildingname);    
+                console.log("Reg Building Number: " + orgRegaddbuildingno);  
+                console.log("Reg Address Country: " + orgRegcountry);  
+                console.log("Reg Address Street : " + orgRegaddstreet);  
+                console.log("");
+                console.log("Cor Building Name  : " + orgCoraddbuildingname);    
+                console.log("Cor Building Number: " + orgCoraddbuildingno);  
+                console.log("Cor Address Country: " + orgCorcountry);  
+                console.log("Cor Address Street : " + orgCoraddstreet); 
+                break;
+                case "NonUkOrg_NoCRN":         
+                orgIsUK = this.testdata.getOrgIsUK ("NoneUK_Org");
+                orgName = orgName + orgtype + "-" + Math.random().toString(36).substr(2, 5) + "-Non-UK";
+                orgCRN = this.testdata.getOrgCRN("NoneUK_Org");
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = "NonUK_" + orgtype + (Math.random().toString().slice(2,5)) + email; 
+
+                orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("NoneUKOrg_WithAdd")
+                orgRegaddbuildingno  = this.testdata.getOrgRegBuildingNo("NoneUKOrg_WithAdd")
+                orgRegcountry = this.testdata.getOrgRegCountry("NoneUKOrg_WithAdd")
+                orgRegaddstreet = this.testdata.getOrgRegStreet ("NoneUKOrg_WithAdd")
+                orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("NoneUK_Org")
+                orgCoraddbuildingno  = this.testdata.getOrgCorBuildingNo("NoneUK_Org")
+                orgCorcountry = this.testdata.getOrgCorCountry("NoneUK_Org")
+                orgCoraddstreet = this.testdata.getOrgCorStreet ("NoneUK_Org")
+                break;
+            default:
+                console.log("Invalide data TYPE !!");
+                break;
+        }
+
+        const options = {
+            method: 'POST',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/accounts?$select=accountid,defra_uniquereference',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },
+
+            //System-test enviroment
+            body: { 
+                'name': orgName,
+                'defra_isuk': orgIsUK,
+                'defra_type': orgType,
+                // 'defra_charitynumber': charityNo,
+                'defra_cmcrn': orgCRN,
+                'emailaddress1': orgEmail,
+                'defra_addrregbuildingname': orgRegaddbuildingname,
+                'defra_addrregbuildingnumber': orgRegaddbuildingno,
+                'defra_addrregsubbuildingname': orgRegsubbuildingname,
+                'defra_addrregstreet': orgRegaddstreet,
+                'defra_addrreglocality': orgRegaddlocality,
+                'defra_addrregcounty': orgRegcounty,
+                'defra_addrregtown': orgRegtown,
+                'defra_addrregcountry@odata.bind': orgRegcountry,
+                'defra_addrregpostcode': orgRegpostcode, 
+                'defra_addrcorbuildingname': orgCoraddbuildingname,
+                'defra_addrcorbuildingnumber': orgCoraddbuildingno,
+                'defra_addrcorsubbuildingname': orgCorsubbuildingname,
+                'defra_addrcorstreet': orgCoraddstreet,
+                'defra_addrcorlocality': orgCoraddlocality,
+                'defra_addrcorcounty': orgCorcounty,
+                'defra_addrcortown': orgCortown,
+                'defra_addrcorcountry@odata.bind': orgCorcountry,
+                'defra_addrcorpostcode': orgCorpostcode 
+                },
+            json: true
+        };
+
+        var initializePromise = await this.initialize(options);
+        statusCodeVal = initializePromise.statusCode;
+
+        //console.log("Response Status message: " + initializePromise.statusMessage);
+        var statusCode = initializePromise.statusCode;
+
+        console.log("");
+        console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+        console.log("TEXT      : " + initializePromise.statusMessage);
+
+        if (statusCode === 200 || statusCode === 201) {
+            console.log("");
+            console.log("--- Org NAME : " + orgName);
+            console.log("--- Org CRN  : " + orgCRN);
+            organisationID = JSON.stringify(initializePromise.body["accountid"]);
+
+            fs.writeFile('OrgID.txt', organisationID, function (err) {
+                if (err) throw err;
+            });
+
+            //ADD it to the json file - note we actually don't need the txt file for relationship
+            var obj = {
+                orgID: []
+            };
+
+            obj.orgID.push({id: organisationID});
+            var json = JSON.stringify(obj);
+
+            fs.writeFile('organisationid.json', organisationID, 'utf8', function (err) {
+                if (err) {
+                    reject(err);
+                };
+            });
+
+            fs.appendFileSync('OrgIDAll.txt', "\n" + organisationID, function (err) {
+                if (err) throw err;
+            });
+
+            console.log("--- Organisation/Account-ID: " + organisationID);
+            console.log("");
+
+            console.log("-- Assertion TEXT: " + statusMsg);
+            console.log("-- Responce BODY : " + JSON.stringify(initializePromise.body));
+
+            // chai.expect(JSON.stringify(initializePromise)).to.not.contain(statusMsg); 
+            chai.expect(JSON.stringify(initializePromise)).contain(statusMsg); 
+            console.log("--- THE END ---")
+        }
+        else if (statusCode !== 200 || statusCode !== 201) {
+            console.log("");
+            var errorText = JSON.stringify(initializePromise.body.error["message"]);
+            console.log("--- Assertion TEXT: " + statusMsg);
+            console.log("--- Responce BODY : " + errorText);
+
+            chai.expect(errorText).to.contains(statusMsg);
+            console.log("--- THE END ---")
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+        }
+        else if (error) throw new Error(error);
+
+    }
+
+      //**************USE THIS**********************/
+      async requestCreateOrgOTHERS(token, orgtype, validationtype, statusMsg) {
+
+        let today = new Date().toLocaleString();
+        //generate random 12 digit number for unique Postman Token
+        const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
+        const eightDigitRandomNum = Math.floor(Math.pow(10, 8 - 1) + Math.random() * (Math.pow(10, 8) - Math.pow(10, 8 - 1) - 1));
+        // console.log(elevenDigitRandomNum);
+
+        //const emailRandom = Math.random().toString(36) + "@gmail.com";
+        const emailRandomNo = Math.random().toString(36);
+        //options for api response :- need to change postman token so used random 12 digit in the end
+
+        var orgIsUK = this.testdata.getOrgIsUK("BasicOrgDetails");
+        var orgName = this.testdata.getOrgName("BasicOrgDetails");   
+        var orgType = this.testdata.getOrgType("BasicOrgDetails");
+        // var charityNo = this.testdata.getCharityNo("BasicOrgDetails");
+        var orgCRN = this.testdata.getOrgCRN("BasicOrgDetails");
+        var orgEmail = this.testdata.getOrgEmail("BasicOrgDetails");
+        var orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("BasicOrgDetails");
+        var orgRegaddbuildingno = this.testdata.getOrgRegBuildingNo("BasicOrgDetails");
+        var orgRegsubbuildingname = this.testdata.getOrgRegSubBuildingName("BasicOrgDetails");
+        var orgRegaddstreet = this.testdata.getOrgRegStreet("BasicOrgDetails");
+        var orgRegaddlocality = this.testdata.getOrgRegLocality("BasicOrgDetails");
+        var orgRegcounty = this.testdata.getOrgRegCounty("BasicOrgDetails");
+        var orgRegtown = this.testdata.getOrgRegTown("BasicOrgDetails");
+        var orgRegcountry = this.testdata.getOrgRegCountry("BasicOrgDetails");
+        var orgRegpostcode = this.testdata.getOrgRegPostcode("BasicOrgDetails");
+        // --- Organisation Correespondence Address Registration Details ---
+        var orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("BasicOrgDetails");
+        var orgCoraddbuildingno = this.testdata.getOrgCorBuildingNo("BasicOrgDetails");
+        var orgCorsubbuildingname = this.testdata.getOrgCorSubBuildingName("BasicOrgDetails");
+        var orgCoraddstreet = this.testdata.getOrgCorStreet("BasicOrgDetails");
+        var orgCoraddlocality = this.testdata.getOrgCorLocality("BasicOrgDetails");
+        var orgCorcounty = this.testdata.getOrgCorCounty("BasicOrgDetails");
+        var orgCortown = this.testdata.getOrgCorTown("BasicOrgDetails");
+        var orgCorcountry = this.testdata.getOrgCorCountry("BasicOrgDetails");   
+        var orgCorpostcode = this.testdata.getOrgCorPostcode("BasicOrgDetails");  
+
+        if(orgtype == "SoleTrad"){
+            orgType = this.testdata.getOrgType("BasicOrg_Sole");
+            console.log("--- Organisation Type  :-" + orgType);
+            console.log("");
+        }
+        if(orgtype == "Gov"){
+            orgType = this.testdata.getOrgType("BasicOrg_Gov");
+            console.log("--- Organisation Type  :-" + orgType);
+            console.log("");
+        }
+        if(orgtype == "CompAuth"){
+            orgType = this.testdata.getOrgType("BasicOrg_Comp");
+            console.log("--- Organisation Type  :-" + orgType);
+            console.log("");
+        }
+
+        switch (validationtype) {
+            case "Basic_Org":
+                console.log("*** Creating a '" + orgtype + "' Organisation ***");   
+                var name = this.testdata.getOrgName("BasicOrgDetails");
+                orgName = name + orgtype + "-" + (Math.random().toString().slice(2,4));
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;
+                console.log("--- Organisation Name :- " + orgName);
+                console.log("--- Organisation Email:- " + orgEmail);
+                break;
+            case "MissingOrgName":
+                console.log("*** '" + orgtype + "' MISSING Organisation Name TEST ***");
+                orgName = this.testdata.getOrgName("MissingOrgNameCheck");
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;
+                console.log("--- Organisation Name :- " + orgName);
+                console.log("--- Organisation Email:- " + orgEmail);
+                break;
+            case "MissingOrgType":
+                console.log("*** '" + orgtype + "' MISSING Organisation Type TEST ***");
+                var name = this.testdata.getOrgName("MissingOrgType");
+                orgName = name + (Math.random().toString().slice(2,4));
+                orgType = this.testdata.getOrgType("MissingOrgType");
+                console.log("--- Org NAME: " + orgName);
+                console.log("--- Org TYPE: " + orgType);
+                break;
+            case "MissingRegAddress":
+                console.log("*** '" + orgtype + "' MISSING Registered Address TEST ***");
+                orgName = this.testdata.getOrgName("MissingRegAddressCheck");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;   
+                orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("MissingRegAddressCheck");          
+                orgRegaddbuildingno = this.testdata.getOrgRegBuildingNo("MissingRegAddressCheck");      
+                orgRegaddstreet = this.testdata.getOrgRegStreet("MissingRegAddressCheck"); 
+                orgRegpostcode = this.testdata.getOrgRegPostcode("MissingRegAddressCheck"); 
+                console.log("Building Name:   " + orgRegaddbuildingname); 
+                console.log("Building Number: " + orgRegaddbuildingno); 
+                console.log("Street:          " + orgRegaddstreet); 
+                console.log("Post-Code:       " + orgRegpostcode); 
+                console.log("Email Address:   " + orgEmail);    
+                break;
+            case "MissingStreet":
+                console.log("--- '" + orgtype + "' MISSING street TEST ---");
+                orgName = this.testdata.getOrgName("MissingStreetCheck");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;   
+                orgRegaddstreet = this.testdata.getOrgRegStreet("MissingStreetCheck");  
+                console.log("Missing STREET in ADDRESS !! ");     
+                break;
+            case "MissingBuildingNameAndNo":
+                console.log("--- '" + orgtype + "' MISSING Building Name and Number in Address TEST ---");
+                orgName = this.testdata.getOrgName("MissingRegAddressCheck");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email; 
+                orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("MissingRegAddressCheck");
+                orgRegaddbuildingno = this.testdata.getOrgRegBuildingNo("MissingRegAddressCheck");
+                console.log("Missing Building Name and Number in ADDRESS !! ");     
+                break;
+            default:
+                console.log("Invalide data TYPE !!");
+                break;
+        }
+
+        const options = {
+            method: 'POST',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/accounts?$select=accountid,defra_uniquereference',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },
+
+            //System-test enviroment
+            body: { 
+                'name': orgName,
+                'defra_isuk': orgIsUK,
+                'defra_type': orgType,
+                // 'defra_charitynumber': charityNo,
+                // 'defra_cmcrn': orgCRN,
+                'emailaddress1': orgEmail,
+                'defra_addrregbuildingname': orgRegaddbuildingname,
+                'defra_addrregbuildingnumber': orgRegaddbuildingno,
+                'defra_addrregsubbuildingname': orgRegsubbuildingname,
+                'defra_addrregstreet': orgRegaddstreet,
+                'defra_addrreglocality': orgRegaddlocality,
+                'defra_addrregcounty': orgRegcounty,
+                'defra_addrregtown': orgRegtown,
+                'defra_addrregcountry@odata.bind': orgRegcountry,
+                'defra_addrregpostcode': orgRegpostcode, 
+                'defra_addrcorbuildingname': orgCoraddbuildingname,
+                'defra_addrcorbuildingnumber': orgCoraddbuildingno,
+                'defra_addrcorsubbuildingname': orgCorsubbuildingname,
+                'defra_addrcorstreet': orgCoraddstreet,
+                'defra_addrcorlocality': orgCoraddlocality,
+                'defra_addrcorcounty': orgCorcounty,
+                'defra_addrcortown': orgCortown,
+                'defra_addrcorcountry@odata.bind': orgCorcountry,
+                'defra_addrcorpostcode': orgCorpostcode 
+                },
+            json: true
+        };
+
+        var initializePromise = await this.initialize(options);
+        statusCodeVal = initializePromise.statusCode;
+        //console.log("Response Status message: " + initializePromise.statusMessage);
+        var statusCode = initializePromise.statusCode;
+
+        console.log("");
+        console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+        console.log("TEXT      : " + initializePromise.statusMessage);
+
+        if (statusCode === 200 || statusCode === 201) {
+
+            organisationID = JSON.stringify(initializePromise.body["accountid"]);
+
+            fs.writeFile('OrgID.txt', organisationID, function (err) {
+                if (err) throw err;
+            });
+
+            //ADD it to the json file - note we actually don't need the txt file for relationship
+            var obj = {
+                orgID: []
+            };
+
+            obj.orgID.push({id: organisationID});
+            var json = JSON.stringify(obj);
+
+            fs.writeFile('organisationid.json', organisationID, 'utf8', function (err) {
+                if (err) {
+                    reject(err);
+                };
+            });
+
+            fs.appendFileSync('OrgIDAll.txt', "\n" + organisationID, function (err) {
+                if (err) throw err;
+            });
+
+            console.log("");
+            console.log("--- Assertion TEXT: " + statusMsg);
+            console.log("--- Responce BODY : " + JSON.stringify(initializePromise.body));
+            // chai.expect(JSON.stringify(initializePromise)).to.not.contain(statusMsg); 
+            chai.expect(JSON.stringify(initializePromise)).contain(statusMsg); 
+            console.log("");
+            console.log("-- THE END --")
+        }
+        else if (statusCode !== 200 || statusCode !== 201) {
+            console.log("");
+
+            var errorText = JSON.stringify(initializePromise.body.error["message"]);
+              
+            console.log("--- Assertion TEXT: " + statusMsg);
+            console.log("--- Responce BODY : " + errorText);
+
+            chai.expect(errorText).to.contains(statusMsg);
+            console.log("-- THE END --")
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+        }
+        else if (error) throw new Error(error);
+
     }
 
     //**************USE THIS**********************/
-    async requestCreateRelationship(token, StatusMsgCreate, ContactType) {
+    async requestCreateCharityOrg(token, charityType, validationtype, statusMsg) {
+
+        let today = new Date().toLocaleString();
+        //generate random 12 digit number for unique Postman Token
+        const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
+        const eightDigitRandomNum = Math.floor(Math.pow(10, 8 - 1) + Math.random() * (Math.pow(10, 8) - Math.pow(10, 8 - 1) - 1));
+        // console.log(elevenDigitRandomNum);
+
+        //const emailRandom = Math.random().toString(36) + "@gmail.com";
+        const emailRandomNo = Math.random().toString(36);
+        //options for api response :- need to change postman token so used random 12 digit in the end
+
+        var orgName = this.testdata.getOrgName("BasicOrgDetails");
+        const orgIsUK = this.testdata.getOrgIsUK("BasicOrgDetails");
+        var orgType = this.testdata.getOrgType("BasicOrgDetails");
+        var charityNo = this.testdata.getCharityNo("BasicOrgDetails");
+        var charityNoEnW = "";
+        var charityNoNI = "";
+        var charityNoScot = "";
+        var orgCRN = this.testdata.getOrgCRN("BasicOrgDetails");
+        var orgEmail = this.testdata.getOrgEmail("BasicOrgDetails");
+        var orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("BasicOrgDetails");
+        var orgRegaddbuildingno = this.testdata.getOrgRegBuildingNo("BasicOrgDetails");
+        var orgRegsubbuildingname = this.testdata.getOrgRegSubBuildingName("BasicOrgDetails");
+        var orgRegaddstreet = this.testdata.getOrgRegStreet("BasicOrgDetails");
+        var orgRegaddlocality = this.testdata.getOrgRegLocality("BasicOrgDetails");
+        var orgRegcounty = this.testdata.getOrgRegCounty("BasicOrgDetails");
+        var orgRegtown = this.testdata.getOrgRegTown("BasicOrgDetails");
+        var orgRegcountry = this.testdata.getOrgRegCountry("BasicOrgDetails");
+        var orgRegpostcode = this.testdata.getOrgRegPostcode("BasicOrgDetails");
+        // Organisation Correespondence Address Registration Details
+        var orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("BasicOrgDetails");
+        var orgCoraddbuildingno = this.testdata.getOrgCorBuildingNo("BasicOrgDetails");
+        var orgCorsubbuildingname = this.testdata.getOrgCorSubBuildingName("BasicOrgDetails");
+        var orgCoraddstreet = this.testdata.getOrgCorStreet("BasicOrgDetails");
+        var orgCoraddlocality = this.testdata.getOrgCorLocality("BasicOrgDetails");
+        var orgCorcounty = this.testdata.getOrgCorCounty("BasicOrgDetails");
+        var orgCortown = this.testdata.getOrgCorTown("BasicOrgDetails");
+        var orgCorcountry = this.testdata.getOrgCorCountry("BasicOrgDetails");   
+        var orgCorpostcode = this.testdata.getOrgCorPostcode("BasicOrgDetails");  
+
+        console.log("");
+
+        switch (validationtype) {
+
+            case "Charity_BasicDetails":
+                if(charityType === "EnW" || charityType === "Scot"){
+                    console.log("--- Creating a Basic " + "'"+ charityType + "'" + " Charity Organisation ---");
+                    var name = this.testdata.getOrgName("CharityOrgDetails");
+                    orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
+                    orgType = this.testdata.getOrgType("BasicOrg_Char");
+                    var chaNum = this.testdata.getCharityNo("CharityOrgDetails");
+                    var charNo = chaNum + (Math.random().toString().slice(2,5));
+                    var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                    orgEmail = charityType + (Math.random().toString().slice(2,5)) + email; 
+                    console.log("*** Email Address: " + orgEmail);
+                    var charity = "charityNo" + charityType;
+
+                    if(charity == "charityNoEnW" ){
+                        charityNoEnW = charNo
+                    }else{
+                        charityNoScot = charNo
+                    }
+                    orgCRN = "";
+                }
+                else{
+                    console.log("--- Creating a Basic 'Northan Ireland' Charity Organisation ---");
+                    var name = this.testdata.getOrgName("CharityOrgDetails");
+                    orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
+                    orgType = this.testdata.getOrgType("BasicOrg_Char");
+                    var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                    orgEmail = charityType + (Math.random().toString().slice(2,5)) + email; 
+                    var chaNum = this.testdata.getCharityNo("CharityOrgDetails");
+                    var charNo = chaNum + (Math.random().toString().slice(2,6));
+                    charityNoNI = charNo;
+                    var charity = "charityNo" + charityType;
+                    console.log("Charity : " + charity);
+                    orgCRN = "";
+                }
+                break;
+            case "CharityNo_GreaterThan":
+                if(charityType === "EnW" || charityType === "Scot"){
+                    console.log("--- Creating a " + "'"+ charityType + "'" + " Charity Organisation with Charity-Number GREATER than 8 characters TEST ---");
+                    var name = this.testdata.getOrgName("CharityOrgDetails");
+                    orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
+                    orgType = this.testdata.getOrgType("BasicOrg_Char");
+                    var chaNum = this.testdata.getCharityNo("CharityOrgDetails");
+                    var charNo = chaNum + (Math.random().toString().slice(2,7));
+                    var charity = "charityNo" + charityType;
+                    if(charity == "charityNoEnW" ){
+                        charityNoEnW = charNo
+                    }else{
+                        charityNoScot = charNo
+                    }
+                    orgCRN = "";
+                }
+                else{
+                    console.log("--- Creating a 'Northan Ireland' Charity Organisation with Charity-Number GREATER than 9 characters TEST ---");
+                    var name = this.testdata.getOrgName("CharityOrgDetails");
+                    orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
+                    orgType = this.testdata.getOrgType("BasicOrg_Char");
+                    var chaNum = this.testdata.getCharityNo("CharityOrgDetails");
+                    var charNo = chaNum + (Math.random().toString().slice(2,9));
+                    charityNoNI = charNo;
+
+                    var charity = "charityNo" + charityType;
+                    console.log("Charity : " + charity);
+                    orgCRN = "";
+                }
+                break;
+            case "CharityNo_NumericOnly":
+                if(charityType === "EnW" || charityType === "Scot"){
+                    console.log("--- Creating a " + "'"+ charityType + "'" + " Charity Organisation with Charity-Number in numeric formart ONLY ---");
+                    var name = this.testdata.getOrgName("CharityOrgDetails");
+                    orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
+                    orgType = this.testdata.getOrgType("BasicOrg_Char");
+                    var chaNum = this.testdata.getCharityNo("CharityNoNumericOnly");
+                    var charNo = chaNum + (Math.random().toString().slice(2,5));
+                    console.log("** Charity NUMBER is: " + charNo);
+                    var charity = "charityNo" + charityType;
+
+                    if(charity == "charityNoEnW" ){
+                        charityNoEnW = charNo
+                    }else{
+                        charityNoScot = charNo
+                    }
+                    orgCRN = "";
+                        }
+                else{
+                    console.log("--- Creating a 'Northan Ireland' Charity Organisation with Charity-Number in numeric formart ONLY ---");
+                    var name = this.testdata.getOrgName("CharityOrgDetails");
+                    orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
+                    orgType = this.testdata.getOrgType("BasicOrg_Char");
+                    var chaNum = this.testdata.getCharityNo("CharityNoNumericOnly");
+                    var charNo = chaNum + (Math.random().toString().slice(2,6));
+                    charityNoNI = charNo;
+        
+                    var charity = "charityNo" + charityType;
+                    console.log("Charity : " + charity);
+                    orgCRN = "";
+                }
+                break;
+            case "CharityNo_AlphabitOnly":
+                if(charityType === "EnW" || charityType === "Scot"){
+                    console.log("--- Creating a " + "'"+ charityType + "'" + " Charity Organisation with Charity-Number in Alphabitic formart ONLY ---");
+                    var name = this.testdata.getOrgName("CharityOrgDetails");
+                    orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
+                    orgType = this.testdata.getOrgType("BasicOrg_Char");
+                    var charNo = this.testdata.getCharityNo("CharityNoAlphabitOnly");
+                    console.log("** Charity NUMBER is: " + charNum);
+                    var charity = "charityNo" + charityType;
+
+                    if(charity == "charityNoEnW" ){
+                        charityNoEnW = charNo
+                    }else{
+                        charityNoScot = charNo
+                    }
+                orgCRN = "";
+                }
+                else{
+                    console.log("--- Creating a 'Northan Ireland' Charity Organisation with Charity-Number in Alphabitic formart ONLY ---");
+                    var name = this.testdata.getOrgName("CharityOrgDetails");
+                    orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
+                    // console.log("Charity NAME: " + orgName);
+                    orgType = this.testdata.getOrgType("BasicOrg_Char");
+                    // console.log("Charity TYPE: " + orgType);
+                    var chaNum = this.testdata.getCharityNo("CharityNoAlphabitOnly");
+                    // var charNo = chaNum + (Math.random().toString().slice(2,6));
+                    charityNoNI = chaNum;
+                
+                    var charity = "charityNo" + charityType;
+                    console.log("*** Charity : " + charity);
+                    orgCRN = "";
+                }
+                break;
+            case "CharityNo_Duplicated":
+                console.log("--- Create " + charityType + " Charity with Duplicate Charity-Number TEST ---");
+                var name = this.testdata.getOrgName("CharityOrgDetails");
+                orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
+                orgType = this.testdata.getOrgType("BasicOrg_Char");
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = charityType + (Math.random().toString().slice(2,5)) + email;
+                console.log("** Charity Email Address: " + orgEmail);
+
+                var charNo = this.testdata.getCharityNo("CharityNoDuplicate");
+                var charity = "charityNo" + charityType;
+                console.log("** Charity Organisation : " + charity);
+
+                if(charity == "charityNoEnW" ){
+                    charityNoEnW = charNo
+                }
+                if(charity == "charityNoNI" ){
+                    charityNoNI = charNo
+                }
+                if(charity == "charityNoScot" ){
+                    charityNoScot = charNo
+                }
+                orgCRN = "";
+                // console.log("Charity NUMBER: " + charNo);
+                break;
+            case "LLPOrgDetails":
+                console.log("--- Create Charity Organisation TEST ---");
+                var name = this.testdata.getOrgName("LLPOrgDetails");
+                orgName = name + (Math.random().toString().slice(2,4));
+                orgType = this.testdata.getOrgType("LLPOrgDetails");
+                orgCRN = Math.random().toString().slice(2,10);
+                break;
+            default:
+                console.log("Invalide data TYPE !!");
+                break;
+        }
+
+        console.log("");
+        console.log("England And Wales Charity Number: " + charityNoEnW);
+        console.log("Northan Ireland charity Number  : " + charityNoNI);
+        console.log("Scotland Charity Number         : " + charityNoScot);
+
+        const options = {
+            method: 'POST',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/accounts?$select=accountid,defra_uniquereference',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },
+
+            //System-test enviroment
+            body: { 
+                'name': orgName,
+                'defra_isuk': orgIsUK,
+                'defra_type': orgType,
+                'defra_charitynumber': charityNoEnW,
+                'defra_charitynumberni': charityNoNI,
+                'defra_charitynumberscot': charityNoScot,
+                'emailaddress1': orgEmail,
+                'telephone1': "0208 952 1345",
+                'defra_addrregbuildingname': orgRegaddbuildingname,
+                'defra_addrregbuildingnumber': orgRegaddbuildingno,
+                'defra_addrregsubbuildingname': orgRegsubbuildingname,
+                'defra_addrregstreet': orgRegaddstreet,
+                'defra_addrreglocality': orgRegaddlocality,
+                'defra_addrregcounty': orgRegcounty,
+                'defra_addrregtown': orgRegtown,
+                'defra_addrregcountry@odata.bind': orgRegcountry,
+                'defra_addrregpostcode': orgRegpostcode, 
+                'defra_addrcorbuildingname': orgCoraddbuildingname,
+                'defra_addrcorbuildingnumber': orgCoraddbuildingno,
+                'defra_addrcorsubbuildingname': orgCorsubbuildingname,
+                'defra_addrcorstreet': orgCoraddstreet,
+                'defra_addrcorlocality': orgCoraddlocality,
+                'defra_addrcorcounty': orgCorcounty,
+                'defra_addrcortown': orgCortown,
+                'defra_addrcorcountry@odata.bind': orgCorcountry,
+                'defra_addrcorpostcode': orgCorpostcode 
+                },
+            json: true
+        };
+
+        var initializePromise = await this.initialize(options);
+
+        statusCodeVal = initializePromise.statusCode;
+
+        //console.log("Response Status message: " + initializePromise.statusMessage);
+        var statusCode = initializePromise.statusCode;
+
+        console.log("");
+        console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+        console.log("TEXT      : " + initializePromise.statusMessage);
+
+        if (statusCode === 200 || statusCode === 201) {
+            console.log("");
+            console.log("--- Charity NAME  : " + orgName);
+
+            organisationID = JSON.stringify(initializePromise.body["accountid"]);
+
+            fs.writeFile('OrgID.txt', organisationID, function (err) {
+                if (err) throw err;
+            });
+
+            //ADD it to the json file - note we actually don't need the txt file for relationship
+            var obj = {
+                orgID: []
+            };
+
+            obj.orgID.push({id: organisationID});
+            var json = JSON.stringify(obj);
+
+            fs.writeFile('organisationid.json', organisationID, 'utf8', function (err) {
+                if (err) {
+                    reject(err);
+                };
+            });
+
+            fs.appendFileSync('OrgIDAll.txt', "\n" + organisationID, function (err) {
+                if (err) throw err;
+            });
+
+            console.log("--- Assertion TEXT: " + statusMsg);
+            console.log("--- Responce BODY : " + JSON.stringify(initializePromise.body));
+
+            chai.expect(JSON.stringify(initializePromise)).contain(statusMsg); 
+            console.log("--- THE END ---")
+        }
+        else if (statusCode !== 200 || statusCode !== 201) {
+            console.log("");
+            var errorText = JSON.stringify(initializePromise.body.error["message"]);
+            console.log("--- Assertion TEXT: " + statusMsg);
+            console.log("--- Responce BODY : " + errorText);
+
+            chai.expect(errorText).to.contains(statusMsg);
+            console.log("--- THE END ---")
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+        }
+        else if (error) throw new Error(error);
+
+    }
+
+    //**************USE THIS**********************/
+    async requestCreateRelationship(token, StatusMsgCreate, RoleType) {
+
         let today = new Date().toLocaleString();
 
         const fileNameCust = 'CustID.txt';
@@ -546,9 +1543,9 @@ class ActiveDirectoryAuthService {
          };
 
          console.log("");
-         console.log("-- ContactType   : " + ContactType);
+         console.log("-- Role TYPE:    " + RoleType);
 
-         if(ContactType === "NonCitizenEmpl" || ContactType === "NonCitizenAgent"){
+         if(RoleType === "Empl_Employer" || RoleType === "Agent_AgentCust"){
             var custIDObj1 = await this.readFilesJSON('contactid.json')
             //console.log("CUSTOMER ID as a String:  " + custIDObj1); 
             custIDObj = JSON.parse(custIDObj1); //now it an object
@@ -575,9 +1572,10 @@ class ActiveDirectoryAuthService {
         var bodyObject;
 
         console.log("");
-        switch(ContactType){
-            case "NonCitizenEmpl":
-            console.log("--- Creating a Relationship as a - NonCitizen Employer/Employee - Contact Type ---");
+
+        switch(RoleType){
+            case "Empl_Employer":
+            console.log("--- Creating a " + RoleType + " Relationship type ---");
             bodyObject = {
                 "record2roleid@odata.bind": "/connectionroles(35A23B91-EC62-41EA-B5E5-C59B689FF0B4)",
                 "record1roleid@odata.bind": "/connectionroles(1EB54AB1-58B7-4D14-BF39-4F3E402616E8)", 
@@ -586,8 +1584,8 @@ class ActiveDirectoryAuthService {
                 "defra_iscustomer": "true" 
             };
             break; 
-            case "NonCitizenAgent":
-            console.log("--- Creating a Relationship as a - NonCitizen Agent/AgentCustomer - Contact Type ---");
+            case "Agent_AgentCust":
+            console.log("--- Creating a " + RoleType + " Relationship type ---");
             bodyObject = {
                 "record2roleid@odata.bind": "/connectionroles(CAAF4DF7-0229-E811-A831-000D3A2B29F8)",
                 "record1roleid@odata.bind": "/connectionroles(776E1B5A-1268-E811-A83B-000D3AB4F7AF)", 
@@ -597,7 +1595,7 @@ class ActiveDirectoryAuthService {
             };
             break; 
             case "Citizen":
-            console.log("---  TESTING Creating a Relationship as a - Citizen - Contact Type ---");
+            console.log("--- Creating a " + RoleType + " Relationship type ---");
             bodyObject = {
                 "record2roleid@odata.bind": "/connectionroles(878ED5F8-0A90-E811-A845-000D3AB4FDDF)",
                 "record1roleid@odata.bind": "/connectionroles(3FC7E717-0B90-E811-A845-000D3AB4FDDF)", 
@@ -624,28 +1622,17 @@ class ActiveDirectoryAuthService {
                 authorization: 'Bearer ' + token,
                 Accept: 'application/json'
             },
-            // body: { 
-            //     "record2roleid@odata.bind": "/connectionroles(35A23B91-EC62-41EA-B5E5-C59B689FF0B4)",
-            //     "record1roleid@odata.bind": "/connectionroles(1EB54AB1-58B7-4D14-BF39-4F3E402616E8)", 
-            //     "record1id_contact@odata.bind": customerID, 
-            //     "record2id_account@odata.bind": organID, 
-            //     "defra_iscustomer": "true" 
-            // },
-            // json: true
 
             body: bodyObject,
             json: true
 
         };
-        // console.log("");
-        // console.log('OPTIONS: ' + JSON.stringify(options.body));
 
         var initializePromise = await this.initialize(options);
 
         console.log("");
 
         //const responseStatus = initializePromise.statusCode;
-
         //console.log("Relationship Status code: " + JSON.stringify(responseStatus));
         console.log("RELATIONSHIP statusCode: ", initializePromise && initializePromise.statusCode);
         console.log("RELATIONSHIP TEXT      : " + initializePromise.statusMessage);
@@ -655,7 +1642,8 @@ class ActiveDirectoryAuthService {
             //let responseData = JSON.parse(initializePromise.body);
 
             console.log("");
-            console.log("Response BODY: " + JSON.stringify(initializePromise.body));
+            console.log("Assertion TEXT: " + StatusMsgCreate);
+            console.log("Response BODY : " + JSON.stringify(initializePromise.body));
             console.log("");
 
             let connectionID = JSON.stringify(initializePromise.body["connectionid"]);
@@ -664,7 +1652,7 @@ class ActiveDirectoryAuthService {
             console.log("--- connection ID      : " + connectionID);
             console.log("--- connection Details : " + connectionDetails);
 
-            chai.expect(JSON.stringify(initializePromise.body)).to.not.contain(StatusMsgCreate);
+            chai.expect(JSON.stringify(initializePromise.body)).to.contain(StatusMsgCreate);
 
             fs.writeFile('connectionDetails.json', connectionDetails, 'utf8', function (err) {
                 if (err) {
@@ -678,8 +1666,10 @@ class ActiveDirectoryAuthService {
 
         }
         else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
-            console.log('statusCode:' + initializePromise.body.error.message);
+
+            console.log('statusCode:' + initializePromise.statusCode);
             console.log("TEXT: " + initializePromise.statusMessage);
+
             fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
                 if (err) throw err;
             });
@@ -688,107 +1678,152 @@ class ActiveDirectoryAuthService {
 
     }
 
-  //**************USE THIS**********************/
-  async createAccessRequest(token, ServiceRef) {
-    // var lobserviceid = this.testdata.getB2CObjectID("ServiceRef");
-    var lobserviceid = this.testdata.getLOBserviceID(ServiceRef);
+    //**************USE THIS**********************/
+    async createAccessRequest(token, SearchRef, ServiceRef, StatusMsg) {
+        var lobserviceid = this.testdata.getLOBserviceID(ServiceRef);
 
-    let today = new Date().toLocaleString();
+        let today = new Date().toLocaleString();
 
-    const fileNameCust = 'CustID.txt';
-    const fileNameOrg = 'OrgID.txt';
-
-    var custIDObj = {
-        table: []
-     };
-     var objorgID = {
-        table: []
-     };
-
-     console.log("");
-     console.log("--- Creating Access Request for LOB-Service ---");
-     console.log("*** LOB-Service TYPE: " + ServiceRef);
-
-     var custIDObj1 = await this.readFilesJSON('contactid.json')
-     custIDObj = JSON.parse(custIDObj1); //now it an object
-     var customerID = custIDObj
-     console.log("*** CustomerID    : " + customerID );
-  
-     var objorgID1 = await this.readFilesJSON('organisationid.json')     
-     objorgID = JSON.parse(objorgID1); //now it an object
-     var organID = objorgID;
-     console.log("*** OrganisationID: " + organID );
-    
-    //var oRg1 = await this.readFiles(fileNameOrg);
-    const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
-
-    var isCust = true;
-
-    const options = {
-        method: 'POST', 
-        url: configCRM.appUrlCRM + 'api/data/v9.0/defra_createaccessrequest',
-        headers:
-        {
-            'postman-token': configCRM.postmantoken + val,
-            'cache-control': 'no-cache',
-            Prefer: 'return=representation',
-            'OData-MaxVersion': '4.0',
-            'OData-Version': '4.0',
-            'Content-Type': 'application/json',
-            authorization: 'Bearer ' + token,
-            Accept: 'application/json'
-        },
-        body: {
-            "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": customerID },
-            "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": organID },
-            "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": lobserviceid },
-             "UserAccountProfilePageURL": "https://www.msn.com/?123444444"
-         },
-        json: true
-
-    };
-
-    var initializePromise = await this.initialize(options);
-
-    //console.log("");
-    //const responseStatus = initializePromise.statusCode;
+        const fileNameCust = 'CustID.txt';
+        const fileNameOrg = 'OrgID.txt';
    
-    if (initializePromise.statusCode === 200 || initializePromise.statusCode === 201) {
-        //let responseData = JSON.parse(initializePromise.body);
+        var custIDObj = {
+            table: []
+         };
+         var objorgID = {
+            table: []
+         };
+
+         console.log("");
+         console.log("--- Creating Access Request for LOB-Service ---");
+         console.log("");
+         console.log("*** LOB-Service TYPE: " + ServiceRef);
+         console.log("*** LOB-Service ID  : " + lobserviceid);
+         console.log("");
+
+         var custIDObj1 = await this.readFilesJSON('contactid.json')
+         custIDObj = JSON.parse(custIDObj1); //now it an object
+         var customerID = custIDObj
+         console.log("*** CustomerID      : " + customerID );
+      
+         var objorgID1 = await this.readFilesJSON('organisationid.json')     
+         objorgID = JSON.parse(objorgID1); //now it an object
+         var organID = objorgID;
+         console.log("*** OrganisationID  : " + organID );
+        
+        //var oRg1 = await this.readFiles(fileNameOrg);
+        const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
+
+        var isCust = true;
+        var bodyObject;
 
         console.log("");
-        console.log("Response BODY: " + JSON.stringify(initializePromise.body));
-        console.log("");
-
-        // let connectionID = JSON.stringify(initializePromise.body["connectionid"]);
-        // let connectionDetails = JSON.stringify(initializePromise.body["_defra_connectiondetailsid_value"]);
-    
-        // console.log("--- connection ID      : " + connectionID);
-        // console.log("--- connection Details : " + connectionDetails);
-
-        chai.expect(JSON.stringify(initializePromise.body)).to.not.contain(StatusMsgCreate);
-
-        fs.writeFile('connectionDetails.json', connectionDetails, 'utf8', function (err) {
-            if (err) {
-                reject(err);
+        switch(SearchRef){  
+            case "All-refs":
+            console.log("--- Creating ACCESS-REQUEST with ALL References available ---");
+            bodyObject = {
+                "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": customerID },
+                "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": organID },
+                "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": lobserviceid },
+                "UserAccountProfilePageURL": "https://www.msn.com/?123444444" 
             };
-        });
+            break; 
+            case "No-Contact-ref":
+            console.log("--- Creating ACCESS-REQUEST with No-Contact-References available ---");
+            bodyObject = {
+                "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": "" },
+                "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": organID },
+                "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": lobserviceid },
+                "UserAccountProfilePageURL": "https://www.msn.com/?123444444" 
+            };
+            break; 
+            case "No-Org-ref":
+            console.log("--- Creating ACCESS-REQUEST with No-Organisation-References available ---");
+            bodyObject = {
+                "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": customerID },
+                "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": "" },
+                "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": lobserviceid },
+                "UserAccountProfilePageURL": "https://www.msn.com/?123444444"
+            };
+            break; 
+            case "No-ContAndOrg-ref":
+            console.log("--- Creating ACCESS-REQUEST with No-Contact-and-Organisation-References available ---");
+            bodyObject = {
+                "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": "" },
+                "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": "" },
+                "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": lobserviceid },
+                "UserAccountProfilePageURL": "https://www.msn.com/?123444444"
+            };
+            break;
+            case "No-servicer-ref":
+            console.log("---  Creating ACCESS-REQUEST with No-Service-References available ---");
+            bodyObject = {
+                "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": customerID },
+                "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": organID },
+                "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": "" },
+                "UserAccountProfilePageURL": "https://www.msn.com/?123444444"
+            };
+            break;
+        default:
+            console.log("Invalide data TYPE !!");
+            break;
+        }
 
-        fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
-            if (err) throw err;
-        });
+        const options = {
+            method: 'POST', 
+            url: configCRM.appUrlCRM + 'api/data/v9.0/defra_createaccessrequest',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },
+            body: bodyObject,
+            json: true
+        };
+
+        var initializePromise = await this.initialize(options);
+       
+        if (initializePromise.statusCode === 200 || initializePromise.statusCode === 201) {
+            // console.log("");
+            console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+            console.log("TEXT:       " + initializePromise.statusMessage);
+
+            console.log("");
+            console.log("Response BODY: " + JSON.stringify(initializePromise.body));
+            console.log("");
+
+            chai.expect(JSON.stringify(initializePromise.body)).to.not.contain(StatusMsg);
+
+            // fs.writeFile('connectionDetails.json', connectionDetails, 'utf8', function (err) {
+            //     if (err) {
+            //         reject(err);
+            //     };
+            // });
+
+            // fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+            //     if (err) throw err;
+            // });
+
+        }
+        else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
+            console.log('statusCode:' + initializePromise.statusCode);
+            console.log("TEXT: " + initializePromise.statusMessage);
+
+            chai.expect(JSON.stringify(initializePromise.body.error.message)).to.contain(StatusMsg);
+
+            // fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+            //     if (err) throw err;
+            // });
+        }
+        else if (error) throw new Error(error);
 
     }
-    else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
-        console.log('statusCode:' + initializePromise.body.error.message);
-        console.log("TEXT: " + initializePromise.statusMessage);
-        fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
-            if (err) throw err;
-        });
-    }
-    else if (error) throw new Error(error);
-
-}
 
      //**************USE THIS**********************/
      async requestEnroleAsAnIDMAdmin(token) {
@@ -1407,8 +2442,6 @@ class ActiveDirectoryAuthService {
         };
         // console.log("");
         var initializePromise = await this.initialize(options);
-
-        console.log("");
 
         //const responseStatus = initializePromise.statusCode;
         console.log("INVITATION statusCode: ", initializePromise && initializePromise.statusCode);
