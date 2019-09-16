@@ -15,10 +15,8 @@ const resource = configCRM.resource;
 const clientID = configCRM.clientID;
 
 var contactID = "";
-var contactFullName = "";
 var organisationID = "";
 var organisationName = "";
-var connectionID = "";
 var statusCodeVal = "";
 
 
@@ -53,8 +51,6 @@ class ActiveDirectoryAuthService {
                 }});
         });
     }
-
-    
 //this is to return request as a promise - Earlier we had issues as it didn't perform the assertions after the response was received
 //this way of returning promise works reliably to return response and perform actions/assertions on the response
     initialize(options) {
@@ -78,10 +74,11 @@ class ActiveDirectoryAuthService {
     }
 
     //**************USE THIS**********************/
-    async requestCreateContact(token, validationtype, statusMsg) {
+    async requestCreateContact(token, contacttype, validationtype, statusMsg) {
         // get data from createcontact.json using test-data.js
         // get me the B2CObjID for BasicContactTest testIdentifier from createcontact.json
         var b2cObjectID = this.testdata.getB2CObjectID("BasicContact");
+        var ggcredentialID = this.testdata.getGGcredentialID("BasicContact");
         var isCitizen = this.testdata.getIsCitizen("BasicContact");
         var title = this.testdata.getTitle("BasicContact");
         var firstName = this.testdata.getFirstName("BasicContact");
@@ -110,7 +107,7 @@ class ActiveDirectoryAuthService {
         const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
 
         // apended in B2CObjID to generate random unique B2CObjectId   
-        const elevenDigitRandomNum = Math.floor(Math.pow(10, 11 - 1) + Math.random() * (Math.pow(10, 11) - Math.pow(10, 11 - 1) - 1));
+        // const elevenDigitRandomNum = Math.floor(Math.pow(10, 11 - 1) + Math.random() * (Math.pow(10, 11) - Math.pow(10, 11 - 1) - 1));
 
         console.log("");
         let midRandon = Math.floor(Math.pow(10, 2 - 1) + Math.random() * (Math.pow(10, 2) - Math.pow(10, 2 - 1) - 1));
@@ -118,138 +115,213 @@ class ActiveDirectoryAuthService {
         let randonTwo = Math.floor(Math.pow(10, 2 - 1) + Math.random() * (Math.pow(10, 2) - Math.pow(10, 2 - 1) - 1));
         let postFix = "8d" + midRandon + "-de6a" + randonOne + "ac" + randonTwo + "a8";
 
-        let b2cObject;
+        let mixRandom = Math.floor(Math.random() * (Math.pow(10, 4))) + 1000;
+        let mixMix = mixRandom.toString().substring(0,4);
+        console.log("mixMax value: " + mixMix);
+
+        if(contacttype == "Citizen" || contacttype == "N_plus_one"){
+            isCitizen = this.testdata.getIsCitizen("CitizenContact");
+            console.log("--- isCitizen:        " + isCitizen);
+        }else {
+            isCitizen = this.testdata.getIsCitizen("NonCitizenContact");
+            console.log("--- isCitizen:        " + isCitizen);
+        }
+
+        var b2cObject = b2cObjectID + mixMix + "-11e8-" + postFix;
+        console.log("--- b2cObject:        " + b2cObject);
+
+        var contEmail = this.testdata.getEmail("BasicContact");
+        email = (Math.random().toString().slice(2,5)) + "admin" + (Math.random().toString().slice(2,5)) + contEmail;
+            console.log("--- email-Address:    " + email);
+
+        var ggCredentials = ggcredentialID + Math.random().toString().slice(2,5);
+            console.log("--- GG-Credential-ID: " + ggCredentials);
+            console.log("");
 
         switch (validationtype) {
             case "BasicContact":
-                console.log("---  TESTING Creating a BASIC Contact ---");
+                console.log("---  TESTING Creating a BASIC - " + contacttype + " - Contact ---");
+                console.log("");
                 // b2cObject = b2cObjectID + postFix;
-                b2cObject = b2cObjectID + postFix;
-                console.log("--- b2cObject: " + b2cObject);
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = (Math.random().toString().slice(2,5)) + "contact" + (Math.random().toString().slice(2,5)) + contEmail;
-                console.log("*** emailAddress: " + email);
+                firstName = firstName + Math.random().toString().slice(2,5);
+                lastName = lastName + Math.random().toString().slice(2,5); 
+                console.log("--- firstName: " + firstName);   
+                console.log("--- lastName: " + lastName);   
+                // console.log("--- b2cObject: " + b2cObject);
                 break;
             case "BasicContactCitizen":
                 console.log("---  TESTING Creating a BASIC Contact - CITIZEN ---");    
                 console.log("");
-                b2cObject = b2cObjectID + postFix;
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = (Math.random().toString().slice(2,5)) + "contact" + (Math.random().toString().slice(2,5)) + contEmail;
-                isCitizen = this.testdata.getIsCitizen("BasicContactCitizen");
-                firstName = this.testdata.getFirstName("BasicContactCitizen");
-                middleName = this.testdata.getMiddleName("BasicContactCitizen");
+                // b2cObject = b2cObjectID + postFix;
+                firstName = this.testdata.getFirstName("BasicContactCitizen") + Math.random().toString().slice(2,5);
+                middleName = this.testdata.getMiddleName("BasicContactCitizen") + Math.random().toString().slice(2,5);
                 lastName = this.testdata.getLastName("BasicContactCitizen");    
                 console.log("--- isCitizen: " + isCitizen);   
                 console.log("--- firstName: " + firstName);   
-                console.log("--- lastName: " + lastName);         
-                console.log("*** emailAddress: " + email);    
+                console.log("--- lastName: " + lastName);           
                 break;
-            case "ContactMissingFirstName":
-                console.log("---  TESTING Creating Contact with MISSING FirstName ---");
-                firstName = this.testdata.getFirstName("ContactMissingFirstName");
+            case "MissingFirstName":
+                console.log("---  TESTING Creating a " + contacttype + " Contact with MISSING FirstName ---");
+                // b2cObject = b2cObjectID + postFix;
+                firstName = this.testdata.getFirstName("Missing_FirstName");
                 console.log("--- Contact FirstName: " + firstName);
-                b2cObject = b2cObjectID + postFix;
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
                 break;
-            case "ContactMissingLastName":
-                console.log("---  TESTING Creating Contact with MISSING LastName ---");
-                lastName = this.testdata.getLastName("ContactMissingLastName");
-                console.log("--- Contact LastName: " + lastName);
-                b2cObject = b2cObjectID + postFix;
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
+            case "MissingLastName":
+                console.log("---  TESTING Creating a " + contacttype + " Contact with MISSING LastName ---");
+                // b2cObject = b2cObjectID + postFix;
+                lastName = this.testdata.getLastName("Missing_LastName");
+                console.log("--- Contact LastName: " + lastName);                
                 break;
             case "DuplicateB2cObjectId":
-                console.log("---  TESTING Duplicate B2CObjectID ---");
+                console.log("---  TESTING creating a " + contacttype + "  Contact with Duplicate B2CObjectID ---");
                 b2cObject = this.testdata.getB2CObjectID("DuplicateB2cObjectId");
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
-                console.log("*** emailAddress: " + email);
                 console.log("--- B2CObjectID: " + b2cObject);
                 break;
             case "InvalidB2cObjectId":
-                console.log("--- TESTING Invalide B2CObjectID ---");
+                console.log("--- TESTING creating a " + contacttype + " Contact with an Invalide B2CObjectID ---");
                 b2cObject = this.testdata.getB2CObjectID("InvalidB2cObjectId");
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
-                console.log("*** emailAddress: " + email);
-                console.log("--- InvalidB2cObjectId: " + b2cObject);
+                console.log("--- Invalid B2cObjectId: " + b2cObject);
                 break;
-            case "ContactWithDuplicateEmail":
-                console.log("--- TESTING Duplicate B2CObjectID ---");
-                email = this.testdata.getEmail("ContactWithDuplicateEmail");
+            case "DuplicateEmailAddr":
+                console.log("--- TESTING creating a " + contacttype + "  Duplicate Email-Address ---");
+                email = this.testdata.getEmail("Duplicate_EmailAddr");
                 console.log("--- Duplicate Email: " + email);
                 break;
-            case "ContactMissingTnCDate":
-                console.log("--- TESTING creating Contact with MISSING TandC Date ---");
-                b2cObject = b2cObjectID + postFix;
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
-                tacsacceptedon = this.testdata.getTacsacceptedone("ContactMissingTnCDate");
-                console.log("--- TandC Date: " + tacsacceptedon);
-                console.log("");
+            case "InvalidEmailAddr1":
+                console.log("--- TESTING creating a " + contacttype + " with an Invalid Email-Address (missing @) ---");
+                var contEmail = this.testdata.getEmail("Invalid_EmailAddr1");
+                email = (Math.random().toString().slice(2,5)) + "contact" + (Math.random().toString().slice(2,5)) + contEmail;
+                console.log("--- Invalid Email with missing '@' character in email address : " + email);
                 break;
-            case "ContactInvalidTnCDate":
-                console.log("--- TESTING creating Contact with INVALID TandC Date ---");
-                b2cObject = b2cObjectID + postFix;
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
-                tacsacceptedon = this.testdata.getTacsacceptedone("ContactInvalidTnCDate");
-                console.log("--- TandC Date: " + tacsacceptedon);
-                console.log("");
+            case "InvalidEmailAddr2":
+                console.log("--- TESTING creating a " + contacttype + " with an Invalid Email-Address (missing .) ---");
+                var contEmail = this.testdata.getEmail("Invalid_EmailAddr2");
+                email = (Math.random().toString().slice(2,5)) + "contact" + (Math.random().toString().slice(2,5)) + contEmail;
+                console.log("--- Invalid Email with missing '.' character in email address : " + email);
                 break;
-            case "ContactMissingCorAddress":
-                console.log("--- TESTING creating a new CITIZEN Contact with MISSING Corresponding Address ---");            
-                b2cObject = b2cObjectID + postFix;
-                isCitizen = this.testdata.getIsCitizen("ContactMissingCorAddress");
+            case "MissingCorAddress":
+                console.log("--- TESTING creating a new " + contacttype + " Contact with MISSING Corresponding Address ---");            
+                // b2cObject = b2cObjectID + postFix;
                 buildingName = this.testdata.getBuildingName("ContactMissingCorAddress");
                 buildingNumber = this.testdata.getBuildingNumber("ContactMissingCorAddress");
                 street = this.testdata.getStreet("ContactMissingCorAddress");
                 country = this.testdata.getCountry("ContactMissingCorAddress");
                 postcode = this.testdata.getPostcode("ContactMissingCorAddress");
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
-                console.log("*** emailAddress: " + email);
                 console.log("");
                 break;
             case "MissingBuildNameNo":
-                console.log("--- TESTING creating a new CITIZEN Contact with MISSING Building Name OR Number fields ---");            
-                b2cObject = b2cObjectID + postFix;     
-                isCitizen = this.testdata.getIsCitizen("ContactMissingCorAddress");
+                console.log("--- TESTING creating a " + contacttype + " Contact with MISSING Building_Name OR Number fields ---");            
+                // b2cObject = b2cObjectID + postFix;     
                 buildingName = this.testdata.getBuildingName("ContactMissingCorAddress");
                 buildingNumber = this.testdata.getBuildingNumber("ContactMissingCorAddress");
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
-                console.log("*** emailAddress: " + email);
                 console.log("buildingName: " + buildingName);
                 console.log("buildingNumber: " + buildingNumber);
                 console.log("");
                 break;
             case "MissingStreet":
-                console.log("--- TESTING creating a new CITIZEN Contact with MISSING street field ---");            
-                b2cObject = b2cObjectID + postFix;     
+                console.log("--- TESTING creating a " + contacttype + "  Contact with MISSING street field ---");            
+                // b2cObject = b2cObjectID + postFix;     
                 street = this.testdata.getStreet("ContactMissingCorAddress");
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
-                console.log("*** emailAddress: " + email);
                 console.log("");
                 console.log("street: " + street);
                 break;
             case "MissingCountry":
-                console.log("--- TESTING creating a new CITIZEN Contact with MISSING Country field ---");            
-                b2cObject = b2cObjectID + postFix;     
-                country = this.testdata.getCountry("ContactMissingCorAddress");
-                var contEmail = this.testdata.getEmail("BasicContact");
-                email = "contact" + (Math.random().toString().slice(2,5)) + contEmail;
-                console.log("*** emailAddress: " + email);
+                console.log("--- TESTING creating a " + contacttype + " Contact with MISSING Country field ---");            
+                // b2cObject = b2cObjectID + postFix;     
                 console.log("");
-                console.log("country: " + country);
+                // console.log("---- MISSING COUNTRY TEST ----");
+                break;
+            case "MissingPostCode":
+                console.log("--- TESTING creating a " + contacttype + " Contact with MISSING Post-code field ---");            
+                // b2cObject = b2cObjectID + postFix;     
+                postcode = this.testdata.getPostcode("ContactMissingCorAddress");
+                console.log("postcode: " + postcode);
+                break;
+            case "ContactMissingTnCDate":
+                console.log("--- TESTING creating a " + contacttype + "  Contact with MISSING TandC Date ---");
+                // b2cObject = b2cObjectID + postFix;
+                tacsacceptedon = this.testdata.getTacsacceptedone("ContactMissingTnCDate");
+                console.log("--- TandC Date: " + tacsacceptedon);
+                console.log("");
+                break;
+            case "ContactInvalidTnCDate":
+                console.log("--- TESTING creating a " + contacttype + "  Contact with INVALID TandC Date ---");
+                // b2cObject = b2cObjectID + postFix;
+                tacsacceptedon = this.testdata.getTacsacceptedone("ContactInvalidTnCDate");
+                console.log("--- TandC Date: " + tacsacceptedon);
+                console.log("");
+                break;
+            case "ContactMissingTnCVersion":
+                console.log("--- TESTING creating a " + contacttype + "  Contact with MISSING TandC Version ---");
+                // b2cObject = b2cObjectID + postFix;
+                tacsacceptedversion = this.testdata.getTacsacceptedversion("Contact_MissingTnCVersion");
+                console.log("--- TandC Date: " + tacsacceptedon);
+                console.log("");
+                break;
+            case "ContactInvalidTnCVersion":
+                console.log("--- TESTING creating a " + contacttype + "  Contact with INVALID TandC Version ---");
+                // b2cObject = b2cObjectID + postFix;
+                tacsacceptedversion = this.testdata.getTacsacceptedversion("Contact_InvalidTnCVersion");
+                console.log("--- TandC Date: " + tacsacceptedon);
+                console.log("");
+                break;
+            case "FNameGreaterThan50Char":
+                console.log("--- TESTING creating a Contact with " + validationtype + " ----");
+                firstName = this.testdata.getFirstName("FNameGreaterThan50");
+                console.log("--- First Name: " + firstName);
+                console.log("");
+                break;
+            case "LNameGreaterThan50Char":
+                console.log("--- TESTING creating a Contact with " + validationtype + " ----");
+                lastName = this.testdata.getLastName("LNameGreaterThan50");
+                console.log("--- Last Name: " + lastName);
+                console.log("");
                 break;
             default:
                 console.log("Invalide data TYPE !!");
                 break;
+        }
+
+        var bodyObject;
+
+        if(validationtype == "MissingCountry"){
+            bodyObject = { 
+                'defra_title': title, 'defra_b2cobjectid': b2cObject, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
+                'defra_cmcreateascitizen': isCitizen,
+                'defra_cmcreationsource': source,
+                'defra_addrcorbuildingname': buildingName,
+                'defra_addrcorbuildingnumber': buildingNumber,
+                'defra_addrcorstreet': street,
+                'defra_addrcorlocality': locality,
+                'defra_addrcortown': town,
+                'defra_addrcorpostcode': postcode,
+                'defra_tacsacceptedversion': tacsacceptedversion,
+                'defra_tacsacceptedon': tacsacceptedon,
+                'defra_cookiespolicyacceptedversion': cookiesVersion,
+                'defra_cookiespolicyacceptedon': cookiesDate,
+                'defra_privacypolicyacceptedversion': privacyPolicyVersio,
+                'defra_privacypolicyacceptedon': privacyPolicyDate      
+                }
+        }
+        else{
+            bodyObject = { 
+                'defra_title': title, 'defra_b2cobjectid': b2cObject, 'defra_ggcredentialid': ggCredentials, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
+                'defra_cmcreateascitizen': isCitizen,
+                'defra_cmcreationsource': source,
+                'defra_addrcorbuildingname': buildingName,
+                'defra_addrcorbuildingnumber': buildingNumber,
+                'defra_addrcorstreet': street,
+                'defra_addrcorlocality': locality,
+                'defra_addrcortown': town,
+                'defra_addrcorcountry@odata.bind': country,
+                'defra_addrcorpostcode': postcode,
+                'defra_tacsacceptedversion': tacsacceptedversion,
+                'defra_tacsacceptedon': tacsacceptedon,
+                'defra_cookiespolicyacceptedversion': cookiesVersion,
+                'defra_cookiespolicyacceptedon': cookiesDate,
+                'defra_privacypolicyacceptedversion': privacyPolicyVersio,
+                'defra_privacypolicyacceptedon': privacyPolicyDate      
+                }
         }
 
         //options for api response :- need to change postman token so used random 12 digit in the end
@@ -267,71 +339,52 @@ class ActiveDirectoryAuthService {
                 'Content-Type': 'application/json',
                 Authorization: 'Bearer ' + token,
                 Accept: 'application/json'
-            },
-            body: { 
-             'defra_title': title, 'defra_b2cobjectid': b2cObject, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
-             'defra_cmcreateascitizen': isCitizen,
-             'defra_cmcreationsource': source,
-             'defra_addrcorbuildingname': buildingName,
-             'defra_addrcorbuildingnumber': buildingNumber,
-             'defra_addrcorstreet': street,
-             'defra_addrcorlocality': locality,
-             'defra_addrcortown': town,
-             'defra_addrcorcountry@odata.bind': country,
-             'defra_addrcorpostcode': postcode,
-             'defra_tacsacceptedversion': tacsacceptedversion,
-             'defra_tacsacceptedon': tacsacceptedon,
-             'defra_cookiespolicyacceptedversion': cookiesVersion,
-             'defra_cookiespolicyacceptedon': cookiesDate,
-             'defra_privacypolicyacceptedversion': privacyPolicyVersio,
-             'defra_privacypolicyacceptedon': privacyPolicyDate      
-             },
+            },         
+
+            body: bodyObject,
             json: true
         };
 
-        //Calling request to return a promise so that it will use the returning values andperform the rest of the assertions/actions
+        //Calling request to return a promise so that it will use the returning values and perform the rest of the assertions/actions
         var initializePromise = await this.initialize(options);
         statusCodeVal = initializePromise.statusCode;
 
         if (statusCodeVal === 200 || statusCodeVal === 201) {
             console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
             console.log("TEXT:       " + initializePromise.statusMessage);
-
             //console.log("Contact-ID: " + JSON.stringify(response.body["contactid"]));
-            console.log("");
+            console.log("");  
             console.log("Assertion TEXT: " + statusMsg);
             console.log("Response BODY : " + JSON.stringify(initializePromise.body));
             console.log("");
+            
+            //----- ADD it to the json file - note we actually don't need the txt file for relationship ---
+            // var obj = {
+            //     custID: []
+            //  };
+    
+            // obj.custID.push({id: contactID});
+            // var json = JSON.stringify(obj);
 
             contactID = JSON.stringify(initializePromise.body["contactid"]);
-            fs.writeFile('CustID.txt', contactID, function (err) {
-                if (err) throw err;
-            });
+            console.log("--- ContactID: " + contactID);
 
-            //ADD it to the json file - note we actually don't need the txt file for relationship
+            if(contacttype == "Citizen" || contacttype == "Non_Citizen"){
+                fs.writeFile('contactid.json', contactID, 'utf8', function (err) {
+                    if (err) {reject(err); }
+                });
+            }
+            else {
+                fs.writeFile('contactidNPlusOne.json', contactID, 'utf8', function (err) {
+                    if (err) {reject(err); };
+                });
+            }
 
-            var obj = {
-                custID: []
-             };
-    
-            obj.custID.push({id: contactID});
-            var json = JSON.stringify(obj);
-            
-            fs.writeFile('contactid.json', contactID, 'utf8', function (err) {
-                if (err) {
-                    reject(err);
-                };
-            });
+            // Asserting the expected response body contains the expected statusMsg
+            chai.expect(JSON.stringify(initializePromise.body)).contains(statusMsg);
 
-
-            fs.appendFileSync('CustIDAll.txt', "\n" + contactID, function (err) {
-                if (err) throw err;
-            });
-
-            console.log("--- Contact-ID: " + contactID);
-
-            // chai.expect(JSON.stringify(response.body)).to.contain(statusMsg);
-            chai.expect(JSON.stringify(initializePromise.body)).contain(statusMsg);
+            console.log("");
+            console.log("------------- The END ----------------");
         }
         else if (statusCodeVal !== 200 || statusCodeVal !== 201) {
             console.log("");
@@ -340,11 +393,13 @@ class ActiveDirectoryAuthService {
 
             console.log("");
             var errorText = JSON.stringify(initializePromise.body.error["message"]);
-            console.log("--- Assertion TEXT: " + statusMsg);
-            console.log("--- Responce BODY : " + errorText);
+            console.log("--- Assertion TEXT:  " + statusMsg);
+            console.log("--- Responce  BODY: " + errorText);
 
-            chai.expect(errorText).to.contains(statusMsg);
-            console.log("-- END --")
+            chai.expect(errorText).contains(statusMsg);
+
+            console.log("");
+            console.log("------------ END -------------------")
         }
 
     }
@@ -642,19 +697,14 @@ class ActiveDirectoryAuthService {
     }  
 
     //**************USE THIS**********************/
-    async requestCreateOrgNEW(token, orgtype, validationtype, statusMsg) {
+    async requestCreateOrgNEW(token, isuk, orgtype, validationtype, statusMsg) {
 
         let today = new Date().toLocaleString();
         //generate random 12 digit number for unique Postman Token
         const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
-        const eightDigitRandomNum = Math.floor(Math.pow(10, 8 - 1) + Math.random() * (Math.pow(10, 8) - Math.pow(10, 8 - 1) - 1));
-        // console.log(elevenDigitRandomNum);
-
-        //const emailRandom = Math.random().toString(36) + "@gmail.com";
-        const emailRandomNo = Math.random().toString(36);
-        //options for api response :- need to change postman token so used random 12 digit in the end
-
-        var orgIsUK = this.testdata.getOrgIsUK("BasicOrgDetails");
+        // const eightDigitRandomNum = Math.floor(Math.pow(10, 8 - 1) + Math.random() * (Math.pow(10, 8) - Math.pow(10, 8 - 1) - 1));
+        // const emailRandomNo = Math.random().toString(36);
+        var orgIsUK = isuk;
         var orgName = this.testdata.getOrgName("BasicOrgDetails");   
         var orgType = this.testdata.getOrgType("BasicOrgDetails");
         var charityNo = this.testdata.getCharityNo("BasicOrgDetails");
@@ -678,7 +728,9 @@ class ActiveDirectoryAuthService {
         var orgCorcounty = this.testdata.getOrgCorCounty("BasicOrgDetails");
         var orgCortown = this.testdata.getOrgCorTown("BasicOrgDetails");
         var orgCorcountry = this.testdata.getOrgCorCountry("BasicOrgDetails");   
-        var orgCorpostcode = this.testdata.getOrgCorPostcode("BasicOrgDetails");      
+        var orgCorpostcode = this.testdata.getOrgCorPostcode("BasicOrgDetails");   
+        
+        console.log("*** It's Uk org: " + orgIsUK);
 
         if(orgtype == "LTD"){
             console.log("--- Creating a Basic LTD-Organisation ---");
@@ -692,6 +744,10 @@ class ActiveDirectoryAuthService {
             console.log("--- Creating a Basic LLP-Organisation ---");
             orgType = this.testdata.getOrgType("BasicOrg_LLP");                
         }  
+        if(orgtype == "None"){
+            console.log("--- Creating a Basic Organisation with NO Org-type ---");
+            orgType = "";                
+        } 
 
         switch (validationtype) {
             case "Basic_Org":             
@@ -786,6 +842,13 @@ class ActiveDirectoryAuthService {
                 orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email; 
                 orgRegpostcode = this.testdata.getOrgRegPostcode("Missing_Postcode");    
                 break;
+            case "MissingCountry":  
+                console.log("--- MISSING Country in Address TEST ---");
+                orgName = this.testdata.getOrgName("Missing_Postcode");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;   
+                break;
             case "MissingBuildingNameAndNo":
                 console.log("--- MISSING Building name and Number in Address TEST ---");
                 orgName = this.testdata.getOrgName("MissingBuildingNameAndNo");
@@ -797,12 +860,11 @@ class ActiveDirectoryAuthService {
                 console.log("Org Building Name  : " + orgRegaddbuildingname);    
                 console.log("Org Building Number: " + orgRegaddbuildingno);    
                 break;
-            case "UKOrg_NonUk_Addr":          
+            case "UKOrg_NonUk_Addr":     
                 orgName = orgName + orgtype + "-" + Math.random().toString(36).substr(2, 5) + "-UK";
                 var email = this.testdata.getOrgEmail("BasicOrgDetails");
                 orgEmail = "UK-" + orgtype + (Math.random().toString().slice(2,5)) + email; 
                 orgCRN = Math.random().toString().slice(2,10);
-                orgIsUK = this.testdata.getOrgIsUK ("UKOrg_NoneUKAddr");
                 orgRegaddbuildingno  = this.testdata.getOrgRegBuildingNo("UKOrg_NoneUKAddr")
                 orgRegcountry = this.testdata.getOrgRegCountry("UKOrg_NoneUKAddr")
                 orgRegaddstreet = this.testdata.getOrgRegStreet ("UKOrg_NoneUKAddr")
@@ -810,78 +872,92 @@ class ActiveDirectoryAuthService {
                 orgCorcountry = this.testdata.getOrgCorCountry("UKOrg_NoneUKAddr")
                 orgCoraddstreet = this.testdata.getOrgCorStreet ("UKOrg_NoneUKAddr")
                 break;
-            case "NonUkOrg_NoAdd":         
-                orgIsUK = this.testdata.getOrgIsUK ("NoneUK_Org");
-                orgName = orgName + orgtype + "-" + Math.random().toString(36).substr(2, 5) + "-Non-UK";
-                orgCRN = this.testdata.getOrgCRN("NoneUK_Org");
+            case "NonUkOrg_NoCRN_Address":         
+                orgName = "NoneUK_Org" + "-" + orgtype + "-" + Math.random().toString(36).substr(2, 5);
+                orgCRN = this.testdata.getOrgCRN("MissingCRNCheck");
                 var email = this.testdata.getOrgEmail("BasicOrgDetails");
                 orgEmail = "NonUK_" + orgtype + (Math.random().toString().slice(2,5)) + email; 
-                orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("NoneUK_Org")
-                orgRegaddbuildingno  = this.testdata.getOrgRegBuildingNo("NoneUK_Org")
-                orgRegcountry = this.testdata.getOrgRegCountry("NoneUK_Org")
-                orgRegaddstreet = this.testdata.getOrgRegStreet ("NoneUK_Org")
-                orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("NoneUK_Org")
-                orgCoraddbuildingno  = this.testdata.getOrgCorBuildingNo("NoneUK_Org")
-                orgCorcountry = this.testdata.getOrgCorCountry("NoneUK_Org")
-                orgCoraddstreet = this.testdata.getOrgCorStreet ("NoneUK_Org")
-
-                console.log("IsUK     : " + orgIsUK);    
-                console.log("Org Name : " + orgName);  
-                console.log("Org CRN  : " + orgCRN);  
-                console.log("Org Email: " + orgEmail);  
-                console.log("");
-                console.log("Reg Building Name  : " + orgRegaddbuildingname);    
-                console.log("Reg Building Number: " + orgRegaddbuildingno);  
-                console.log("Reg Address Country: " + orgRegcountry);  
-                console.log("Reg Address Street : " + orgRegaddstreet);  
-                console.log("");
-                console.log("Cor Building Name  : " + orgCoraddbuildingname);    
-                console.log("Cor Building Number: " + orgCoraddbuildingno);  
-                console.log("Cor Address Country: " + orgCorcountry);  
-                console.log("Cor Address Street : " + orgCoraddstreet); 
-                break;
-                case "NonUkOrg_NoCRN":         
-                orgIsUK = this.testdata.getOrgIsUK ("NoneUK_Org");
-                orgName = orgName + orgtype + "-" + Math.random().toString(36).substr(2, 5) + "-Non-UK";
-                orgCRN = this.testdata.getOrgCRN("NoneUK_Org");
-                var email = this.testdata.getOrgEmail("BasicOrgDetails");
-                orgEmail = "NonUK_" + orgtype + (Math.random().toString().slice(2,5)) + email; 
-
                 orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("NoneUKOrg_WithAdd")
                 orgRegaddbuildingno  = this.testdata.getOrgRegBuildingNo("NoneUKOrg_WithAdd")
                 orgRegcountry = this.testdata.getOrgRegCountry("NoneUKOrg_WithAdd")
-                orgRegaddstreet = this.testdata.getOrgRegStreet ("NoneUKOrg_WithAdd")
-                orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("NoneUK_Org")
-                orgCoraddbuildingno  = this.testdata.getOrgCorBuildingNo("NoneUK_Org")
-                orgCorcountry = this.testdata.getOrgCorCountry("NoneUK_Org")
-                orgCoraddstreet = this.testdata.getOrgCorStreet ("NoneUK_Org")
+                orgRegaddstreet = this.testdata.getOrgRegStreet ("NoneUKOrg_WithAdd")  
+                orgRegpostcode = this.testdata.getOrgRegPostcode("NoneUKOrg_WithAdd");  
+                orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("NoneUKOrg_WithAdd")
+                orgCoraddbuildingno  = this.testdata.getOrgCorBuildingNo("NoneUKOrg_WithAdd")
+                orgCorcountry = this.testdata.getOrgCorCountry("NoneUKOrg_WithAdd")
+                orgCoraddstreet = this.testdata.getOrgCorStreet ("NoneUKOrg_WithAdd")
+                orgCorpostcode = this.testdata.getOrgRegPostcode("NoneUKOrg_WithAdd");  
+                break;
+            case "NonUkOrg_CRN_NoAdd":              
+                orgName = orgName + orgtype + "-" + Math.random().toString(36).substr(2, 5) + "-Non-UK";
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = "NonUK_" + orgtype + (Math.random().toString().slice(2,5)) + email; 
+                orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("NoneUK_No_Address")
+                orgRegaddbuildingno  = this.testdata.getOrgRegBuildingNo("NoneUK_No_Address")
+                orgRegcountry = this.testdata.getOrgRegCountry("NoneUK_No_Address")
+                orgRegaddstreet = this.testdata.getOrgRegStreet ("NoneUK_No_Address")
+                orgRegpostcode = this.testdata.getOrgRegPostcode("NoneUK_No_Address");  
+                orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("NoneUK_No_Address")
+                orgCoraddbuildingno  = this.testdata.getOrgCorBuildingNo("NoneUK_No_Address")
+                orgCorcountry = this.testdata.getOrgCorCountry("NoneUK_No_Address")
+                orgCoraddstreet = this.testdata.getOrgCorStreet ("NoneUK_No_Address")
+                orgCorpostcode = this.testdata.getOrgRegPostcode("NoneUK_No_Address");  
+                break;
+            case "NonUkOrg_NoCRN_NoAdd":          
+                orgName = orgName + orgtype + "-" + Math.random().toString(36).substr(2, 5) + "-Non-UK";
+                orgCRN = this.testdata.getOrgCRN("MissingCRNCheck");
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = "NonUK_" + orgtype + (Math.random().toString().slice(2,5)) + email; 
+                orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("NoneUK_No_Address")
+                orgRegaddbuildingno  = this.testdata.getOrgRegBuildingNo("NoneUK_No_Address")
+                orgRegcountry = this.testdata.getOrgRegCountry("NoneUK_No_Address")
+                orgRegaddstreet = this.testdata.getOrgRegStreet ("NoneUK_No_Address")
+                orgRegpostcode = this.testdata.getOrgRegPostcode("NoneUK_No_Address");  
+                orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("NoneUK_No_Address")
+                orgCoraddbuildingno  = this.testdata.getOrgCorBuildingNo("NoneUK_No_Address")
+                orgCorcountry = this.testdata.getOrgCorCountry("NoneUK_No_Address")
+                orgCoraddstreet = this.testdata.getOrgCorStreet ("NoneUK_No_Address")
+                orgCorpostcode = this.testdata.getOrgRegPostcode("NoneUK_No_Address"); 
                 break;
             default:
                 console.log("Invalide data TYPE !!");
                 break;
         }
 
-        const options = {
-            method: 'POST',
-            url: configCRM.appUrlCRM + 'api/data/v9.0/accounts?$select=accountid,defra_uniquereference',
-            headers:
-            {
-                'postman-token': configCRM.postmantoken + val,
-                'cache-control': 'no-cache',
-                Prefer: 'return=representation',
-                'OData-MaxVersion': '4.0',
-                'OData-Version': '4.0',
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + token,
-                Accept: 'application/json'
-            },
+        var bodyObject;
 
-            //System-test enviroment
-            body: { 
+        if(validationtype == "MissingCountry"){
+            bodyObject = { 
                 'name': orgName,
                 'defra_isuk': orgIsUK,
                 'defra_type': orgType,
-                // 'defra_charitynumber': charityNo,
+                'defra_cmcrn': orgCRN,
+                'emailaddress1': orgEmail,
+                'defra_addrregbuildingname': orgRegaddbuildingname,
+                'defra_addrregbuildingnumber': orgRegaddbuildingno,
+                'defra_addrregsubbuildingname': orgRegsubbuildingname,
+                'defra_addrregstreet': orgRegaddstreet,
+                'defra_addrreglocality': orgRegaddlocality,
+                'defra_addrregcounty': orgRegcounty,
+                'defra_addrregtown': orgRegtown,
+                'defra_addrregpostcode': orgRegpostcode, 
+                'defra_addrcorbuildingname': orgCoraddbuildingname,
+                'defra_addrcorbuildingnumber': orgCoraddbuildingno,
+                'defra_addrcorsubbuildingname': orgCorsubbuildingname,
+                'defra_addrcorstreet': orgCoraddstreet,
+                'defra_addrcorlocality': orgCoraddlocality,
+                'defra_addrcorcounty': orgCorcounty,
+                'defra_addrcortown': orgCortown,
+                'defra_addrcorcountry@odata.bind': orgCorcountry,
+                'defra_addrcorpostcode': orgCorpostcode      
+                }
+        }
+        else {
+            bodyObject = {
+                'name': orgName,
+                'defra_isuk': orgIsUK,
+                'defra_type': orgType,
                 'defra_cmcrn': orgCRN,
                 'emailaddress1': orgEmail,
                 'defra_addrregbuildingname': orgRegaddbuildingname,
@@ -902,7 +978,25 @@ class ActiveDirectoryAuthService {
                 'defra_addrcortown': orgCortown,
                 'defra_addrcorcountry@odata.bind': orgCorcountry,
                 'defra_addrcorpostcode': orgCorpostcode 
-                },
+            }
+        }
+
+        const options = {
+            method: 'POST',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/accounts?$select=accountid,defra_uniquereference',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },
+
+            body: bodyObject,
             json: true
         };
 
@@ -918,41 +1012,33 @@ class ActiveDirectoryAuthService {
 
         if (statusCode === 200 || statusCode === 201) {
             console.log("");
-            console.log("--- Org NAME : " + orgName);
-            console.log("--- Org CRN  : " + orgCRN);
-            organisationID = JSON.stringify(initializePromise.body["accountid"]);
-
-            fs.writeFile('OrgID.txt', organisationID, function (err) {
-                if (err) throw err;
-            });
+            console.log("--- Organisation NAME : " + orgName);
+            console.log("--- Organisation CRN  : " + orgCRN);
 
             //ADD it to the json file - note we actually don't need the txt file for relationship
-            var obj = {
-                orgID: []
-            };
+            // var obj = {
+            //     orgID: []
+            // };
 
-            obj.orgID.push({id: organisationID});
-            var json = JSON.stringify(obj);
-
-            fs.writeFile('organisationid.json', organisationID, 'utf8', function (err) {
-                if (err) {
-                    reject(err);
-                };
-            });
-
-            fs.appendFileSync('OrgIDAll.txt', "\n" + organisationID, function (err) {
-                if (err) throw err;
-            });
-
-            console.log("--- Organisation/Account-ID: " + organisationID);
-            console.log("");
-
-            console.log("-- Assertion TEXT: " + statusMsg);
-            console.log("-- Responce BODY : " + JSON.stringify(initializePromise.body));
-
+            // obj.orgID.push({id: organisationID});
+            // var json = JSON.stringify(obj);
+    
             // chai.expect(JSON.stringify(initializePromise)).to.not.contain(statusMsg); 
             chai.expect(JSON.stringify(initializePromise)).contain(statusMsg); 
-            console.log("--- THE END ---")
+
+            organisationID = JSON.stringify(initializePromise.body["accountid"]);
+
+            console.log("--- Organisation/AccountID: " + organisationID);
+            console.log("");
+            console.log("-- Assertion TEXT: " + statusMsg);
+            console.log("-- Responce BODY : " + JSON.stringify(initializePromise.body));
+            console.log("");
+
+            fs.writeFile('organisationid.json', organisationID, 'utf8', function (err) {
+                if (err) { reject(err); };
+            });
+
+            console.log("------------- THE END --------------------")
         }
         else if (statusCode !== 200 || statusCode !== 201) {
             console.log("");
@@ -961,7 +1047,7 @@ class ActiveDirectoryAuthService {
             console.log("--- Responce BODY : " + errorText);
 
             chai.expect(errorText).to.contains(statusMsg);
-            console.log("--- THE END ---")
+            console.log("-------------- THE END -------------------")
 
             fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
                 if (err) throw err;
@@ -1025,6 +1111,11 @@ class ActiveDirectoryAuthService {
             console.log("--- Organisation Type  :-" + orgType);
             console.log("");
         }
+        if(orgtype == "None"){
+            orgType = this.testdata.getOrgType("MissingOrgType");
+            console.log("--- Organisation Type  :-" + orgType);
+            console.log("");
+        }
 
         switch (validationtype) {
             case "Basic_Org":
@@ -1077,6 +1168,13 @@ class ActiveDirectoryAuthService {
                 orgRegaddstreet = this.testdata.getOrgRegStreet("MissingStreetCheck");  
                 console.log("Missing STREET in ADDRESS !! ");     
                 break;
+            case "MissingCountry":
+                console.log("--- '" + orgtype + "' MISSING Country TEST ---");
+                orgName = this.testdata.getOrgName("MissingStreetCheck");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;    
+                break;
             case "MissingBuildingNameAndNo":
                 console.log("--- '" + orgtype + "' MISSING Building Name and Number in Address TEST ---");
                 orgName = this.testdata.getOrgName("MissingRegAddressCheck");
@@ -1087,33 +1185,50 @@ class ActiveDirectoryAuthService {
                 orgRegaddbuildingno = this.testdata.getOrgRegBuildingNo("MissingRegAddressCheck");
                 console.log("Missing Building Name and Number in ADDRESS !! ");     
                 break;
+            case "With_CRN":
+                console.log("--- '" + orgtype + "' with CRN ---");
+                orgName = this.testdata.getOrgName("BasicOrgDetails");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email; 
+                console.log(orgtype + " with Company-House-Number CRN  ");     
+                break;
             default:
                 console.log("Invalide data TYPE !!");
                 break;
         }
 
-        const options = {
-            method: 'POST',
-            url: configCRM.appUrlCRM + 'api/data/v9.0/accounts?$select=accountid,defra_uniquereference',
-            headers:
-            {
-                'postman-token': configCRM.postmantoken + val,
-                'cache-control': 'no-cache',
-                Prefer: 'return=representation',
-                'OData-MaxVersion': '4.0',
-                'OData-Version': '4.0',
-                'Content-Type': 'application/json',
-                Authorization: 'Bearer ' + token,
-                Accept: 'application/json'
-            },
+        var bodyObject;
 
-            //System-test enviroment
-            body: { 
+        if(validationtype == "MissingCountry"){
+            bodyObject = { 
                 'name': orgName,
                 'defra_isuk': orgIsUK,
                 'defra_type': orgType,
-                // 'defra_charitynumber': charityNo,
-                // 'defra_cmcrn': orgCRN,
+                'emailaddress1': orgEmail,
+                'defra_addrregbuildingname': orgRegaddbuildingname,
+                'defra_addrregbuildingnumber': orgRegaddbuildingno,
+                'defra_addrregsubbuildingname': orgRegsubbuildingname,
+                'defra_addrregstreet': orgRegaddstreet,
+                'defra_addrreglocality': orgRegaddlocality,
+                'defra_addrregcounty': orgRegcounty,
+                'defra_addrregtown': orgRegtown,
+                'defra_addrregpostcode': orgRegpostcode, 
+                'defra_addrcorbuildingname': orgCoraddbuildingname,
+                'defra_addrcorbuildingnumber': orgCoraddbuildingno,
+                'defra_addrcorsubbuildingname': orgCorsubbuildingname,
+                'defra_addrcorstreet': orgCoraddstreet,
+                'defra_addrcorlocality': orgCoraddlocality,
+                'defra_addrcorcounty': orgCorcounty,
+                'defra_addrcortown': orgCortown,
+                'defra_addrcorpostcode': orgCorpostcode              
+            }
+        }
+        else {
+            bodyObject = {
+                'name': orgName,
+                'defra_isuk': orgIsUK,
+                'defra_type': orgType,
                 'emailaddress1': orgEmail,
                 'defra_addrregbuildingname': orgRegaddbuildingname,
                 'defra_addrregbuildingnumber': orgRegaddbuildingno,
@@ -1133,7 +1248,51 @@ class ActiveDirectoryAuthService {
                 'defra_addrcortown': orgCortown,
                 'defra_addrcorcountry@odata.bind': orgCorcountry,
                 'defra_addrcorpostcode': orgCorpostcode 
-                },
+            }
+        }
+
+        const options = {
+            method: 'POST',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/accounts?$select=accountid,defra_uniquereference',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },
+
+            //---- System-test enviroment ---
+            // body: { 
+            //     'name': orgName,
+            //     'defra_isuk': orgIsUK,
+            //     'defra_type': orgType,
+            //     'emailaddress1': orgEmail,
+            //     'defra_addrregbuildingname': orgRegaddbuildingname,
+            //     'defra_addrregbuildingnumber': orgRegaddbuildingno,
+            //     'defra_addrregsubbuildingname': orgRegsubbuildingname,
+            //     'defra_addrregstreet': orgRegaddstreet,
+            //     'defra_addrreglocality': orgRegaddlocality,
+            //     'defra_addrregcounty': orgRegcounty,
+            //     'defra_addrregtown': orgRegtown,
+            //     'defra_addrregcountry@odata.bind': orgRegcountry,
+            //     'defra_addrregpostcode': orgRegpostcode, 
+            //     'defra_addrcorbuildingname': orgCoraddbuildingname,
+            //     'defra_addrcorbuildingnumber': orgCoraddbuildingno,
+            //     'defra_addrcorsubbuildingname': orgCorsubbuildingname,
+            //     'defra_addrcorstreet': orgCoraddstreet,
+            //     'defra_addrcorlocality': orgCoraddlocality,
+            //     'defra_addrcorcounty': orgCorcounty,
+            //     'defra_addrcortown': orgCortown,
+            //     'defra_addrcorcountry@odata.bind': orgCorcountry,
+            //     'defra_addrcorpostcode': orgCorpostcode 
+            //     },
+
+            body: bodyObject,
             json: true
         };
 
@@ -1178,7 +1337,7 @@ class ActiveDirectoryAuthService {
             // chai.expect(JSON.stringify(initializePromise)).to.not.contain(statusMsg); 
             chai.expect(JSON.stringify(initializePromise)).contain(statusMsg); 
             console.log("");
-            console.log("-- THE END --")
+            console.log("------------- THE END ----------------")
         }
         else if (statusCode !== 200 || statusCode !== 201) {
             console.log("");
@@ -1189,7 +1348,7 @@ class ActiveDirectoryAuthService {
             console.log("--- Responce BODY : " + errorText);
 
             chai.expect(errorText).to.contains(statusMsg);
-            console.log("-- THE END --")
+            console.log("------------ THE END ----------------")
 
             fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
                 if (err) throw err;
@@ -1206,16 +1365,11 @@ class ActiveDirectoryAuthService {
         //generate random 12 digit number for unique Postman Token
         const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
         const eightDigitRandomNum = Math.floor(Math.pow(10, 8 - 1) + Math.random() * (Math.pow(10, 8) - Math.pow(10, 8 - 1) - 1));
-        // console.log(elevenDigitRandomNum);
-
-        //const emailRandom = Math.random().toString(36) + "@gmail.com";
         const emailRandomNo = Math.random().toString(36);
         //options for api response :- need to change postman token so used random 12 digit in the end
-
         var orgName = this.testdata.getOrgName("BasicOrgDetails");
         const orgIsUK = this.testdata.getOrgIsUK("BasicOrgDetails");
         var orgType = this.testdata.getOrgType("BasicOrgDetails");
-        var charityNo = this.testdata.getCharityNo("BasicOrgDetails");
         var charityNoEnW = "";
         var charityNoNI = "";
         var charityNoScot = "";
@@ -1253,30 +1407,35 @@ class ActiveDirectoryAuthService {
                     orgType = this.testdata.getOrgType("BasicOrg_Char");
                     var chaNum = this.testdata.getCharityNo("CharityOrgDetails");
                     var charNo = chaNum + (Math.random().toString().slice(2,5));
+                    console.log("--- Charity NUMBER: " + charNo);
                     var email = this.testdata.getOrgEmail("BasicOrgDetails");
                     orgEmail = charityType + (Math.random().toString().slice(2,5)) + email; 
-                    console.log("*** Email Address: " + orgEmail);
+                    console.log("--- Email Address: " + orgEmail);
                     var charity = "charityNo" + charityType;
 
                     if(charity == "charityNoEnW" ){
                         charityNoEnW = charNo
-                    }else{
+                    }
+                    if (charity == "charityNoScot" ){
                         charityNoScot = charNo
                     }
-                    orgCRN = "";
+                    orgCRN = null;
                 }
                 else{
                     console.log("--- Creating a Basic 'Northan Ireland' Charity Organisation ---");
                     var name = this.testdata.getOrgName("CharityOrgDetails");
                     orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
+                    console.log("--- Charity Org NAME: " + orgName);
                     orgType = this.testdata.getOrgType("BasicOrg_Char");
+                    console.log("--- Charity Org orgType: " + orgType);
                     var email = this.testdata.getOrgEmail("BasicOrgDetails");
                     orgEmail = charityType + (Math.random().toString().slice(2,5)) + email; 
                     var chaNum = this.testdata.getCharityNo("CharityOrgDetails");
                     var charNo = chaNum + (Math.random().toString().slice(2,6));
+                    console.log("--- Charity NUMBER: " + charNo);
                     charityNoNI = charNo;
                     var charity = "charityNo" + charityType;
-                    console.log("Charity : " + charity);
+                    console.log("--- Charity : " + charity);
                     orgCRN = "";
                 }
                 break;
@@ -1363,13 +1522,9 @@ class ActiveDirectoryAuthService {
                     console.log("--- Creating a 'Northan Ireland' Charity Organisation with Charity-Number in Alphabitic formart ONLY ---");
                     var name = this.testdata.getOrgName("CharityOrgDetails");
                     orgName = name + "" + (Math.random().toString().slice(2,4) + " - " + charityType);
-                    // console.log("Charity NAME: " + orgName);
                     orgType = this.testdata.getOrgType("BasicOrg_Char");
-                    // console.log("Charity TYPE: " + orgType);
                     var chaNum = this.testdata.getCharityNo("CharityNoAlphabitOnly");
-                    // var charNo = chaNum + (Math.random().toString().slice(2,6));
-                    charityNoNI = chaNum;
-                
+                    charityNoNI = chaNum;             
                     var charity = "charityNo" + charityType;
                     console.log("*** Charity : " + charity);
                     orgCRN = "";
@@ -1398,7 +1553,6 @@ class ActiveDirectoryAuthService {
                     charityNoScot = charNo
                 }
                 orgCRN = "";
-                // console.log("Charity NUMBER: " + charNo);
                 break;
             case "LLPOrgDetails":
                 console.log("--- Create Charity Organisation TEST ---");
@@ -1414,7 +1568,7 @@ class ActiveDirectoryAuthService {
 
         console.log("");
         console.log("England And Wales Charity Number: " + charityNoEnW);
-        console.log("Northan Ireland charity Number  : " + charityNoNI);
+        console.log("Northan Ireland Charity Number  : " + charityNoNI);
         console.log("Scotland Charity Number         : " + charityNoScot);
 
         const options = {
@@ -1450,16 +1604,16 @@ class ActiveDirectoryAuthService {
                 'defra_addrregcounty': orgRegcounty,
                 'defra_addrregtown': orgRegtown,
                 'defra_addrregcountry@odata.bind': orgRegcountry,
-                'defra_addrregpostcode': orgRegpostcode, 
-                'defra_addrcorbuildingname': orgCoraddbuildingname,
-                'defra_addrcorbuildingnumber': orgCoraddbuildingno,
-                'defra_addrcorsubbuildingname': orgCorsubbuildingname,
-                'defra_addrcorstreet': orgCoraddstreet,
-                'defra_addrcorlocality': orgCoraddlocality,
-                'defra_addrcorcounty': orgCorcounty,
-                'defra_addrcortown': orgCortown,
-                'defra_addrcorcountry@odata.bind': orgCorcountry,
-                'defra_addrcorpostcode': orgCorpostcode 
+                'defra_addrregpostcode': orgRegpostcode 
+                // 'defra_addrcorbuildingname': orgCoraddbuildingname,
+                // 'defra_addrcorbuildingnumber': orgCoraddbuildingno,
+                // 'defra_addrcorsubbuildingname': orgCorsubbuildingname,
+                // 'defra_addrcorstreet': orgCoraddstreet,
+                // 'defra_addrcorlocality': orgCoraddlocality,
+                // 'defra_addrcorcounty': orgCorcounty,
+                // 'defra_addrcortown': orgCortown,
+                // 'defra_addrcorcountry@odata.bind': orgCorcountry,
+                // 'defra_addrcorpostcode': orgCorpostcode 
                 },
             json: true
         };
@@ -1507,7 +1661,7 @@ class ActiveDirectoryAuthService {
             console.log("--- Responce BODY : " + JSON.stringify(initializePromise.body));
 
             chai.expect(JSON.stringify(initializePromise)).contain(statusMsg); 
-            console.log("--- THE END ---")
+            console.log("----------------- THE END -------------------")
         }
         else if (statusCode !== 200 || statusCode !== 201) {
             console.log("");
@@ -1516,7 +1670,7 @@ class ActiveDirectoryAuthService {
             console.log("--- Responce BODY : " + errorText);
 
             chai.expect(errorText).to.contains(statusMsg);
-            console.log("--- THE END ---")
+            console.log("------------------ THE END -----------------")
 
             fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
                 if (err) throw err;
@@ -1527,7 +1681,7 @@ class ActiveDirectoryAuthService {
     }
 
     //**************USE THIS**********************/
-    async requestCreateRelationship(token, StatusMsgCreate, RoleType) {
+    async requestCreateRelationship(token, ContactType, RoleType, StatusMsgCreate) {
 
         let today = new Date().toLocaleString();
 
@@ -1542,30 +1696,47 @@ class ActiveDirectoryAuthService {
             table: []
          };
 
-         console.log("");
-         console.log("-- Role TYPE:    " + RoleType);
+         var customerID;
+         var organID;
 
-         if(RoleType === "Empl_Employer" || RoleType === "Agent_AgentCust"){
+         console.log("");
+         console.log("--- Relationship TYPE: " + RoleType);
+
+        var objorgID1 = await this.readFilesJSON('organisationid.json')    
+        objorgID = JSON.parse(objorgID1); //now it an object
+        organID = '/accounts(' + objorgID + ')';
+        console.log("--- OrganisationID: " + organID );
+
+        // saving the Contact_ID to an external file depending on the type of Contact i.e. Citizen/Non-Citizen or N+One Contact
+        if(ContactType === "Non_Citizen" || ContactType === "Citizen"){
             var custIDObj1 = await this.readFilesJSON('contactid.json')
-            //console.log("CUSTOMER ID as a String:  " + custIDObj1); 
             custIDObj = JSON.parse(custIDObj1); //now it an object
-            var customerID = '/contacts(' + custIDObj + ')';
-            console.log("-- CustomerID    : " + customerID );
+            customerID = '/contacts(' + custIDObj + ')';
+            console.log("--- CustomerID    : " + customerID );
+        } else {
+            var custIDObj1 = await this.readFilesJSON('contactidNPlusOne.json')
+            custIDObj = JSON.parse(custIDObj1); //now it an object
+            customerID = '/contacts(' + custIDObj + ')';
+            console.log("--- CustomerID:     " + customerID );
+        }
+
+        //  if(RoleType === "Empl_Employer" || RoleType === "Agent_AgentCust"){
+        //     var custIDObj1 = await this.readFilesJSON('contactid.json')
+        //     custIDObj = JSON.parse(custIDObj1); //now it an object
+        //     var customerID = '/contacts(' + custIDObj + ')';
+        //     console.log("-- CustomerID    : " + customerID );
       
-            var objorgID1 = await this.readFilesJSON('organisationid.json')
-            //console.log("ORGANISATION ID as a String:  " + objorgID1);      
-            objorgID = JSON.parse(objorgID1); //now it an object
-            var organID = '/accounts(' + objorgID + ')';
-            console.log("-- OrganisationID: " + organID );
-         } else {
-            var custIDObj1 = await this.readFilesJSON('contactid.json')
-            //console.log("CUSTOMER ID as a String:  " + custIDObj1); 
-            custIDObj = JSON.parse(custIDObj1); //now it an object
-            var customerID = '/contacts(' + custIDObj + ')';
-            console.log("-- CustomerID:     " + customerID );
-         }
+        //     var objorgID1 = await this.readFilesJSON('organisationid.json')    
+        //     objorgID = JSON.parse(objorgID1); //now it an object
+        //     var organID = '/accounts(' + objorgID + ')';
+        //     console.log("-- OrganisationID: " + organID );
+        //  } else {
+        //     var custIDObj1 = await this.readFilesJSON('contactid.json')
+        //     custIDObj = JSON.parse(custIDObj1); //now it an object
+        //     var customerID = '/contacts(' + custIDObj + ')';
+        //     console.log("-- CustomerID:     " + customerID );
+        //  }
         
-        //var oRg1 = await this.readFiles(fileNameOrg);
         const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
 
         var isCust = true;
@@ -1583,6 +1754,36 @@ class ActiveDirectoryAuthService {
                 "record2id_account@odata.bind": organID, 
                 "defra_iscustomer": "true" 
             };
+            break; 
+            case "Empl_NoTonFrom":
+                console.log("--- Creating a " + RoleType + " Relationship type ---");
+                bodyObject = {
+                    "record2roleid@odata.bind": "/connectionroles()",
+                    "record1roleid@odata.bind": "/connectionroles()", 
+                    "record1id_contact@odata.bind": customerID, 
+                    "record2id_account@odata.bind": organID, 
+                    "defra_iscustomer": "true" 
+                };
+            break; 
+            case "Empl_NoTo":
+                console.log("--- Creating a " + RoleType + " Relationship type ---");
+                bodyObject = {
+                    "record2roleid@odata.bind": "/connectionroles(35A23B91-EC62-41EA-B5E5-C59B689FF0B4)",
+                    "record1roleid@odata.bind": "/connectionroles()", 
+                    "record1id_contact@odata.bind": customerID, 
+                    "record2id_account@odata.bind": organID, 
+                    "defra_iscustomer": "true" 
+                };
+            break; 
+            case "Empl_NoFrom":
+                console.log("--- Creating a " + RoleType + " Relationship type ---");
+                bodyObject = {
+                    "record2roleid@odata.bind": "/connectionroles()",
+                    "record1roleid@odata.bind": "/connectionroles(1EB54AB1-58B7-4D14-BF39-4F3E402616E8)", 
+                    "record1id_contact@odata.bind": customerID, 
+                    "record2id_account@odata.bind": organID, 
+                    "defra_iscustomer": "true" 
+                };
             break; 
             case "Agent_AgentCust":
             console.log("--- Creating a " + RoleType + " Relationship type ---");
@@ -1631,44 +1832,48 @@ class ActiveDirectoryAuthService {
         var initializePromise = await this.initialize(options);
 
         console.log("");
-
         //const responseStatus = initializePromise.statusCode;
-        //console.log("Relationship Status code: " + JSON.stringify(responseStatus));
         console.log("RELATIONSHIP statusCode: ", initializePromise && initializePromise.statusCode);
         console.log("RELATIONSHIP TEXT      : " + initializePromise.statusMessage);
         console.log("");
        
         if (initializePromise.statusCode === 200 || initializePromise.statusCode === 201) {
             //let responseData = JSON.parse(initializePromise.body);
-
             console.log("");
             console.log("Assertion TEXT: " + StatusMsgCreate);
             console.log("Response BODY : " + JSON.stringify(initializePromise.body));
             console.log("");
 
-            let connectionID = JSON.stringify(initializePromise.body["connectionid"]);
-            let connectionDetails = JSON.stringify(initializePromise.body["_defra_connectiondetailsid_value"]);
-        
-            console.log("--- connection ID      : " + connectionID);
-            console.log("--- connection Details : " + connectionDetails);
-
             chai.expect(JSON.stringify(initializePromise.body)).to.contain(StatusMsgCreate);
 
-            fs.writeFile('connectionDetails.json', connectionDetails, 'utf8', function (err) {
-                if (err) {
-                    reject(err);
-                };
-            });
+            // let connectionID = JSON.stringify(initializePromise.body["connectionid"]);
+            let connectionDetails = JSON.stringify(initializePromise.body["_defra_connectiondetailsid_value"]);
 
-            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
-                if (err) throw err;
-            });
+            if(ContactType == "N_plus_one"){
+                fs.writeFile('connectionDetailsNPlusOne.json', connectionDetails, 'utf8', function (err) {
+                    if (err) { reject(err); };
+                });
+            }else {
+                fs.writeFile('connectionDetails.json', connectionDetails, 'utf8', function (err) {
+                    if (err) { reject(err);};
+                });
+            }
+    
+             console.log("--- connectionDetails : " + connectionDetails);
+
+            // fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+            //     if (err) throw err;
+            // });
+            console.log("");
+            console.log("------------------ The END -------------------")
 
         }
         else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
 
             console.log('statusCode:' + initializePromise.statusCode);
             console.log("TEXT: " + initializePromise.statusMessage);
+
+            chai.expect(JSON.stringify(initializePromise.body.error.message)).to.contain(StatusMsgCreate);
 
             fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
                 if (err) throw err;
@@ -1679,9 +1884,8 @@ class ActiveDirectoryAuthService {
     }
 
     //**************USE THIS**********************/
-    async createAccessRequest(token, SearchRef, ServiceRef, StatusMsg) {
-        var lobserviceid = this.testdata.getLOBserviceID(ServiceRef);
-
+    async createAccessRequest(token, LoBService, StatusMsg) {
+        var lobserviceid = this.testdata.getLOBserviceID(LoBService);
         let today = new Date().toLocaleString();
 
         const fileNameCust = 'CustID.txt';
@@ -1697,17 +1901,16 @@ class ActiveDirectoryAuthService {
          console.log("");
          console.log("--- Creating Access Request for LOB-Service ---");
          console.log("");
-         console.log("*** LOB-Service TYPE: " + ServiceRef);
+        //  console.log("*** LOB-Service TYPE: " + ServiceRef);
          console.log("*** LOB-Service ID  : " + lobserviceid);
-         console.log("");
 
-         var custIDObj1 = await this.readFilesJSON('contactid.json')
-         custIDObj = JSON.parse(custIDObj1); //now it an object
+         var custIDObj1 = await this.readFilesJSON('contactidNPlusOne.json')
+         custIDObj = JSON.parse(custIDObj1); 
          var customerID = custIDObj
          console.log("*** CustomerID      : " + customerID );
       
          var objorgID1 = await this.readFilesJSON('organisationid.json')     
-         objorgID = JSON.parse(objorgID1); //now it an object
+         objorgID = JSON.parse(objorgID1);
          var organID = objorgID;
          console.log("*** OrganisationID  : " + organID );
         
@@ -1718,56 +1921,13 @@ class ActiveDirectoryAuthService {
         var bodyObject;
 
         console.log("");
-        switch(SearchRef){  
-            case "All-refs":
-            console.log("--- Creating ACCESS-REQUEST with ALL References available ---");
-            bodyObject = {
-                "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": customerID },
-                "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": organID },
-                "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": lobserviceid },
-                "UserAccountProfilePageURL": "https://www.msn.com/?123444444" 
-            };
-            break; 
-            case "No-Contact-ref":
-            console.log("--- Creating ACCESS-REQUEST with No-Contact-References available ---");
-            bodyObject = {
-                "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": "" },
-                "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": organID },
-                "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": lobserviceid },
-                "UserAccountProfilePageURL": "https://www.msn.com/?123444444" 
-            };
-            break; 
-            case "No-Org-ref":
-            console.log("--- Creating ACCESS-REQUEST with No-Organisation-References available ---");
-            bodyObject = {
-                "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": customerID },
-                "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": "" },
-                "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": lobserviceid },
-                "UserAccountProfilePageURL": "https://www.msn.com/?123444444"
-            };
-            break; 
-            case "No-ContAndOrg-ref":
-            console.log("--- Creating ACCESS-REQUEST with No-Contact-and-Organisation-References available ---");
-            bodyObject = {
-                "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": "" },
-                "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": "" },
-                "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": lobserviceid },
-                "UserAccountProfilePageURL": "https://www.msn.com/?123444444"
-            };
-            break;
-            case "No-servicer-ref":
-            console.log("---  Creating ACCESS-REQUEST with No-Service-References available ---");
-            bodyObject = {
-                "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": customerID },
-                "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": organID },
-                "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": "" },
-                "UserAccountProfilePageURL": "https://www.msn.com/?123444444"
-            };
-            break;
-        default:
-            console.log("Invalide data TYPE !!");
-            break;
-        }
+
+        bodyObject = {
+            "ContactRef":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": customerID },
+            "OrganisationRef":{ "@odata.type": "Microsoft.Dynamics.CRM.account", "accountid": organID },
+            "ServiceRef":{ "@odata.type": "Microsoft.Dynamics.CRM.defra_lobservice", "defra_lobserviceid": lobserviceid },
+            "AcceptOrDeclineUserURL": "https://www.msn.com/?123444444" 
+        };
 
         const options = {
             method: 'POST', 
@@ -1800,11 +1960,14 @@ class ActiveDirectoryAuthService {
 
             chai.expect(JSON.stringify(initializePromise.body)).to.not.contain(StatusMsg);
 
-            // fs.writeFile('connectionDetails.json', connectionDetails, 'utf8', function (err) {
-            //     if (err) {
-            //         reject(err);
-            //     };
-            // });
+            var accessRequestID = JSON.stringify(initializePromise.body["defra_accessrequestid"]);
+            console.log("--- accessRequestID: " + accessRequestID);
+
+            fs.writeFile('accessRequestID.json', accessRequestID, 'utf8', function (err) {
+                if (err) {
+                    reject(err);
+                };
+            });
 
             // fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
             //     if (err) throw err;
@@ -1816,15 +1979,131 @@ class ActiveDirectoryAuthService {
             console.log("TEXT: " + initializePromise.statusMessage);
 
             chai.expect(JSON.stringify(initializePromise.body.error.message)).to.contain(StatusMsg);
-
-            // fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
-            //     if (err) throw err;
-            // });
         }
         else if (error) throw new Error(error);
 
     }
+   
+    //**************USE THIS**********************/
+    async accessRequestAction(token, accessAction, StatusMsg) {
 
+    var custIDObj = {
+        table: []
+     };
+     var objorgID = {
+        table: []
+     };
+
+     console.log("");
+     console.log("--- " + accessAction + " Access Request by Org-Admin to an LOB-Service ---");
+     console.log("");
+    //  console.log("*** LOB-Service TYPE: " + ServiceRef);
+    //  console.log("*** LOB-Service ID  : " + lobserviceid);
+
+     var custIDObj1 = await this.readFilesJSON('contactid.json')
+     custIDObj = JSON.parse(custIDObj1); 
+     var customerID = custIDObj
+     console.log("*** ADMIN CustomerID  : " + customerID );
+    
+    //var oRg1 = await this.readFiles(fileNameOrg);
+    const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
+
+    var isCust = true;
+    var bodyObject;
+
+    console.log("");
+
+    switch(accessAction){
+        case "approve":
+            console.log(" ---------------------------------- ");
+            bodyObject = {
+                "Processedby":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": customerID },
+                "Outcome": 1, 
+                "ServiceRoleGranted": true
+            };    
+            break;
+        case "reject":
+            console.log(" ************************************** ");
+            bodyObject = {
+                "Processedby":{ "@odata.type": "Microsoft.Dynamics.CRM.contact", "contactid": customerID },
+                "Outcome": 0, 
+                "ServiceRoleGranted": false,
+                "AccountDashLink": "https://wwww.live.co.uk"
+            };    
+            break
+        default:
+            console.log("Invalide data TYPE !!");
+            break;
+    }
+
+    var accessReqID = await this.readFilesJSON('accessRequestID.json') 
+    console.log("---- Access Request ID-1: " + accessReqID);
+    var accessID = accessReqID.replace(/(^"|"$)/g,'');
+    var accessConfig = 'api/data/v9.0/defra_accessrequests(' + accessID + ')/Microsoft.Dynamics.CRM.defra_completeaccessrequest';
+
+    console.log("---- appUrlCRM: " + configCRM.appUrlCRM);
+    console.log("---- accessConfig:                                                " + accessConfig);
+    console.log("---- FULL URL : " + configCRM.appUrlCRM + accessConfig);
+    console.log("");
+    console.log(" ------------------------------ ");
+
+    const options = {
+        method: 'POST', 
+        // url: configCRM.appUrlCRM + 'api/data/v9.0/defra_createaccessrequest',
+        url: configCRM.appUrlCRM + accessConfig,
+        headers:
+        {
+            'postman-token': configCRM.postmantoken + val,
+            'cache-control': 'no-cache',
+            Prefer: 'return=representation',
+            'OData-MaxVersion': '4.0',
+            'OData-Version': '4.0',
+            'Content-Type': 'application/json',
+            authorization: 'Bearer ' + token,
+            Accept: 'application/json'
+        },
+      
+        body: bodyObject,
+        json: true
+    };
+
+    var initializePromise = await this.initialize(options);
+   
+    if (initializePromise.statusCode === 200 || initializePromise.statusCode === 201) {
+        // console.log("");
+        console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+        console.log("TEXT:       " + initializePromise.statusMessage);
+
+        console.log("");
+        console.log("Response BODY: " + JSON.stringify(initializePromise.body));
+        console.log("");
+
+        chai.expect(JSON.stringify(initializePromise.body)).to.not.contain(StatusMsg);
+
+        // fs.writeFile('connectionDetails.json', connectionDetails, 'utf8', function (err) {
+        //     if (err) {
+        //         reject(err);
+        //     };
+        // });
+
+        // fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+        //     if (err) throw err;
+        // });
+
+    }
+    else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
+        console.log('statusCode:' + initializePromise.statusCode);
+        console.log("TEXT: " + initializePromise.statusMessage);
+
+        chai.expect(JSON.stringify(initializePromise.body.error.message)).to.contain(StatusMsg);
+
+        // fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+        //     if (err) throw err;
+        // });
+    }
+    else if (error) throw new Error(error);
+
+}
      //**************USE THIS**********************/
      async requestEnroleAsAnIDMAdmin(token) {
         // get data from createcontact.json using test-data.js
@@ -2002,10 +2281,163 @@ class ActiveDirectoryAuthService {
 
     }
 
-    //**************USE THIS**********************/
-    async requestCreateEnrolement(token, ServAndServRole, StatusMsg) {
-        let today = new Date().toLocaleString();
+     //**************USE THIS**********************/
+     async requestCreateIDMEnrolment(token, ContactType, IDMServcie, StatusMsgIDMService) {
 
+        let today = new Date().toLocaleString();
+        const fileNameCust = 'CustID.txt';
+        const fileNameOrg = 'OrgID.txt';
+  
+        var custIDObj = {
+            table: []
+        };
+        var objorgID = {
+            table: []
+        };
+        var connObjID = {
+            table: []
+        };
+
+        var customerID;
+        var organID;
+        var connectionDetails;
+
+        console.log("");
+
+        // getting the ContactID from the contactid.json file
+        if(ContactType === "N_plus_one"){
+            var custIDObj1 = await this.readFilesJSON('contactidNPlusOne.json');
+            custIDObj = JSON.parse(custIDObj1);
+            customerID = '/contacts(' + custIDObj + ')';
+            console.log("--- CustomerID: " + customerID );
+        }
+        else {
+            var custIDObj1 = await this.readFilesJSON('contactid.json');
+            custIDObj = JSON.parse(custIDObj1);
+            customerID = '/contacts(' + custIDObj + ')';
+            console.log("--- CustomerID: " + customerID );
+        }
+   
+        // getting the organisationID from the organisationid.json file
+        var objorgID1 = await this.readFilesJSON('organisationid.json') ;       
+        objorgID = JSON.parse(objorgID1);
+        organID = '/accounts(' + objorgID + ')';
+        console.log("--- OrganisationID   : " + organID );
+
+        // getting the connnectionDetails from the connnectionDetails.json file 
+        if(ContactType === "N_plus_one"){
+            var connObjID1 = await this.readFilesJSON('connectionDetailsNPlusOne.json');
+            connObjID = JSON.parse(connObjID1);
+            connectionDetails = '/defra_connectiondetailses(' + connObjID + ')';
+            console.log("--- ConnectionDetails  : " + connectionDetails );
+        }  
+        else {
+            var connObjID1 = await this.readFilesJSON('connectionDetails.json');
+            connObjID = JSON.parse(connObjID1);
+            connectionDetails = '/defra_connectiondetailses(' + connObjID + ')';
+            console.log("--- ConnectionDetails  : " + connectionDetails );
+        } 
+       
+        const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
+
+        // var isCust = true;
+        var bodyObject;
+        console.log("");
+
+        switch(IDMServcie){
+            case "Standared-User":
+            console.log("---  TESTING IDM-ENROLEMENT as a Standard-User ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(5A90DD44-DD9B-E811-A94F-000D3A3A8543)",	
+                "defra_ServiceRole@odata.bind":"/defra_lobserivceroles(18d5908c-dd9b-e811-a94f-000d3a3a8543)",
+                "defra_enrolmentstatus": 3,
+            };
+            break; 
+            case "Admin-User": 
+            console.log("---  TESTING IDM-ENROLEMENT as an Admin-User ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(5A90DD44-DD9B-E811-A94F-000D3A3A8543)",	
+                "defra_ServiceRole@odata.bind":"/defra_lobserivceroles(A3217E78-DD9B-E811-A94F-000D3A3A8543)",
+                "defra_enrolmentstatus": 3,
+            };
+            break;
+        default:
+            console.log("Invalide data TYPE !!");
+            break;
+        }
+
+        const options = {
+            method: 'POST',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/defra_lobserviceuserlinks?$select=defra_lobserviceuserlinkid',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },
+
+            body: bodyObject,
+            json: true
+
+        };
+
+        var initializePromise = await this.initialize(options);
+
+        console.log("");
+        console.log("IDM-ENROLEMENT statusCode    : ", initializePromise && initializePromise.statusCode);
+        console.log("IDM_ENROLEMENT response-TEXT : " + initializePromise.statusMessage);
+        console.log("");
+       
+        if (initializePromise.statusCode === 200 || initializePromise.statusCode === 201) {
+            //let responseData = JSON.parse(initializePromise.body);
+            console.log("--- Assertion TEXT: " + StatusMsgIDMService);
+            console.log("--- Response BODY : " + JSON.stringify(initializePromise.body));
+            console.log("");
+
+            let lobservicelinkid = JSON.stringify(initializePromise.body["defra_lobserviceuserlinkid"]);
+            console.log("--- LOB Service link-ID : " + lobservicelinkid);
+
+            chai.expect(JSON.stringify(initializePromise.body)).contain(StatusMsgIDMService);
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+
+        }
+        else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
+            console.log('statusCode:' + initializePromise.body.error.message);
+            console.log("TEXT: " + initializePromise.statusMessage);
+            console.log("");
+            console.log("--- Assertion TEXT: " + StatusMsgIDMService);
+            console.log("--- Response BODY : " + JSON.stringify(initializePromise.body.error.message));
+            console.log("");
+
+            chai.expect(JSON.stringify(initializePromise.body.error.message)).contain(StatusMsgIDMService);
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+        }
+        else if (error) throw new Error(error);
+
+        console.log("----------------- The END -------------------------");
+
+    }
+
+      //**************USE THIS**********************/
+      async requestCreateHandshake(token, DefraService, StatusMsgDefraService) {
+        let today = new Date().toLocaleString();
         const fileNameCust = 'CustID.txt';
         const fileNameOrg = 'OrgID.txt';
   
@@ -2025,29 +2457,184 @@ class ActiveDirectoryAuthService {
         var custIDObj1 = await this.readFilesJSON('contactid.json');
         custIDObj = JSON.parse(custIDObj1);
         var customerID = '/contacts(' + custIDObj + ')';
-        console.log("-- customerID: " + customerID );
+        console.log("--- CustomerID: " + customerID );
    
         // getting the organisationID from the organisationid.json file
         var objorgID1 = await this.readFilesJSON('organisationid.json') ;       
         objorgID = JSON.parse(objorgID1);
         var organID = '/accounts(' + objorgID + ')';
-        console.log("-- organID   : " + organID );
+        console.log("--- OrganisationID   : " + organID );
 
         // getting the connnectionDetails from the connnectionDetails.json file    
         var connObjID1 = await this.readFilesJSON('connectionDetails.json');
         connObjID = JSON.parse(connObjID1);
         var connectionDetails = '/defra_connectiondetailses(' + connObjID + ')';
-        console.log("-- enroleID  : " + connectionDetails );
+        console.log("--- ConnectionDetails  : " + connectionDetails );
 
         //var oRg1 = await this.readFiles(fileNameOrg);
         const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
 
-        var isCust = true;
+        // var isCust = true;
         var bodyObject;
+        console.log("");
+
+        switch(DefraService){
+            case "VMD_Licencing":
+            console.log("---  TESTING Handshake to a " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID, 
+                "defra_service@odata.bind": "/defra_lobservices(a65e89e7-66b6-e811-a954-000d3a29b5de)",	
+                "defra_enrolmentstatus": 3,
+            };
+            break; 
+            case "VMD_Secure_Msg": 
+            console.log("---  TESTING Handshake to a " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(a99fcef9-66b6-e811-a954-000d3a29b5de)",	
+                "defra_enrolmentstatus": 3,
+            };
+            break;
+            case "VMD_Reporing": 
+            console.log("---  TESTING Handshake to a " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(39c4599e-27de-e811-a842-000d3ab4f534)",	
+                "defra_enrolmentstatus": 3,
+            };
+            break;
+            case "IMP_Notification": 
+            console.log("---  TESTING Handshake to an " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(8b5214ee-62b6-e811-a954-000d3a29b5de)",	
+                "defra_enrolmentstatus": 3,
+            };
+            break;
+            case "IMP_Veterinarian": 
+            console.log("---  TESTING Handshake to an " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(8b5214ee-62b6-e811-a954-000d3a29b5de)",	
+                "defra_enrolmentstatus": 3,
+            };
+            break;
+        default:
+            console.log("Invalide data TYPE !!");
+            break;
+        }
+
+        const options = {
+            method: 'POST',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/defra_lobserviceuserlinks?$select=defra_lobserviceuserlinkid',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },
+            body: bodyObject,
+            json: true
+        };
+
+        var initializePromise = await this.initialize(options);
+
+        console.log("");
+        console.log("Handshake statusCode    : ", initializePromise && initializePromise.statusCode);
+        console.log("Handshake response-TEXT : " + initializePromise.statusMessage);
+        console.log("");
+       
+        if (initializePromise.statusCode === 200 || initializePromise.statusCode === 201) {
+            //let responseData = JSON.parse(initializePromise.body);
+            console.log("--- Assertion TEXT: " + StatusMsgDefraService);
+            console.log("--- Response BODY : " + JSON.stringify(initializePromise.body));
+            console.log("");
+
+            let lobservicelinkid = JSON.stringify(initializePromise.body["defra_lobserviceuserlinkid"]);
+            console.log("--- LOB Service link-ID : " + lobservicelinkid);
+
+            chai.expect(JSON.stringify(initializePromise.body)).contain(StatusMsgDefraService);
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+        }
+        else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
+            console.log('statusCode:' + initializePromise.body.error.message);
+            console.log("TEXT: " + initializePromise.statusMessage);
+
+            chai.expect(JSON.stringify(initializePromise.body.error.message)).contain(StatusMsgDefraService);
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+        }
+        else if (error) throw new Error(error);
+
+        console.log("------------ The END ---------------------")
+
+    }
+
+    //**************USE THIS**********************/
+    async requestCreateEnrolement(token, ServAndServRole, StatusMsgService) {
+    console.log("--------- Enroling to an LoB-Service -------------------")
+
+        let today = new Date().toLocaleString();
+        const fileNameCust = 'CustID.txt';
+        const fileNameOrg = 'OrgID.txt';
+  
+        var custIDObj = {
+            table: []
+        };
+        var objorgID = {
+            table: []
+        };
+        var connObjID = {
+            table: []
+        };
 
         console.log("");
 
-        switch(ServAndServRole){
+        // getting the ContactID from the contactid.json file
+        var custIDObj1 = await this.readFilesJSON('contactid.json');
+        custIDObj = JSON.parse(custIDObj1);
+        var customerID = '/contacts(' + custIDObj + ')';
+        console.log("--- customerID: " + customerID );
+   
+        // getting the organisationID from the organisationid.json file
+        var objorgID1 = await this.readFilesJSON('organisationid.json') ;       
+        objorgID = JSON.parse(objorgID1);
+        var organID = '/accounts(' + objorgID + ')';
+        console.log("--- organID   : " + organID );
+
+        // getting the connnectionDetails from the connnectionDetails.json file    
+        var connObjID1 = await this.readFilesJSON('connectionDetails.json');
+        connObjID = JSON.parse(connObjID1);
+        var connectionDetails = '/defra_connectiondetailses(' + connObjID + ')';
+        console.log("--- enroleID  : " + connectionDetails );
+
+        //var oRg1 = await this.readFiles(fileNameOrg);
+        const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
+
+        var bodyObject;
+        console.log("");
+
+        switch(ServAndServRole){ 
             case "ServiceOnly":
             console.log("---  TESTING ENROLEMENT using LOB-Service ONLY ---");
             bodyObject = {
@@ -2091,6 +2678,28 @@ class ActiveDirectoryAuthService {
                 "defra_enrolmentstatus": 2,
             };
             break;
+            case "ImpNotification":
+                console.log("---  TESTING ENROLEMENT using Imports-Service 'Notification' AND ServiceRole 'Standard User' ---");
+                bodyObject = {
+                    "defra_ServiceUser@odata.bind": customerID,		
+                    "defra_Organisation@odata.bind": organID, 
+                    "defra_connectiondetail@odata.bind": connectionDetails,
+                    "defra_service@odata.bind": "/defra_lobservices(8b5214ee-62b6-e811-a954-000d3a29b5de)",	
+                    "defra_ServiceRole@odata.bind":"/defra_lobserivceroles(29072a8c-73b6-e811-a954-000d3a29b5de)",
+                    "defra_enrolmentstatus": 3,
+                };
+            break;
+            case "ImpVeterinarian":
+                console.log("---  TESTING ENROLEMENT using Imports-Service 'Veterinarian' AND ServiceRole 'Standard User' ---");
+                bodyObject = {
+                    "defra_ServiceUser@odata.bind": customerID,		
+                    "defra_Organisation@odata.bind": organID, 
+                    "defra_connectiondetail@odata.bind": connectionDetails,
+                    "defra_service@odata.bind": "/defra_lobservices(8b5214ee-62b6-e811-a954-000d3a29b5de)",	
+                    "defra_ServiceRole@odata.bind":"/defra_lobserivceroles(55b25c28-ce02-e911-a847-000d3ab4ffef)",
+                    "defra_enrolmentstatus": 3,
+                };
+            break;
             case "IDM-Identity":
             console.log("---  TESTING ENROLEMENT using VMD-Service 'IDM-Identity' AND ServiceRole 'Admin' ---");
             bodyObject = {
@@ -2114,7 +2723,7 @@ class ActiveDirectoryAuthService {
             };
             break;
             case "ServiceRoleOnly":
-            console.log("---  TESTING ENROLEMENT using VMD 'Apply to Licence'-ServiceRole ONLY ---");
+            console.log("---  TESTING ENROLEMENT using VMD 'Apply to Licence'- Service-Role ONLY ---");
             bodyObject = {
                 "defra_ServiceUser@odata.bind": customerID,		
                 "defra_Organisation@odata.bind": organID, 
@@ -2145,36 +2754,26 @@ class ActiveDirectoryAuthService {
 
             body: bodyObject,
             json: true
-
         };
 
         var initializePromise = await this.initialize(options);
 
         console.log("");
-
-        //const responseStatus = initializePromise.statusCode;
-
-        console.log("ENROLEMENT statusCode    : ", initializePromise && initializePromise.statusCode);
-        console.log("ENROLEMENT response-TEXT : " + initializePromise.statusMessage);
+        console.log("Service ENROLEMENT statusCode    : ", initializePromise && initializePromise.statusCode);
+        console.log("Service ENROLEMENT response-TEXT : " + initializePromise.statusMessage);
         console.log("");
        
         if (initializePromise.statusCode === 200 || initializePromise.statusCode === 201) {
             //let responseData = JSON.parse(initializePromise.body);
-
             console.log("");
-            console.log("Response BODY: " + JSON.stringify(initializePromise.body));
+            console.log("--- Assertion TEXT: " + StatusMsgService);
+            console.log("--- Response BODY : " + JSON.stringify(initializePromise.body));
             console.log("");
 
             let lobservicelinkid = JSON.stringify(initializePromise.body["defra_lobserviceuserlinkid"]);
             console.log("--- LOB Service link-ID : " + lobservicelinkid);
 
-            chai.expect(JSON.stringify(initializePromise.body)).to.not.contain(StatusMsg);
-
-            // fs.writeFile('connectionDetails.json', connectionDetails, 'utf8', function (err) {
-            //     if (err) {
-            //         reject(err);
-            //     };
-            // });
+            chai.expect(JSON.stringify(initializePromise.body)).contain(StatusMsgService);
 
             fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
                 if (err) throw err;
@@ -2184,6 +2783,9 @@ class ActiveDirectoryAuthService {
         else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
             console.log('statusCode:' + initializePromise.body.error.message);
             console.log("TEXT: " + initializePromise.statusMessage);
+
+            chai.expect(JSON.stringify(initializePromise.body.error.message)).contain(StatusMsgService);
+
             fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
                 if (err) throw err;
             });
@@ -2456,12 +3058,15 @@ class ActiveDirectoryAuthService {
             let connectionID = JSON.stringify(initializePromise.body["connectionid"]);
             let connectionDetails = JSON.stringify(initializePromise.body["_defra_connectiondetailsid_value"]);
 
-          //  chai.expect(JSON.stringify(initializePromise.body)).to.not.contain(StatusMsgCreate);
+           chai.expect(JSON.stringify(initializePromise.body)).to.not.contain(StatusMsgCreate);
 
         }
         else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
             console.log('statusCode:' + initializePromise.body.error.message);
             console.log("TEXT: " + initializePromise.statusMessage);
+
+            chai.expect(JSON.stringify(initializePromise.body.error.message)).to.not.contain(StatusMsgCreate);
+
             fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
                 if (err) throw err;
             });
@@ -2473,14 +3078,12 @@ class ActiveDirectoryAuthService {
     async getToken() {
         return new Promise((resolve, reject) => {
             // Make the token request
-
             const authorityHostUrl = configCRM.authorityHostUrl;
             const tenant = configCRM.tenant; // AAD Tenant name.
             const authorityUrl = authorityHostUrl + '/' + tenant
             const clientId = clientID // Application Id of app registered under AAD.
             const clientSecret = configCRM.clientSecret; // Secret generated for app. Read this environment constiable.
             const resource = configCRM.resource;// URI that identifies the resource for which the token is valid.
-
             const AuthenticationContext = AdalNode.AuthenticationContext
             const context = new AuthenticationContext(authorityUrl)
 

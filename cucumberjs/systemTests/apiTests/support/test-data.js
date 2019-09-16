@@ -1,22 +1,32 @@
 class TestData {
 
-	constructor(testdata) {
+	constructor(testdata) {  // "testdata" is the test-data property file
 		this.testdata = testdata;
 	}
 //this is a generic method which is responsibe to find the actual dataset based on the identifier provided in step definition.(e.g basiccontacttest )
-	getAsset(testDataObj) {
-		const actualAsset = this.testdata.select('//Contact/*[@testidentifier="'+testDataObj+'"]');
+	
+	// this method is used to read the test-data for a CONTACT
+	getAsset(testDataObj) { //
+		const actualAsset = this.testdata.select('//Contact/*[@testidentifier="'+ testDataObj +'"]');
 		return actualAsset;
 	}
-
+    // this method is used to read the test-data for an ORGANISATION
 	getAssetOrg(testDataObj) {
-		const actualAsset = this.testdata.select('//Organisation/*[@testidentifier="'+testDataObj+'"]');
+		const actualAsset = this.testdata.select('//Organisation/*[@testidentifier="'+ testDataObj +'"]');
 		return actualAsset;
 	}
 
+	// ------ 
+	
 	getB2CObjectID(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.b2cobjectid;
+	}
+
+	getGGcredentialID(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.ggcredentialID
+		;
 	}
 
 	getCustID(testDataObj) {
@@ -66,6 +76,11 @@ class TestData {
 	getGender(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.gender;
+	}
+
+	getMessage(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.message;
 	}
 
 	getTelephone(testDataObj) {
@@ -225,8 +240,6 @@ class TestData {
 		const actualAsset = this.getAssetOrg(testDataObj);
 		return actualAsset.orgAdduprn;
 	}
-
-
 	getOrgRegBuildingName(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);
 		return actualAsset.orgRegaddbuildingname;
@@ -300,8 +313,6 @@ class TestData {
 		const actualAsset = this.getAssetOrg(testDataObj);
 		return actualAsset.orgCorpostcode;
 	}
-
-
 
 	getOrgDependentLocality(testDataObj) {
 		const actualAsset = this.getAssetOrg(testDataObj);

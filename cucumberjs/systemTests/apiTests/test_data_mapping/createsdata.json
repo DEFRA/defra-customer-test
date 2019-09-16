@@ -2,14 +2,15 @@
 	"Contact": [
 		{
 			"testidentifier": "BasicContact",
-			"b2cobjectid": "7b1ad2d0-7946-11e8-",
-			"isCitizen": false,
+			"b2cobjectid": "7b1ad2d0-",
+			"ggcredentialID": "6401744",
+			"isCitizen": true,
 			"title": "1",
 			"firstname": "Simon",
 			"middlename": "",
 			"lastname": "Peter",
 			"source": 2,
-			"email": "@test.co.uk",
+			"email": "@yopmailxx.com",
 			"dob": "1980-12-02",
 			"gender": "2",
 			"telephone": "02089754212",
@@ -30,6 +31,22 @@
 			"cookiespolicyacceptedon": "2018-10-17"
 		},
 		{
+			"testidentifier": "CreateContactMsg",
+			"message": "(contactid,defra_uniquereference)"
+		},
+		{
+			"testidentifier": "CreateContactErrMsg",
+			"message": "(contactid,defra_uniquereference)"
+		},
+		{
+			"testidentifier": "CitizenContact",
+			"isCitizen": true
+		},
+		{
+			"testidentifier": "NonCitizenContact",
+			"isCitizen": false
+		},
+		{
 			"testidentifier": "BasicContactCitizen",
 			"isCitizen": true,
 			"firstname": "Citizen101",
@@ -37,16 +54,24 @@
 			"lastname": "Contact"
 		},
 		{
-			"testidentifier": "ContactMissingFirstName",
+			"testidentifier": "Missing_FirstName",
 			"firstname": ""
 		},
 		{
-			"testidentifier": "ContactMissingLastName",
+			"testidentifier": "Missing_LastName",
 			"lastname": ""
 		},
 		{
-			"testidentifier": "ContactWithDuplicateEmail",
+			"testidentifier": "Duplicate_EmailAddr",
 			"email": "01tester@citizen.com"
+		},
+		{
+			"testidentifier": "Invalid_EmailAddr1",
+			"email": "test@com"
+		},
+		{
+			"testidentifier": "Invalid_EmailAddr2",
+			"email": "test.com"
 		},
 		{
 			"testidentifier": "DuplicateB2cObjectId",
@@ -54,7 +79,7 @@
 		},
 		{
 			"testidentifier": "InvalidB2cObjectId",
-			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-47541258"
+			"b2cobjectid": "7b1ad2d0-7946-11e8-xxxx-"
 		},
 		{
 			"testidentifier": "ContactMissingTnCDate",
@@ -63,6 +88,14 @@
 		{
 			"testidentifier": "ContactInvalidTnCDate",
 			"tacsacceptedon": "10:11:2018"
+		},
+		{
+			"testidentifier": "Contact_MissingTnCVersion",
+			"tacsacceptedon": ""
+		},
+		{
+			"testidentifier": "Contact_InvalidTnCVersion",
+			"tacsacceptedon": "20"
 		},
 		{
 			"testidentifier": "ContactMissingCorAddress",
@@ -78,9 +111,18 @@
 			"country": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)"
 		},
 		{
+			"testidentifier": "MissingCountryCorAddress",
+			"isCitizen": true,
+			"country": "/defra_countries()"
+		},
+		{
 			"testidentifier": "WrogPostcodeTest",
 			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-",	
 			"postcode": "ZZZZZ"
+		},
+		{
+			"testidentifier": "Imports",
+			"lobserviceid": "8b5214ee-62b6-e811-a954-000d3a29b5de"
 		},
 		{
 			"testidentifier": "VMD-licencing",
@@ -93,6 +135,18 @@
 		{
 			"testidentifier": "VMD-SecureMsg",
 			"lobserviceid": "a99fcef9-66b6-e811-a954-000d3a29b5de"
+		},
+		{
+			"testidentifier": "FNameGreaterThan50",
+			"firstname": "KingSolomon_WithFirstNameGreaterThan50CharatersLongXX"
+		},
+		{
+			"testidentifier": "LNameGreaterThan50",
+			"lastname": "PeterRabbit_WithLastNameGreaterThan50CharatersLongXX"
+		},
+		{
+			"testidentifier": "CreateContactMsg",
+			"message": "(contactid,defra_uniquereference)"
 		}
 	],
 	"Organisation": [
@@ -300,10 +354,10 @@
 			"orgCorpostcode": "ST12455"
 		},
 		{
-			"testidentifier": "NoneUK_Org",
+			"testidentifier": "NoneUK_No_Address",
 			"orgIsUK": false,
 			"orgCRN": "",
-			"orgName": "None UK Org",
+			"orgName": "None-UK Org",
 			"orgRegaddbuildingname": "",
 			"orgRegaddbuildingno": "",
 			"orgRegaddstreet": "",
@@ -316,15 +370,17 @@
 			"orgCorpostcode": ""
 		},
 		{
-			"testidentifier": "NoneUKOrg_WithAdd",
-			"orgIsUK": false,
-			"orgCRN": "",
-			"orgName": "None UK Org with Address",
+			"testidentifier": "NoneUKOrg_WithAdd",	
 			"orgRegaddbuildingname": "",
 			"orgRegaddbuildingno": "101",
 			"orgRegaddstreet": "Kerpen Strass",
 			"orgRegcountry": "/defra_countries(c49bf73a-fa9c-e811-a950-000d3a3a2566)",
-			"orgRegpostcode": "zx12545"
+			"orgRegpostcode": "zx12545",
+			"orgCoraddbuildingname": "",
+			"orgCoraddbuildingno": "22",
+			"orgCoraddstreet": "Schuring Strass",
+			"orgCorcountry": "/defra_countries(c49bf73a-fa9c-e811-a950-000d3a3a2566)",
+			"orgCorpostcode": "1523654"
 		}
 	]
 }
