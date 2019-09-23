@@ -1,14 +1,21 @@
 //import { stringify } from "querystring";
 // defined in support - world.js - creates a world for every scenario - distinct webdriver instance
 const World = require("../support/world").World;
-const config = require("../../../../configCRM").configCRM;
-const Assert = require("assert");
-const request = require("request");
-const chai = require("chai");
+// const config = require("../../../../configCRM").configCRM;
+// const Assert = require("assert");
+// const request = require("request");
+// const chai = require("chai");
 
 module.exports = function () {
 
     this.World = World;
+
+    this.defineStep(/^I create a new (.*?) Contact with (.*?) then expected message outcome is (.*?)$/, { timeout: 2000000 }, async function (ContactType, ValidationType, StatusMsgCont) {
+        //generate token
+        const token = await this.activeDirectoryAuthService.getToken();
+        //console.log(token)
+        await this.activeDirectoryAuthService.requestCreateContact(token, ContactType, ValidationType, StatusMsgCont);    
+    });
 
     this.defineStep(/^I send an API request to create a new contact$/, { timeout: 2000000 }, async function () {
         //generate token
@@ -30,33 +37,19 @@ module.exports = function () {
         // use async with await for all step definitions , assertions, page objects to avoid any timeouts or obj not found conditon due to time out
         await this.activeDirectoryAuthService.createAccessRequest(token, ServiceRef, StatusMsg);
     });
-                     
-    this.defineStep(/^I create access request using (.*?) for Contact to (.*?) with no (.*?)$/, { timeout: 2000000 }, async function (SearchRef, ServiceRef, StatusMsg) {
+    
+    this.defineStep(/^I create access request for N-plus1-Contact and Org-1 to (.*?) with excpected outcome (.*?)$/, { timeout: 2000000 }, async function (LoBService, StatusMsg) {
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         // use async with await for all step definitions , assertions, page objects to avoid any timeouts or obj not found conditon due to time out
-        await this.activeDirectoryAuthService.createAccessRequest(token, SearchRef, ServiceRef, StatusMsg);
+        await this.activeDirectoryAuthService.createAccessRequest(token, LoBService, StatusMsg);
     });
-
-    this.defineStep(/^I create a new (.*?) with expected message outcome (.*?)$/, { timeout: 2000000 }, async function (ValidationType, StatusMsg) {
+    
+    this.defineStep(/^I send an API request to create a new (.*?) (.*?) organisation with (.*?) and (.*?)$/, { timeout: 2000000 }, async function (isuk, orgtype, validationtype, statusmsgorg) {
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
-        await this.activeDirectoryAuthService.requestCreateContact(token, ValidationType, StatusMsg);    
-    });
-
-    // this.defineStep(/^I send an API request to create a new (.*?) organisation with (.*?)$/, { timeout: 2000000 }, async function (validationtype, statusmsg) {
-    //     //generate token
-    //     const token = await this.activeDirectoryAuthService.getToken();
-    //     //console.log(token)
-    //     await this.activeDirectoryAuthService.requestCreateOrg(token, validationtype, statusmsg);     
-    // });
-  
-    this.defineStep(/^I send an API request to create a new (.*?) organisation with (.*?) and (.*?)$/, { timeout: 2000000 }, async function (orgtype, validationtype, statusmsg) {
-        //generate token
-        const token = await this.activeDirectoryAuthService.getToken();
-        //console.log(token)
-        await this.activeDirectoryAuthService.requestCreateOrgNEW(token, orgtype, validationtype, statusmsg);     
+        await this.activeDirectoryAuthService.requestCreateOrgNEW(token, isuk, orgtype, validationtype, statusmsgorg);     
     });
 
     this.defineStep(/^I make an API request to create a new (.*?) organisation with (.*?) and (.*?)$/, { timeout: 2000000 }, async function (orgtype, validationtype, statusmsg) {
@@ -73,15 +66,36 @@ module.exports = function () {
         await this.activeDirectoryAuthService.requestCreateCharityOrg(token, charityType, validationtype, statusmsg);     
     });
 
-    this.defineStep(/^I call defra relationship action with (.*?) (.*?)$/, { timeout: 2000000 }, async function (StatusMsgCreate, RoleType) {
+    this.defineStep(/^I call defra Relationship action between (.*?) and same Org with (.*?) and returned (.*?)$/, { timeout: 2000000 }, async function (ContactType, RoleType, StatusMsgCreate) {
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
-        await this.activeDirectoryAuthService.requestCreateRelationship(token, StatusMsgCreate, RoleType);
+        await this.activeDirectoryAuthService.requestCreateRelationship(token, ContactType, RoleType, StatusMsgCreate);
         
     });
 
-    this.defineStep(/^I call defra (.*?) enrolement action with (.*?)$/, { timeout: 2000000 }, async function (ServAndServRole, StatusMsg) {
+      this.defineStep(/^I Enrole (.*?) to an IDM service (.*?) and returned (.*?)$/, { timeout: 2000000 }, async function (ContactType, IDMServcie, StatusMsgIDMService) {
+        //generate token
+        const token = await this.activeDirectoryAuthService.getToken();
+        //console.log(token)
+        await this.activeDirectoryAuthService.requestCreateIDMEnrolment(token, ContactType, IDMServcie, StatusMsgIDMService);    
+    });
+
+    this.defineStep(/^I Handshake contact to a defra service (.*?) and returned (.*?)$/, { timeout: 2000000 }, async function (DefraService, StatusMsgDefraService) {
+        //generate token
+        const token = await this.activeDirectoryAuthService.getToken();
+        //console.log(token)
+        await this.activeDirectoryAuthService.requestCreateHandshake(token, DefraService, StatusMsgDefraService);     
+    });
+
+    this.defineStep(/^I call defra Enrolement action with (.*?) and returned (.*?)$/, { timeout: 2000000 }, async function (ServAndServRole, StatusMsg) {
+        //generate token
+        const token = await this.activeDirectoryAuthService.getToken();
+        //console.log(token)
+        await this.activeDirectoryAuthService.requestCreateEnrolement(token, ServAndServRole, StatusMsg);     
+    });
+
+    this.defineStep(/^I Enrole to an LoB service (.*?) and returned (.*?)$/, { timeout: 2000000 }, async function (ServAndServRole, StatusMsg) {
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
@@ -94,6 +108,13 @@ module.exports = function () {
         const token = await this.activeDirectoryAuthService.getToken();
         // use async with await for all step definitions , assertions, page objects to avoid any timeouts or obj not found conditon due to time out
         await this.activeDirectoryAuthService.requestEnroleAsAnIDMAdmin(token);
+    });
+
+    this.defineStep(/^I (.*?) created access request$/, { timeout: 2000000 }, async function (accessAction, StatusMsg) {
+        //generate token
+        const token = await this.activeDirectoryAuthService.getToken();
+        // use async with await for all step definitions , assertions, page objects to avoid any timeouts or obj not found conditon due to time out
+        await this.activeDirectoryAuthService.accessRequestAction(token, accessAction, StatusMsg);
     });
 
     this.defineStep(/^I call defra relationship action an existing contact organisation relationship with (.*?)$/, { timeout: 2000000 }, async function (StatusMsg) {

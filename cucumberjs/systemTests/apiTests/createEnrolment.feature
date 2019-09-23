@@ -1,49 +1,94 @@
+@Regression-Test
 Feature: CREATE ENROLMENT via the Web API
-
+As an external API user 
 I want to be able to call the defra_createEnrolment endpoint
-
 So that I can create an Enrolment between an Organisation and a Defra service
 
   Acceptance Criteria:
 
-  @api2-Done
-  Scenario Outline: Enroling a Contact and a <OrgType> Organisation to a defra service using - SERVICE AND SERVICE-ROLE
+  @api2-Done @smoke-Test
+  Scenario Outline: Enroling a Contact and a <OrgType> Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE AND SERVICE-ROLE
     # Given I am a Web API user 
-    When I create a new <ValidationType> with expected message outcome <StatusMsgCont>
-    When I send an API request to create a new <OrgType> organisation with <ValidationTypeOrg> and <StatusMsgOrg>
-    When I call defra relationship action with <StatusMsgCreate> <ContactType>
-    When I call defra <ServAndServRole> enrolement action with <StatusMsgService >
+    When I create a new <ContactType> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
+    When I send an API request to create a new <isUK> <OrgType> organisation with <ValidationTypeOrg> and <StatusMsgOrg>
+    When I call defra Relationship action between <ContactType> and same Org with <RoleType> and returned <StatusMsgCreate>
+    When I Enrole Contact to an IDM service <IDMServcie> and returned <StatusMsgIDMService>
+    When I Handshake contact to a defra service <DefraService> and returned <StatusMsgDefraService>
+    When I call defra Enrolement action with <ServAndServRole> and returned <StatusMsgService>
     #Then I should be able to create the requested relationship for the records in context 
     Examples:
-      | OrgType | ValidationType | StatusMsgCont                     | ValidationTypeOrg | StatusMsgOrg                      | ContactType     | StatusMsgCreate                    | ServAndServRole  | StatusMsgService |
-      | LTD     | BasicContact   | (contactid,defra_uniquereference) | Basic_Org         | (accountid,defra_uniquereference) | NonCitizenEmpl  | (_defra_connectiondetailsid_value) | VMDAppLicence    | NonCitizenAgent  |
-      | PLC     | BasicContact   | (contactid,defra_uniquereference) | Basic_Org         | (accountid,defra_uniquereference) | NonCitizenEmpl  | (_defra_connectiondetailsid_value) | VMDReportAdverse | NonCitizenEmpl   |
-      | LLP     | BasicContact   | (contactid,defra_uniquereference) | Basic_Org         | (accountid,defra_uniquereference) | NonCitizenEmpl  | (_defra_connectiondetailsid_value) | VMDSecureMang    | NonCitizenAgent  |
-      | LTD     | BasicContact   | (contactid,defra_uniquereference) | Basic_Org         | (accountid,defra_uniquereference) | NonCitizenEmpl  | (_defra_connectiondetailsid_value) | IDM-Identity     | NonCitizenAgent  |
+     | ContactType | ValidationType | StatusMsgCont                     | isUK | OrgType | ValidationTypeOrg | StatusMsgOrg                      | RoleType        | StatusMsgCreate                    | IDMServcie | StatusMsgIDMService          | DefraService   | StatusMsgDefraService        | ServAndServRole  | StatusMsgService             |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | LTD     | Basic_Org         | (accountid,defra_uniquereference) | Agent_AgentCust | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Licencing  | (defra_lobserviceuserlinkid) | VMDAppLicence    | (defra_lobserviceuserlinkid) |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | PLC     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Secure_Msg | (defra_lobserviceuserlinkid) | VMDReportAdverse | (defra_lobserviceuserlinkid) |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | LLP     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Reporing   | (defra_lobserviceuserlinkid) | VMDSecureMang    | (defra_lobserviceuserlinkid) |
+    #  | Citizen     | BasicContact   | (contactid,defra_uniquereference) | true | LLP     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer  | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | Admin-User     | (defra_lobserviceuserlinkid) |IDM-Identity     | (defra_lobserviceuserlinkid) |
   
+
+  @api2-Done @smoke-Test
+  Scenario Outline: Enroling a Contact and a <OrgType> Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY
+    # Given I am a Web API user 
+    When I create a new <ContactType> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
+    When I send an API request to create a new <isUK> <OrgType> organisation with <ValidationTypeOrg> and <StatusMsgOrg>
+    When I call defra Relationship action between <ContactType> and same Org with <RoleType> and returned <StatusMsgCreate>
+    When I Enrole Contact to an IDM service <IDMServcie> and returned <StatusMsgIDMService>
+    When I Handshake contact to a defra service <DefraService> and returned <StatusMsgDefraService>
+    When I call defra Enrolement action with <ServAndServRole> and returned <StatusMsgService>
+    #Then I should be able to create the requested relationship for the records in context 
+    Examples:
+     | ContactType | ValidationType | StatusMsgCont                     | isUK | OrgType | ValidationTypeOrg | StatusMsgOrg                      | RoleType        | StatusMsgCreate                    | IDMServcie | StatusMsgIDMService          | DefraService   | StatusMsgDefraService        | ServAndServRole | StatusMsgService             |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | LTD     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Licencing  | (defra_lobserviceuserlinkid) | ServiceOnly     | (defra_lobserviceuserlinkid) |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | PLC     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Secure_Msg | (defra_lobserviceuserlinkid) | ServiceOnly     | (defra_lobserviceuserlinkid) |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | LLP     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Reporing   | (defra_lobserviceuserlinkid) | ServiceOnly     | (defra_lobserviceuserlinkid) |
+        
+
+  @api2-Done @ignore
+  Scenario Outline: Enroling a Contact and a <OrgType> Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE AND SERVICEROLE ONLY
+    # Given I am a Web API user 
+    When I create a new <ContactType> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
+    When I send an API request to create a new <isUK> <OrgType> organisation with <ValidationTypeOrg> and <StatusMsgOrg>
+    When I call defra Relationship action between <ContactType> and same Org with <RoleType> and returned <StatusMsgCreate>
+    When I Enrole Contact to an IDM service <IDMServcie> and returned <StatusMsgIDMService>
+    When I Handshake contact to a defra service <DefraService> and returned <StatusMsgDefraService>
+    When I call defra Enrolement action with <ServAndServRole> and returned <StatusMsgService>
+    #Then I should be able to create the requested relationship for the records in context 
+    Examples:
+     | ContactType | ValidationType | StatusMsgCont                     | isUK | OrgType | ValidationTypeOrg | StatusMsgOrg                      | RoleType        | StatusMsgCreate                    | IDMServcie | StatusMsgIDMService          | DefraService   | StatusMsgDefraService        | ServAndServRole | StatusMsgService             |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | LTD     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Licencing  | (defra_lobserviceuserlinkid) | ServiceRoleOnly | (defra_lobserviceuserlinkid) |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | PLC     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Secure_Msg | (defra_lobserviceuserlinkid) | ServiceRoleOnly | (defra_lobserviceuserlinkid) |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | LLP     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Reporing   | (defra_lobserviceuserlinkid) | ServiceRoleOnly | (defra_lobserviceuserlinkid) |
+
+
+  @api2-DoneX
+  Scenario Outline: Duplicate Handshake enrolement 
+    # Given I am a Web API user 
+    When I create a new <ContactType> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
+    When I send an API request to create a new <isUK> <OrgType> organisation with <ValidationTypeOrg> and <StatusMsgOrg>
+    When I call defra Relationship action between <ContactType> and same Org with <RoleType> and returned <StatusMsgCreate>
+    When I Enrole Contact to an IDM service <IDMServcie> and returned <StatusMsgIDMService>
+    When I Handshake contact to a defra service <DefraService> and returned <StatusMsgDefraService>
+    When I Handshake contact to a defra service <DefraService> and returned <StatusMsgDefraService>
+    #Then I should be able to create the requested relationship for the records in context 
+    Examples:
+     | ContactType | ValidationType | StatusMsgCont                     | isUK | OrgType | ValidationTypeOrg | StatusMsgOrg                      | RoleType        | StatusMsgCreate                    | IDMServcie | StatusMsgIDMService          | DefraService   | StatusMsgDefraService        |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | LTD     | Basic_Org         | (accountid,defra_uniquereference) | Agent_AgentCust | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Licencing  | (defra_lobserviceuserlinkid) |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | PLC     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Secure_Msg | (defra_lobserviceuserlinkid) |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | LLP     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Reporing   | (defra_lobserviceuserlinkid) |
+    #  | Citizen     | BasicContact   | (contactid,defra_uniquereference) | true | LLP     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer  | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | Admin-User     | (defra_lobserviceuserlinkid) |
   
-  @api2-xx
-  Scenario Outline: Enroling an Organisation/Contact to a defra service using - SERVICEROLE ONLY
+  @api2-DoneX
+  Scenario Outline: Handshake enrolement with missing connection
     # Given I am a Web API user 
-    # And I have created a post request payload in JSON format 
-    When I create a new <ValidationType> with expected message outcome <StatusMsgCreate>
-    When I send an API request to create a new <ValidationTypeOrg> organisation with <StatusMsgCreate>
-    When I call defra relationship action with <StatusMsgCreate> <ContactType>
-    When I call defra <Service> enrolement action with <StatusMsgCreate>
+    When I create a new <ContactType> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
+    When I send an API request to create a new <isUK> <OrgType> organisation with <ValidationTypeOrg> and <StatusMsgOrg>
+    When I call defra Relationship action between <ContactType> and same Org with <RoleType> and returned <StatusMsgCreate>
+    When I Enrole Contact to an IDM service <IDMServcie> and returned <StatusMsgIDMService>
+    When I Handshake contact to a defra service <DefraService> and returned <StatusMsgDefraService>
+    When I Handshake contact to a defra service <DefraService> and returned <StatusMsgDefraService>
     #Then I should be able to create the requested relationship for the records in context 
     Examples:
-      | ValidationType | StatusMsgCreate | ValidationTypeOrg | Service         | ContactType  |
-      | BasicContact   | error           | BasicOrgDetails   | ServiceRoleOnly | NonCitizen   |
-      
-  @api2-xx
-  Scenario Outline: Enroling an Organisation/Contact to a defra service using - SERVICE ONLY
-    # Given I am a Web API user 
-    When I create a new <ValidationType> with expected message outcome <StatusMsgCreate>
-    # When I send an API request to create a new <ValidationTypeOrg> organisation with <StatusMsgCreate>
-    When I send an API request to create a new <OrgType> organisation with <ValidationTypeOrg> and <StatusMsgCreate>
-    When I call defra relationship action with <StatusMsgCreate> <ContactType>
-    When I call defra <Service> enrolement action with <StatusMsgCreate>
-    #Then I should be able to create the requested relationship for the records in context 
-    Examples:
-      | OrgType| ValidationType | StatusMsgCreate | ValidationTypeOrg | Service     | ContactType  |
-      | LTD    | BasicContact   | error           | BasicOrgDetails   | ServiceOnly | NonCitizen   |
+     | ContactType | ValidationType | StatusMsgCont                     | isUK | OrgType | ValidationTypeOrg | StatusMsgOrg                      | RoleType        | StatusMsgCreate                    | IDMServcie | StatusMsgIDMService          | DefraService   | StatusMsgDefraService        |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | LTD     | Basic_Org         | (accountid,defra_uniquereference) | Agent_AgentCust | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Licencing  | (defra_lobserviceuserlinkid) |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | PLC     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Secure_Msg | (defra_lobserviceuserlinkid) |
+     | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) | true | LLP     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | VMD_Reporing   | (defra_lobserviceuserlinkid) |
+    #  | Citizen     | BasicContact   | (contactid,defra_uniquereference) | true | LLP     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer  | (_defra_connectiondetailsid_value) | Admin-User | (defra_lobserviceuserlinkid) | Admin-User     | (defra_lobserviceuserlinkid) |
+  
