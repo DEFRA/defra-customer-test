@@ -6,12 +6,12 @@
 			"ggcredentialID": "6401744",
 			"isCitizen": true,
 			"title": "1",
-			"firstname": "Simon",
+			"firstname": "PratsQA",
 			"middlename": "",
-			"lastname": "Peter",
+			"lastname": "D365Rockstar",
 			"source": 2,
 			"email": "@yopmailxx.com",
-			"dob": "1980-12-02",
+			"dob": "1982-12-02",
 			"gender": "2",
 			"telephone": "02089754212",
 			"buildingname": "Horizon House",
@@ -31,9 +31,26 @@
 			"cookiespolicyacceptedon": "2018-10-17"
 		},
 		{
+			"testidentifier": "ValidWordandHint",
+			"SecureWord": "Word123",
+			"Hint": "hint123"
+		},
+		{
+			"testidentifier": "ValidWord6CharHint100Char",
+			"SecureWord": "6ChWrd",
+			"Hint": "100CharacterHint100CharacterHint100CharacterHint100CharacterHint100CharacterHint100CharacterHint100C"
+		},
+		{
+			"testidentifier": "BlankWordandHint",
+			"SecureWord": "",
+			"Hint": ""
+		},
+		
+		{
 			"testidentifier": "CreateContactMsg",
 			"message": "(contactid,defra_uniquereference)"
 		},
+
 		{
 			"testidentifier": "CreateContactErrMsg",
 			"message": "(contactid,defra_uniquereference)"
@@ -291,6 +308,10 @@
 		{
 			"testidentifier": "CRNLessThanCheck",
 			"orgCRN": "54267"		
+		},
+		{
+			"testidentifier": "OrgNameGrt160CharLong",
+			"orgName": "OrganisationNameIsGreaterThan160CharactersLongOrganisationNameIsGreaterThan160CharactersLongOrganisationNameIsGreaterThan160CharactersLongOrganisationNameIsGreaterThan160CharactersLong"
 		},
 		{
 			"testidentifier": "MissingRegAddressCheck",
