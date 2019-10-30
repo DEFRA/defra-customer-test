@@ -18,6 +18,17 @@ class TestData {
 
 	// ------ 
 	
+
+	getSecureWord(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.SecureWord;
+	}
+
+	getHint(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.Hint;
+	}
+
 	getB2CObjectID(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.b2cobjectid;

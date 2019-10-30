@@ -8,7 +8,7 @@ Acceptance Criteria:
 The D365 WebAPI Create Contact Actions can be called using the Microsoft provided guidelines
 
   #1
-  @api2-Done @smoke-Test
+  @api2-Done @smoke-Test @SmokeContact
   Scenario Outline: Creating a UK - <ContactType> - Contact-type with <ValidationType>
     # Given I am a Web API user
     When I create a new <ContactType> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
@@ -16,6 +16,9 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
     Examples:
       | ContactType | ValidationType            | StatusMsgCont                                                        |
       | Citizen     | BasicContact              | (contactid,defra_uniquereference)                                    |
+      | Citizen     | ValidWordandHint          | (contactid,defra_uniquereference)                                    |
+      | Citizen     | ValidWord6CharHint100Char | (contactid,defra_uniquereference)                                    |
+      | Citizen     | BlankWordandHint          | (contactid,defra_uniquereference)                                    |
       | Citizen     | DuplicateB2cObjectId      | A record that has the attribute values B2C Object Id already exists. |
       | Citizen     | InvalidB2cObjectId        | B2C - Object - ID must be a valid Guid format.                       |
       | Citizen     | MissingFirstName          | Firstname is a required field                                        |

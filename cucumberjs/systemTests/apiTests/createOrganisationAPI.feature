@@ -39,6 +39,7 @@ Feature: CREATING an ORGANISATION AS a Web API User
       | true | LTD     | MissingBuildingNameAndNo | Registration Address BuildingNumber orBuildingName is required  |
       # | true | LTD     | MissingPostCode          | Registration Address Postcode is required             |
       | true | LTD     | MissingCountry           | Registration Address Country is required              |
+      | true | LTD     | OrgNameGrt160CharLong    | The length of the 'name' attribute of the 'account' entity exceeded the maximum allowed length of '160'. |
 
   #3
   @api2-Done
@@ -60,6 +61,8 @@ Feature: CREATING an ORGANISATION AS a Web API User
      | true  | PLC     | MissingBuildingNameAndNo | Registration Address BuildingNumber orBuildingName is required  |
     #  | true  | PLC     | MissingPostCode          | Registration Address Postcode is required |
      | true  | PLC     | MissingCountry           | Registration Address Country is required  |
+     | true | PLC     | OrgNameGrt160CharLong    | The length of the 'name' attribute of the 'account' entity exceeded the maximum allowed length of '160'. |
+
 
   #4
   @api2-Done
@@ -81,6 +84,8 @@ Feature: CREATING an ORGANISATION AS a Web API User
       | true  | LLP     | MissingBuildingNameAndNo | Registration Address BuildingNumber orBuildingName is required  |
       # | true  | LLP     | MissingPostCode          | Registration Address Postcode is required    |
       | true  | LLP     | MissingCountry           | Registration Address Country is required     |
+      | true | LLP     | OrgNameGrt160CharLong    | The length of the 'name' attribute of the 'account' entity exceeded the maximum allowed length of '160'. |
+
 
 # ----- Scenarios below will TEST other-types of Organisations i.e. Sole Trader / Govenment / Not for profit etc ---
 

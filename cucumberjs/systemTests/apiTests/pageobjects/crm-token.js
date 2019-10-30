@@ -79,6 +79,9 @@ class ActiveDirectoryAuthService {
         // get me the B2CObjID for BasicContactTest testIdentifier from createcontact.json
         var b2cObjectID = this.testdata.getB2CObjectID("BasicContact");
         var ggcredentialID = this.testdata.getGGcredentialID("BasicContact");
+        var SecureWord = this.testdata.getSecureWord("BasicContact");
+        var Hint = this.testdata.getHint("BasicContact");
+
         var isCitizen = this.testdata.getIsCitizen("BasicContact");
         var title = this.testdata.getTitle("BasicContact");
         var firstName = this.testdata.getFirstName("BasicContact");
@@ -172,6 +175,33 @@ class ActiveDirectoryAuthService {
                 lastName = this.testdata.getLastName("Missing_LastName");
                 console.log("--- Contact LastName: " + lastName);                
                 break;
+            case "ValidWordandHint":
+                    console.log("---  TESTING Creating a " + contacttype + " Contact with Valid Secure Word and Hint ---");
+                    // b2cObject = b2cObjectID + postFix;
+                    SecureWord = this.testdata.getSecureWord("ValidWordandHint");
+                    Hint = this.testdata.getHint("ValidWordandHint");
+
+                    console.log("--- Contact Secure Word ValidWord: " + SecureWord);                
+                    console.log("--- Contact HINT ValidHint: " + Hint);                
+                    break;
+            case "ValidWord6CharHint100Char":
+                        console.log("---  TESTING Creating a " + contacttype + " Contact with Valid Word6 Char and Hint 100Char ---");
+                        // b2cObject = b2cObjectID + postFix;
+                        SecureWord = this.testdata.getSecureWord("ValidWord6CharHint100Char");
+                        Hint = this.testdata.getHint("ValidWord6CharHint100Char");
+    
+                        console.log("--- Contact Secure Word ValidWord6Char: " + SecureWord);                
+                        console.log("--- Contact HINT ValidHint100Char: " + Hint);                
+                        break;
+            case "BlankWordandHint":
+                            console.log("---  TESTING Creating a " + contacttype + " Contact with BlankWordandHint ---");
+                            // b2cObject = b2cObjectID + postFix;
+                            SecureWord = this.testdata.getSecureWord("BlankWordandHint");
+                            Hint = this.testdata.getHint("BlankWordandHint");
+        
+                            console.log("--- Contact Secure Word Blank: " + SecureWord);                
+                            console.log("--- Contact HINT Blank: " + Hint);                
+                            break;
             case "DuplicateB2cObjectId":
                 console.log("---  TESTING creating a " + contacttype + "  Contact with Duplicate B2CObjectID ---");
                 b2cObject = this.testdata.getB2CObjectID("DuplicateB2cObjectId");
@@ -307,6 +337,8 @@ class ActiveDirectoryAuthService {
             bodyObject = { 
                 'defra_title': title, 'defra_b2cobjectid': b2cObject, 'defra_ggcredentialid': ggCredentials, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
                 'defra_cmcreateascitizen': isCitizen,
+                'defra_securityword': SecureWord,
+                'defra_securityhint': Hint,
                 'defra_cmcreationsource': source,
                 'defra_addrcorbuildingname': buildingName,
                 'defra_addrcorbuildingnumber': buildingNumber,
@@ -845,6 +877,13 @@ class ActiveDirectoryAuthService {
             case "MissingCountry":  
                 console.log("--- MISSING Country in Address TEST ---");
                 orgName = this.testdata.getOrgName("Missing_Postcode");
+                orgCRN = Math.random().toString().slice(2,10);
+                var email = this.testdata.getOrgEmail("BasicOrgDetails");
+                orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;   
+                break;
+            case "OrgNameGrt160CharLong":  
+                console.log("--- ORGANISATIONS Name is Greater THAN 160 Characters LONG TEST ---");
+                orgName = this.testdata.getOrgName("OrgNameGrt160CharLong");
                 orgCRN = Math.random().toString().slice(2,10);
                 var email = this.testdata.getOrgEmail("BasicOrgDetails");
                 orgEmail = orgtype + (Math.random().toString().slice(2,5)) + email;   
@@ -2523,6 +2562,16 @@ class ActiveDirectoryAuthService {
             console.log("---  TESTING Handshake to an " + DefraService + " service ---");
             bodyObject = {
                 "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(8b5214ee-62b6-e811-a954-000d3a29b5de)",	
+                "defra_enrolmentstatus": 3,
+            };
+            break;
+            case "VMD_Missing_Connect": 
+            console.log("---  TESTING Handshake with " + DefraService + " ---");
+            bodyObject = {
+                // "defra_connectiondetail@odata.bind": connectionDetails,
                 "defra_ServiceUser@odata.bind": customerID,		
                 "defra_Organisation@odata.bind": organID,             
                 "defra_service@odata.bind": "/defra_lobservices(8b5214ee-62b6-e811-a954-000d3a29b5de)",	
