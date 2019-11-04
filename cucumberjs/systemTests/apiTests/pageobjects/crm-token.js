@@ -2639,6 +2639,166 @@ class ActiveDirectoryAuthService {
 
     }
 
+    //
+
+    async requestEnrolmentRequest(token, DefraService, StatusMsgDefraService) {
+        let today = new Date().toLocaleString();
+        const fileNameCust = 'CustID.txt';
+        const fileNameOrg = 'OrgID.txt';
+  
+        var custIDObj = {
+            table: []
+        };
+        var objorgID = {
+            table: []
+        };
+        var connObjID = {
+            table: []
+        };
+
+        console.log("");
+
+        // getting the ContactID from the contactid.json file
+        var custIDObj1 = await this.readFilesJSON('contactid.json');
+        custIDObj = JSON.parse(custIDObj1);
+        var customerID = '/contacts(' + custIDObj + ')';
+        console.log("--- CustomerID: " + customerID );
+   
+        // getting the organisationID from the organisationid.json file
+        var objorgID1 = await this.readFilesJSON('organisationid.json') ;       
+        objorgID = JSON.parse(objorgID1);
+        var organID = '/accounts(' + objorgID + ')';
+        console.log("--- OrganisationID   : " + organID );
+
+        // getting the connnectionDetails from the connnectionDetails.json file    
+        var connObjID1 = await this.readFilesJSON('connectionDetails.json');
+        connObjID = JSON.parse(connObjID1);
+        var connectionDetails = '/defra_connectiondetailses(' + connObjID + ')';
+        console.log("--- ConnectionDetails  : " + connectionDetails );
+
+        //var oRg1 = await this.readFiles(fileNameOrg);
+        const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
+
+        // var isCust = true;
+        var bodyObject;
+        console.log("");
+
+        switch(DefraService){
+            case "VMD_Licencing":
+            console.log("---  TESTING Enrolment Request to a " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_serviceuser@odata.bind": customerID,		
+                "defra_organisation@odata.bind": organID, 
+                "defra_service@odata.bind": "/defra_lobservices(a65e89e7-66b6-e811-a954-000d3a29b5de)",	
+            };
+            break; 
+            case "VMD_Secure_Msg": 
+            console.log("---  TESTING Enrolment Request to a " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_serviceuser@odata.bind": customerID,		
+                "defra_organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(a99fcef9-66b6-e811-a954-000d3a29b5de)",	
+            };
+            break;
+            case "VMD_Reporing": 
+            console.log("---  TESTING Enrolment Request to a " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_serviceuser@odata.bind": customerID,		
+                "defra_organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(39c4599e-27de-e811-a842-000d3ab4f534)",	
+            };
+            break;
+            case "IMP_Notification": 
+            console.log("---  TESTING Enrolment Request to an " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_serviceuser@odata.bind": customerID,		
+                "defra_organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(8b5214ee-62b6-e811-a954-000d3a29b5de)",	
+            };
+            break;
+            case "IMP_Veterinarian": 
+            console.log("---  TESTING Enrolment Request to an " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_serviceuser@odata.bind": customerID,		
+                "defra_organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(8b5214ee-62b6-e811-a954-000d3a29b5de)",	
+            };
+            break;
+            case "VMD_Missing_Connect": 
+            console.log("---  TESTING Enrolment Request with " + DefraService + " ---");
+            bodyObject = {
+                // "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_serviceuser@odata.bind": customerID,		
+                "defra_organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(8b5214ee-62b6-e811-a954-000d3a29b5de)",	
+            };
+            break;
+        default:
+            console.log("Invalide data TYPE !!");
+            break;
+        }
+
+        const options = {
+            method: 'POST',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/defra_lobserviceuserlinkrequests',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },
+            body: bodyObject,
+            json: true
+        };
+
+        var initializePromise = await this.initialize(options);
+
+        console.log("");
+        console.log("Enrolment Request statusCode    : ", initializePromise && initializePromise.statusCode);
+        console.log("HandsEnrolment Requesthake response-TEXT : " + initializePromise.statusMessage);
+        console.log("");
+       
+        if (initializePromise.statusCode === 200 || initializePromise.statusCode === 201) {
+            //let responseData = JSON.parse(initializePromise.body);
+            console.log("--- Assertion TEXT: " + StatusMsgDefraService);
+            console.log("--- Response BODY : " + JSON.stringify(initializePromise.body));
+            console.log("");
+
+            let lobservicelinkid = JSON.stringify(initializePromise.body["defra_lobserviceuserlinkid"]);
+            console.log("--- LOB Service link-ID : " + lobservicelinkid);
+
+            chai.expect(JSON.stringify(initializePromise.body)).contain(StatusMsgDefraService);
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+        }
+        else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
+            console.log('statusCode:' + initializePromise.body.error.message);
+            console.log("TEXT: " + initializePromise.statusMessage);
+
+            chai.expect(JSON.stringify(initializePromise.body.error.message)).contain(StatusMsgDefraService);
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+        }
+        else if (error) throw new Error(error);
+
+        console.log("------------ The END ---------------------")
+
+    }
+
     //**************USE THIS**********************/
     async requestCreateEnrolement(token, ServAndServRole, StatusMsgService) {
     console.log("--------- Enroling to an LoB-Service -------------------")
