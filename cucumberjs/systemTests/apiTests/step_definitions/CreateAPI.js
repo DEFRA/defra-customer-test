@@ -88,6 +88,13 @@ module.exports = function () {
         await this.activeDirectoryAuthService.requestCreateHandshake(token, DefraService, StatusMsgDefraService);     
     });
 
+    this.defineStep(/^I call Enrolment Request for contact to a defra service (.*?) and returned (.*?)$/, { timeout: 2000000 }, async function (DefraService, StatusMsgDefraService) {
+        //generate token
+        const token = await this.activeDirectoryAuthService.getToken();
+        //console.log(token)
+        await this.activeDirectoryAuthService.requestEnrolmentRequest(token, DefraService, StatusMsgDefraService);     
+    });
+
     this.defineStep(/^I call defra Enrolement action with (.*?) and returned (.*?)$/, { timeout: 2000000 }, async function (ServAndServRole, StatusMsg) {
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();

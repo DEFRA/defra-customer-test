@@ -234,8 +234,8 @@ th {
           <a class="navbar-brand">Cucumberjs Report</a>
           <div class="project-name visible-md visible-lg">customeridentity-cucumberjs</div>
           <div class="label-container">
-            <span class="label label-success" title=scenarios>Passed: 20</span>
-            <span class="label label-danger" title=scenarios>Failed: 0</span>
+            <span class="label label-success" title=scenarios>Passed: 3</span>
+            <span class="label label-danger" title=scenarios>Failed: 6</span>
           </div>
         </div>
       </div>
@@ -243,7 +243,7 @@ th {
 
     <div class="container">
 
-      <div class="generated-on">Wed Oct 30 2019 14:15:42 GMT+0000 (Greenwich Mean Time)</div>
+      <div class="generated-on">Thu Oct 31 2019 12:26:29 GMT+0000 (Greenwich Mean Time)</div>
 
       <div class="row">
         <div class="chart col-lg-6 col-md-6" id="piechart_features"></div>
@@ -332,10 +332,10 @@ th {
           <a data-toggle="collapse" href="#collapseFeature0">
             <i class="glyphicon glyphicon-chevron-right"></i>
             <i class="glyphicon glyphicon-chevron-down"></i>
-            <b>Feature:</b>CREATE CONTACT -CM-146 As a Web API User
+            <b>Feature:</b>CREATE ENROLMENT via the Web API
             <span class="label-container">
-              <span class="label label-success" title="Passed">20</span>
               
+              <span class="label label-danger" title="Failed">3</span>
               
               
               
@@ -346,23 +346,23 @@ th {
       </div>
       <div id="collapseFeature0" class="panel-collapse collapse">
         <div class="panel-body">
-         <div class="description">As an external API user <br />I want to be able to consume the D365 WebAPI Actions<br />So that I can create a Contact record in D365 Customer Master.<br /><br />Acceptance Criteria:<br />The D365 WebAPI Create Contact Actions can be called using the Microsoft provided guidelines</div>
+         <div class="description">As an external API user <br />I want to be able to call the defra_createEnrolment endpoint<br />So that I can create an Enrolment between an Organisation and a Defra service<br /><br />  Acceptance Criteria:</div>
           
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
                 
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
+                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeEnrolments</span>  </div>
                   <a data-toggle="collapse" href="#collapseScenario0_0">
                     <i class="glyphicon glyphicon-chevron-right"></i>
                     <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with BasicContact
+                    <b>Scenario:</b>Enroling a Contact and a LTD Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
+                      <span class="label label-success" title="Passed">6</span>
                       
                       
-                      
-                      
+                      <span class="label label-warning" title="Skipped">1</span>
+                      <span class="label label-danger" title="Failed">1</span>
                       
                     </span>
                   </a>
@@ -418,12 +418,207 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)
+                        I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)
                           
                               <span class="step-duration">
                                1s
                               </span>
                             
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I send an API request to create a new true LTD organisation with Basic_Org and (accountid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)
+                          
+                              <span class="step-duration">
+                               3s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Handshake contact to a defra service VMD_Licencing and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-danger" title="Failed"><i class="glyphicon glyphicon-remove"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call Enrolment Request for contact to a defra service VMD_Licencing and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               0s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+                        <a href="#error0_06" data-toggle="collapse">+ Show Error</a>
+                        <div id="error0_06" class="collapse">
+                          <pre class=info>AssertionError: expected '"Could not find a property named \'defra_lobserviceuserlinkrequests\' on type \'Microsoft.Dynamics.CRM.defra_lobserviceuserlinkrequest\'."' to include '(defra_lobserviceuserlinkid)'
+    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\Users\Johannes\Documents\Projects\Updated_latestv2_shared_Final\cucumberjs\systemTests\apiTests\pageobjects\crm-token.js:2790:79)
+    at process._tickCallback (internal/process/next_tick.js:68:7)</pre>
+                        </div>
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)
+                          
                          
                             
                           
@@ -449,17 +644,17 @@ th {
               <div class="panel-heading">
                 <h4 class="panel-title">
                 
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
+                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeEnrolments</span>  </div>
                   <a data-toggle="collapse" href="#collapseScenario0_1">
                     <i class="glyphicon glyphicon-chevron-right"></i>
                     <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with ValidWordandHint
+                    <b>Scenario:</b>Enroling a Contact and a PLC Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
+                      <span class="label label-success" title="Passed">6</span>
                       
                       
-                      
-                      
+                      <span class="label label-warning" title="Skipped">1</span>
+                      <span class="label label-danger" title="Failed">1</span>
                       
                     </span>
                   </a>
@@ -515,12 +710,207 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with ValidWordandHint then expected message outcome is (contactid,defra_uniquereference)
+                        I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I send an API request to create a new true PLC organisation with Basic_Org and (accountid,defra_uniquereference)
                           
                               <span class="step-duration">
                                1s
                               </span>
                             
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Handshake contact to a defra service VMD_Secure_Msg and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-danger" title="Failed"><i class="glyphicon glyphicon-remove"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call Enrolment Request for contact to a defra service VMD_Secure_Msg and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               0s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+                        <a href="#error0_16" data-toggle="collapse">+ Show Error</a>
+                        <div id="error0_16" class="collapse">
+                          <pre class=info>AssertionError: expected '"Could not find a property named \'defra_lobserviceuserlinkrequests\' on type \'Microsoft.Dynamics.CRM.defra_lobserviceuserlinkrequest\'."' to include '(defra_lobserviceuserlinkid)'
+    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\Users\Johannes\Documents\Projects\Updated_latestv2_shared_Final\cucumberjs\systemTests\apiTests\pageobjects\crm-token.js:2790:79)
+    at process._tickCallback (internal/process/next_tick.js:68:7)</pre>
+                        </div>
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)
+                          
                          
                             
                           
@@ -546,17 +936,17 @@ th {
               <div class="panel-heading">
                 <h4 class="panel-title">
                 
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
+                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeEnrolments</span>  </div>
                   <a data-toggle="collapse" href="#collapseScenario0_2">
                     <i class="glyphicon glyphicon-chevron-right"></i>
                     <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with ValidWord6CharHint100Char
+                    <b>Scenario:</b>Enroling a Contact and a LLP Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
+                      <span class="label label-success" title="Passed">6</span>
                       
                       
-                      
-                      
+                      <span class="label label-warning" title="Skipped">1</span>
+                      <span class="label label-danger" title="Failed">1</span>
                       
                     </span>
                   </a>
@@ -612,7 +1002,7 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with ValidWord6CharHint100Char then expected message outcome is (contactid,defra_uniquereference)
+                        I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)
                           
                               <span class="step-duration">
                                1s
@@ -635,71 +1025,6 @@ th {
                     </p>
                     
                   
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_3">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with BlankWordandHint
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_3" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_30" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_30" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
                     
                     <p class="scenario-container">
                     
@@ -709,104 +1034,7 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with BlankWordandHint then expected message outcome is (contactid,defra_uniquereference)
-                          
-                              <span class="step-duration">
-                               4s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_4">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with DuplicateB2cObjectId
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_4" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_40" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_40" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with DuplicateB2cObjectId then expected message outcome is A record that has the attribute values B2C Object Id already exists.
+                        I send an API request to create a new true LLP organisation with Basic_Org and (accountid,defra_uniquereference)
                           
                               <span class="step-duration">
                                1s
@@ -829,71 +1057,6 @@ th {
                     </p>
                     
                   
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_5">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with InvalidB2cObjectId
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_5" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_50" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_50" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
                     
                     <p class="scenario-container">
                     
@@ -903,589 +1066,7 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with InvalidB2cObjectId then expected message outcome is B2C - Object - ID must be a valid Guid format.
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_6">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with MissingFirstName
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_6" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_60" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_60" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with MissingFirstName then expected message outcome is Firstname is a required field
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_7">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with MissingLastName
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_7" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_70" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_70" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with MissingLastName then expected message outcome is LastName is a required field
-                          
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_8">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with DuplicateEmailAddr
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_8" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_80" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_80" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with DuplicateEmailAddr then expected message outcome is A record that has the attribute values Principal Email Address already exists.
-                          
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_9">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with InvalidEmailAddr2
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_9" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_90" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_90" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with InvalidEmailAddr2 then expected message outcome is Invalid email address
-                          
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_10">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with MissingCorAddress
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_10" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_100" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_100" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with MissingCorAddress then expected message outcome is Correspondence address is required for a Contact
-                          
-                              <span class="step-duration">
-                               1s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_11">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with MissingBuildNameNo
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_11" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_110" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_110" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with MissingBuildNameNo then expected message outcome is Correspondence Address BuildingNumber orBuildingName is required
+                        I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)
                           
                               <span class="step-duration">
                                3s
@@ -1508,31 +1089,193 @@ th {
                     </p>
                     
                   
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Handshake contact to a defra service VMD_Reporing and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-danger" title="Failed"><i class="glyphicon glyphicon-remove"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call Enrolment Request for contact to a defra service VMD_Reporing and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               0s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+                        <a href="#error0_26" data-toggle="collapse">+ Show Error</a>
+                        <div id="error0_26" class="collapse">
+                          <pre class=info>AssertionError: expected '"Could not find a property named \'defra_lobserviceuserlinkrequests\' on type \'Microsoft.Dynamics.CRM.defra_lobserviceuserlinkrequest\'."' to include '(defra_lobserviceuserlinkid)'
+    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\Users\Johannes\Documents\Projects\Updated_latestv2_shared_Final\cucumberjs\systemTests\apiTests\pageobjects\crm-token.js:2790:79)
+    at process._tickCallback (internal/process/next_tick.js:68:7)</pre>
+                        </div>
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)
+                          
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
                 </div>
               </div>
             </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+  <div class="col-lg-6 col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+            <div class="tags"> <span class="tag">@Regression-Test</span>  </div>
+          <a data-toggle="collapse" href="#collapseFeature1">
+            <i class="glyphicon glyphicon-chevron-right"></i>
+            <i class="glyphicon glyphicon-chevron-down"></i>
+            <b>Feature:</b>CREATE ENROLMENT via the Web API
+            <span class="label-container">
+              
+              <span class="label label-danger" title="Failed">3</span>
+              
+              
+              
+              
+            </span> 
+          </a>
+        </h4>
+      </div>
+      <div id="collapseFeature1" class="panel-collapse collapse">
+        <div class="panel-body">
+         <div class="description">As an external API user <br />I want to be able to call the defra_createEnrolment endpoint<br />So that I can create an Enrolment between an Organisation and a Defra service<br /><br />  Acceptance Criteria:</div>
           
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
                 
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_12">
+                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeEnrolments</span>  </div>
+                  <a data-toggle="collapse" href="#collapseScenario1_0">
                     <i class="glyphicon glyphicon-chevron-right"></i>
                     <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with MissingStreet
+                    <b>Scenario:</b>Enroling a Contact and a LTD Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
+                      <span class="label label-success" title="Passed">6</span>
                       
                       
-                      
-                      
+                      <span class="label label-warning" title="Skipped">1</span>
+                      <span class="label label-danger" title="Failed">1</span>
                       
                     </span>
                   </a>
                 </h4>
               </div>
-              <div id="collapseScenario0_12" class="panel-collapse collapse">
+              <div id="collapseScenario1_0" class="panel-collapse collapse">
                 <div class="panel-body">
                   
                   
@@ -1561,8 +1304,8 @@ th {
                       
 
                       
-                           <a href="#info0_120" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_120" class="collapse">
+                           <a href="#info1_00" data-toggle="collapse">+ Show Info</a>
+                           <div id="info1_00" class="collapse">
                              <pre class=info>chrome-desktop-test</pre>
                            </div>
                       
@@ -1582,12 +1325,207 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with MissingStreet then expected message outcome is Correspondence Address Street  is required
+                        I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)
                           
                               <span class="step-duration">
-                               0s
+                               1s
                               </span>
                             
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I send an API request to create a new true LTD organisation with Basic_Org and (accountid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)
+                          
+                              <span class="step-duration">
+                               3s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Handshake contact to a defra service VMD_Licencing and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-danger" title="Failed"><i class="glyphicon glyphicon-remove"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call Enrolment Request for contact to a defra service VMD_Licencing and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+                        <a href="#error1_06" data-toggle="collapse">+ Show Error</a>
+                        <div id="error1_06" class="collapse">
+                          <pre class=info>AssertionError: expected '{"@odata.context":"https://defra-custmstr-test.api.crm4.dynamics.com/api/data/v9.0/$metadata#defra_lobserviceuserlinkrequests/$entity","@odata.etag":"W/\\"91136383\\"","_defra_service_value":"a65e89e7-66b6-e811-a954-000d3a29b5de","_defra_connectiondetail_value":"02a4a4cd-d8fb-e911-a813-000d3a20f8de","statecode":0,"statuscode":1,"_defra_organisation_value":"cc6fd6c7-d8fb-e911-a813-000d3a20f8d4","_createdby_value":"941c65fd-dbb1-e811-a953-000d3a28da35","_ownerid_value":"7f80e370-96a8-e811-a953-000d3a39c345","_owningteam_value":"7f80e370-96a8-e811-a953-000d3a39c345","modifiedon":"2019-10-31T12:20:24Z","_defra_serviceuser_value":"c4160dc9-d8fb-e911-a813-000d3a2109c9","_modifiedby_value":"941c65fd-dbb1-e811-a953-000d3a28da35","versionnumber":91136383,"defra_lobserviceuserlinkrequestid":"b6c6a0cb-d8fb-e911-a813-000d3a20f3f8","createdon":"2019-10-31T12:20:24Z","defra_uniquereference":"NA201924-W8-2010-Q8-3112","_owningbusinessunit_value":"6978659a-51a2-e811-a83e-000d3ab4f534","timezoneruleversionnumber":null,"_modifiedonbehalfby_value":null,"importsequencenumber":null,"overriddencreatedon":null,"utcconversiontimezonecode":null,"defra_name":null,"_owninguser_value":null,"_createdonbehalfby_value":null}' to include '(defra_lobserviceuserlinkid)'
+    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\Users\Johannes\Documents\Projects\Updated_latestv2_shared_Final\cucumberjs\systemTests\apiTests\pageobjects\crm-token.js:2780:65)
+    at process._tickCallback (internal/process/next_tick.js:68:7)</pre>
+                        </div>
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)
+                          
                          
                             
                           
@@ -1613,23 +1551,23 @@ th {
               <div class="panel-heading">
                 <h4 class="panel-title">
                 
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_13">
+                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeEnrolments</span>  </div>
+                  <a data-toggle="collapse" href="#collapseScenario1_1">
                     <i class="glyphicon glyphicon-chevron-right"></i>
                     <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with MissingCountry
+                    <b>Scenario:</b>Enroling a Contact and a PLC Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
+                      <span class="label label-success" title="Passed">6</span>
                       
                       
-                      
-                      
+                      <span class="label label-warning" title="Skipped">1</span>
+                      <span class="label label-danger" title="Failed">1</span>
                       
                     </span>
                   </a>
                 </h4>
               </div>
-              <div id="collapseScenario0_13" class="panel-collapse collapse">
+              <div id="collapseScenario1_1" class="panel-collapse collapse">
                 <div class="panel-body">
                   
                   
@@ -1658,8 +1596,8 @@ th {
                       
 
                       
-                           <a href="#info0_130" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_130" class="collapse">
+                           <a href="#info1_10" data-toggle="collapse">+ Show Info</a>
+                           <div id="info1_10" class="collapse">
                              <pre class=info>chrome-desktop-test</pre>
                            </div>
                       
@@ -1679,12 +1617,207 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with MissingCountry then expected message outcome is Correspondence Address Country is required
+                        I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I send an API request to create a new true PLC organisation with Basic_Org and (accountid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)
+                          
+                              <span class="step-duration">
+                               3s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)
                           
                               <span class="step-duration">
                                0s
                               </span>
                             
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Handshake contact to a defra service VMD_Secure_Msg and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-danger" title="Failed"><i class="glyphicon glyphicon-remove"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call Enrolment Request for contact to a defra service VMD_Secure_Msg and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               0s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+                        <a href="#error1_16" data-toggle="collapse">+ Show Error</a>
+                        <div id="error1_16" class="collapse">
+                          <pre class=info>AssertionError: expected '{"@odata.context":"https://defra-custmstr-test.api.crm4.dynamics.com/api/data/v9.0/$metadata#defra_lobserviceuserlinkrequests/$entity","@odata.etag":"W/\\"91137065\\"","_defra_service_value":"a99fcef9-66b6-e811-a954-000d3a29b5de","_defra_connectiondetail_value":"de230acf-d8fb-e911-a813-000d3a2109c9","statecode":0,"statuscode":1,"_defra_organisation_value":"37a4a4cd-d8fb-e911-a813-000d3a20f8de","_createdby_value":"941c65fd-dbb1-e811-a953-000d3a28da35","_ownerid_value":"dd2acdd3-96a8-e811-a953-000d3a39c345","_owningteam_value":"dd2acdd3-96a8-e811-a953-000d3a39c345","modifiedon":"2019-10-31T12:20:31Z","_defra_serviceuser_value":"c0c6a0cb-d8fb-e911-a813-000d3a20f3f8","_modifiedby_value":"941c65fd-dbb1-e811-a953-000d3a28da35","versionnumber":91137065,"defra_lobserviceuserlinkrequestid":"85b5c7d3-d8fb-e911-a813-000d3a20f8d4","createdon":"2019-10-31T12:20:31Z","defra_uniquereference":"NA201931-M5-2010-G2-3112","_owningbusinessunit_value":"6a51b166-e3a5-e811-a840-000d3ab4fce4","timezoneruleversionnumber":null,"_modifiedonbehalfby_value":null,"importsequencenumber":null,"overriddencreatedon":null,"utcconversiontimezonecode":null,"defra_name":null,"_owninguser_value":null,"_createdonbehalfby_value":null}' to include '(defra_lobserviceuserlinkid)'
+    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\Users\Johannes\Documents\Projects\Updated_latestv2_shared_Final\cucumberjs\systemTests\apiTests\pageobjects\crm-token.js:2780:65)
+    at process._tickCallback (internal/process/next_tick.js:68:7)</pre>
+                        </div>
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)
+                          
                          
                             
                           
@@ -1710,23 +1843,23 @@ th {
               <div class="panel-heading">
                 <h4 class="panel-title">
                 
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_14">
+                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeEnrolments</span>  </div>
+                  <a data-toggle="collapse" href="#collapseScenario1_2">
                     <i class="glyphicon glyphicon-chevron-right"></i>
                     <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with ContactMissingTnCDate
+                    <b>Scenario:</b>Enroling a Contact and a LLP Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
+                      <span class="label label-success" title="Passed">6</span>
                       
                       
-                      
-                      
+                      <span class="label label-warning" title="Skipped">1</span>
+                      <span class="label label-danger" title="Failed">1</span>
                       
                     </span>
                   </a>
                 </h4>
               </div>
-              <div id="collapseScenario0_14" class="panel-collapse collapse">
+              <div id="collapseScenario1_2" class="panel-collapse collapse">
                 <div class="panel-body">
                   
                   
@@ -1755,8 +1888,8 @@ th {
                       
 
                       
-                           <a href="#info0_140" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_140" class="collapse">
+                           <a href="#info1_20" data-toggle="collapse">+ Show Info</a>
+                           <div id="info1_20" class="collapse">
                              <pre class=info>chrome-desktop-test</pre>
                            </div>
                       
@@ -1776,12 +1909,207 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with ContactMissingTnCDate then expected message outcome is DateTime is less than minumum value supported by CrmDateTime.
+                        I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I send an API request to create a new true LLP organisation with Basic_Org and (accountid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)
+                          
+                              <span class="step-duration">
+                               3s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Handshake contact to a defra service VMD_Reporing and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-danger" title="Failed"><i class="glyphicon glyphicon-remove"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call Enrolment Request for contact to a defra service VMD_Reporing and returned (defra_lobserviceuserlinkid)
                           
                               <span class="step-duration">
                                0s
                               </span>
                             
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+                        <a href="#error1_26" data-toggle="collapse">+ Show Error</a>
+                        <div id="error1_26" class="collapse">
+                          <pre class=info>AssertionError: expected '{"@odata.context":"https://defra-custmstr-test.api.crm4.dynamics.com/api/data/v9.0/$metadata#defra_lobserviceuserlinkrequests/$entity","@odata.etag":"W/\\"91137879\\"","_defra_service_value":"39c4599e-27de-e811-a842-000d3ab4f534","_defra_connectiondetail_value":"6bc01bd4-d8fb-e911-a813-000d3a20f8de","statecode":0,"statuscode":1,"_defra_organisation_value":"ad2f0cd5-d8fb-e911-a813-000d3a20feae","_createdby_value":"941c65fd-dbb1-e811-a953-000d3a28da35","_ownerid_value":"d3b02eb7-28de-e811-a842-000d3ab4f534","_owningteam_value":"d3b02eb7-28de-e811-a842-000d3ab4f534","modifiedon":"2019-10-31T12:20:39Z","_defra_serviceuser_value":"29c01bd4-d8fb-e911-a813-000d3a20f8de","_modifiedby_value":"941c65fd-dbb1-e811-a953-000d3a28da35","versionnumber":91137879,"defra_lobserviceuserlinkrequestid":"67b6c7d3-d8fb-e911-a813-000d3a20f8d4","createdon":"2019-10-31T12:20:39Z","defra_uniquereference":"NA201939-W9-2010-C4-3112","_owningbusinessunit_value":"f8b17e84-27de-e811-a842-000d3ab4f534","timezoneruleversionnumber":null,"_modifiedonbehalfby_value":null,"importsequencenumber":null,"overriddencreatedon":null,"utcconversiontimezonecode":null,"defra_name":null,"_owninguser_value":null,"_createdonbehalfby_value":null}' to include '(defra_lobserviceuserlinkid)'
+    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\Users\Johannes\Documents\Projects\Updated_latestv2_shared_Final\cucumberjs\systemTests\apiTests\pageobjects\crm-token.js:2780:65)
+    at process._tickCallback (internal/process/next_tick.js:68:7)</pre>
+                        </div>
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-warning" title="Skipped"><i class="glyphicon glyphicon-minus"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)
+                          
                          
                             
                           
@@ -1803,17 +2131,52 @@ th {
               </div>
             </div>
           
+        </div>
+      </div>
+    </div>
+  </div>
+  
+</div>
+  
+
+
+<div class="row">
+
+  <div class="col-lg-6 col-md-6">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">
+            <div class="tags"> <span class="tag">@Regression-Test</span>  </div>
+          <a data-toggle="collapse" href="#collapseFeature2">
+            <i class="glyphicon glyphicon-chevron-right"></i>
+            <i class="glyphicon glyphicon-chevron-down"></i>
+            <b>Feature:</b>CREATE ENROLMENT via the Web API
+            <span class="label-container">
+              <span class="label label-success" title="Passed">3</span>
+              
+              
+              
+              
+              
+            </span> 
+          </a>
+        </h4>
+      </div>
+      <div id="collapseFeature2" class="panel-collapse collapse">
+        <div class="panel-body">
+         <div class="description">As an external API user <br />I want to be able to call the defra_createEnrolment endpoint<br />So that I can create an Enrolment between an Organisation and a Defra service<br /><br />  Acceptance Criteria:</div>
+          
             <div class="panel panel-default">
               <div class="panel-heading">
                 <h4 class="panel-title">
                 
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_15">
+                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeEnrolments</span>  </div>
+                  <a data-toggle="collapse" href="#collapseScenario2_0">
                     <i class="glyphicon glyphicon-chevron-right"></i>
                     <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with ContactInvalidTnCDate
+                    <b>Scenario:</b>Enroling a Contact and a LTD Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
+                      <span class="label label-success" title="Passed">8</span>
                       
                       
                       
@@ -1823,7 +2186,7 @@ th {
                   </a>
                 </h4>
               </div>
-              <div id="collapseScenario0_15" class="panel-collapse collapse">
+              <div id="collapseScenario2_0" class="panel-collapse collapse">
                 <div class="panel-body">
                   
                   
@@ -1852,8 +2215,8 @@ th {
                       
 
                       
-                           <a href="#info0_150" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_150" class="collapse">
+                           <a href="#info2_00" data-toggle="collapse">+ Show Info</a>
+                           <div id="info2_00" class="collapse">
                              <pre class=info>chrome-desktop-test</pre>
                            </div>
                       
@@ -1873,10 +2236,202 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with ContactInvalidTnCDate then expected message outcome is DateTime is less than minumum value supported by CrmDateTime.
+                        I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I send an API request to create a new true LTD organisation with Basic_Org and (accountid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)
+                          
+                              <span class="step-duration">
+                               3s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)
                           
                               <span class="step-duration">
                                0s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Handshake contact to a defra service VMD_Licencing and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call Enrolment Request for contact to a defra service VMD_Licencing and returned defra_lobserviceuserlinkrequestid
+                          
+                              <span class="step-duration">
+                               0s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               1s
                               </span>
                             
                          
@@ -1904,13 +2459,13 @@ th {
               <div class="panel-heading">
                 <h4 class="panel-title">
                 
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_16">
+                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeEnrolments</span>  </div>
+                  <a data-toggle="collapse" href="#collapseScenario2_1">
                     <i class="glyphicon glyphicon-chevron-right"></i>
                     <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with ContactMissingTnCVersion
+                    <b>Scenario:</b>Enroling a Contact and a PLC Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
+                      <span class="label label-success" title="Passed">8</span>
                       
                       
                       
@@ -1920,7 +2475,7 @@ th {
                   </a>
                 </h4>
               </div>
-              <div id="collapseScenario0_16" class="panel-collapse collapse">
+              <div id="collapseScenario2_1" class="panel-collapse collapse">
                 <div class="panel-body">
                   
                   
@@ -1949,8 +2504,8 @@ th {
                       
 
                       
-                           <a href="#info0_160" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_160" class="collapse">
+                           <a href="#info2_10" data-toggle="collapse">+ Show Info</a>
+                           <div id="info2_10" class="collapse">
                              <pre class=info>chrome-desktop-test</pre>
                            </div>
                       
@@ -1970,10 +2525,202 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with ContactMissingTnCVersion then expected message outcome is T&C version and date both must have data.
+                        I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I send an API request to create a new true PLC organisation with Basic_Org and (accountid,defra_uniquereference)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Handshake contact to a defra service VMD_Secure_Msg and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call Enrolment Request for contact to a defra service VMD_Secure_Msg and returned defra_lobserviceuserlinkrequestid
                           
                               <span class="step-duration">
                                0s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
                               </span>
                             
                          
@@ -2001,13 +2748,13 @@ th {
               <div class="panel-heading">
                 <h4 class="panel-title">
                 
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_17">
+                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeEnrolments</span>  </div>
+                  <a data-toggle="collapse" href="#collapseScenario2_2">
                     <i class="glyphicon glyphicon-chevron-right"></i>
                     <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with ContactInvalidTnCVersion
+                    <b>Scenario:</b>Enroling a Contact and a LLP Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY
                     <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
+                      <span class="label label-success" title="Passed">8</span>
                       
                       
                       
@@ -2017,7 +2764,7 @@ th {
                   </a>
                 </h4>
               </div>
-              <div id="collapseScenario0_17" class="panel-collapse collapse">
+              <div id="collapseScenario2_2" class="panel-collapse collapse">
                 <div class="panel-body">
                   
                   
@@ -2046,8 +2793,8 @@ th {
                       
 
                       
-                           <a href="#info0_170" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_170" class="collapse">
+                           <a href="#info2_20" data-toggle="collapse">+ Show Info</a>
+                           <div id="info2_20" class="collapse">
                              <pre class=info>chrome-desktop-test</pre>
                            </div>
                       
@@ -2067,10 +2814,10 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with ContactInvalidTnCVersion then expected message outcome is T&C version and date both must have data.
+                        I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)
                           
                               <span class="step-duration">
-                               0s
+                               1s
                               </span>
                             
                          
@@ -2082,71 +2829,6 @@ th {
 
                       
 
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_18">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with FNameGreaterThan50Char
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_18" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_180" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_180" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
                       
 
                        
@@ -2164,10 +2846,10 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with FNameGreaterThan50Char then expected message outcome is The length of the 'firstname' attribute of the 'contact' entity exceeded the maximum allowed length of '50'.
+                        I send an API request to create a new true LLP organisation with Basic_Org and (accountid,defra_uniquereference)
                           
                               <span class="step-duration">
-                               0s
+                               1s
                               </span>
                             
                          
@@ -2179,71 +2861,6 @@ th {
 
                       
 
-                      
-
-                       
-
-                    
-                    </p>
-                    
-                  
-                </div>
-              </div>
-            </div>
-          
-            <div class="panel panel-default">
-              <div class="panel-heading">
-                <h4 class="panel-title">
-                
-                    <div class="tags"> <span class="tag"> @api2-Done</span>  <span class="tag"> @smoke-Test</span>  <span class="tag"> @SmokeContact</span>  </div>
-                  <a data-toggle="collapse" href="#collapseScenario0_19">
-                    <i class="glyphicon glyphicon-chevron-right"></i>
-                    <i class="glyphicon glyphicon-chevron-down"></i>
-                    <b>Scenario:</b>Creating a UK - Citizen - Contact-type with LNameGreaterThan50Char
-                    <span class="label-container">
-                      <span class="label label-success" title="Passed">2</span>
-                      
-                      
-                      
-                      
-                      
-                    </span>
-                  </a>
-                </h4>
-              </div>
-              <div id="collapseScenario0_19" class="panel-collapse collapse">
-                <div class="panel-body">
-                  
-                  
-                    
-                    <p class="scenario-container">
-                    
-                      
-                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
-                      
-                    
-                      <span class="text">
-                        <span class="keyword highlight">Before </span>
-                        
-                          
-                              <span class="step-duration">
-                               0s
-                              </span>
-                            
-                         
-                            
-                          
-                      </span>
-                    
-                      
-
-                      
-
-                      
-                           <a href="#info0_190" data-toggle="collapse">+ Show Info</a>
-                           <div id="info0_190" class="collapse">
-                             <pre class=info>chrome-desktop-test</pre>
-                           </div>
                       
 
                        
@@ -2261,10 +2878,138 @@ th {
                     
                       <span class="text">
                         <span class="keyword highlight">When </span>
-                        I create a new Citizen Contact with LNameGreaterThan50Char then expected message outcome is The length of the 'lastname' attribute of the 'contact' entity exceeded the maximum allowed length of '50'.
+                        I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               1s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I Handshake contact to a defra service VMD_Reporing and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call Enrolment Request for contact to a defra service VMD_Reporing and returned defra_lobserviceuserlinkrequestid
                           
                               <span class="step-duration">
                                0s
+                              </span>
+                            
+                         
+                            
+                          
+                      </span>
+                    
+                      
+
+                      
+
+                      
+
+                       
+
+                    
+                    </p>
+                    
+                  
+                    
+                    <p class="scenario-container">
+                    
+                      
+                        <span class="label label-success" title="Success"><i class="glyphicon glyphicon-ok"></i></span>
+                      
+                    
+                      <span class="text">
+                        <span class="keyword highlight">When </span>
+                        I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)
+                          
+                              <span class="step-duration">
+                               2s
                               </span>
                             
                          
@@ -2320,15 +3065,15 @@ th {
         google.load("visualization", "1", {packages: ["corechart"]});
         google.setOnLoadCallback(function() {drawChart({
                                                             "title" : "Features",
-                                                            "failed" : 0,
+                                                            "failed" : 2,
                                                             "passed" : 1,
                                                             "ambiguous" : 0
                                                         })
                                             });
         google.setOnLoadCallback(function() {drawChart({
                                                             "title" : "Scenarios",
-                                                            "failed" : 0,
-                                                            "passed" : 20,
+                                                            "failed" : 6,
+                                                            "passed" : 3,
                                                             "notdefined" : 0,
                                                             "pending" : 0,
                                                             "skipped" : 0,
