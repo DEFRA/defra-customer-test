@@ -4,6 +4,8 @@
 			"testidentifier": "BasicContact",
 			"b2cobjectid": "7b1ad2d0-",
 			"ggcredentialID": "6401744",
+			"SecureWord": "BCWord123",
+			"Hint": "BasicContacthint123",
 			"isCitizen": true,
 			"title": "1",
 			"firstname": "PratsQA",
@@ -45,7 +47,24 @@
 			"SecureWord": "",
 			"Hint": ""
 		},
-		
+		{
+			"testidentifier": "HintOnly",
+			"Hint": "OnlyHintAttributePresent"
+		},
+		{
+			"testidentifier": "WordOnly",
+			"SecureWord": "OnlyWordAtt"
+		},
+		{
+			"testidentifier": "HintBlank",
+			"SecureWord": "JstWrdNoHint",
+			"Hint": ""
+		},
+		{
+			"testidentifier": "WordBlank",
+			"SecureWord": "",
+			"Hint": "JustHintandNoWord"
+		},
 		{
 			"testidentifier": "CreateContactMsg",
 			"message": "(contactid,defra_uniquereference)"

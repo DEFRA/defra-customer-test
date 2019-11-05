@@ -16,9 +16,13 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
     Examples:
       | ContactType | ValidationType            | StatusMsgCont                                                        |
       | Citizen     | BasicContact              | (contactid,defra_uniquereference)                                    |
-      | Citizen     | ValidWordandHint          | (contactid,defra_uniquereference)                                    |
+     | Citizen     | ValidWordandHint          | (contactid,defra_uniquereference)                                    |
       | Citizen     | ValidWord6CharHint100Char | (contactid,defra_uniquereference)                                    |
       | Citizen     | BlankWordandHint          | (contactid,defra_uniquereference)                                    |
+      | Citizen     | HintOnly                  | Security Word and Security Hint both must have data.                 |
+      | Citizen     | WordOnly                  | Security Word and Security Hint both must have data.                 |
+      | Citizen     | HintBlank                 | Security Word and Security Hint both must have data.                 |
+      | Citizen     | WordBlank                 | Security Word and Security Hint both must have data.                 |
       | Citizen     | DuplicateB2cObjectId      | A record that has the attribute values B2C Object Id already exists. |
       | Citizen     | InvalidB2cObjectId        | B2C - Object - ID must be a valid Guid format.                       |
       | Citizen     | MissingFirstName          | Firstname is a required field                                        |
@@ -28,14 +32,14 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
       | Citizen     | MissingCorAddress         | Correspondence address is required for a Contact                 |
       | Citizen     | MissingBuildNameNo        | Correspondence Address BuildingNumber orBuildingName is required |
       | Citizen     | MissingStreet             | Correspondence Address Street  is required         |
-      # | Citizen     | MissingPostCode           | Correspondence Address MissingPostCode is required |
+     | Citizen     | MissingPostCode           | Correspondence Address MissingPostCode is required |
       | Citizen     | MissingCountry            | Correspondence Address Country is required         |
       | Citizen     | ContactMissingTnCDate     | DateTime is less than minumum value supported by CrmDateTime. |
       | Citizen     | ContactInvalidTnCDate     | DateTime is less than minumum value supported by CrmDateTime. |
       | Citizen     | ContactMissingTnCVersion  | T&C version and date both must have data. |
       | Citizen     | ContactInvalidTnCVersion  | T&C version and date both must have data. |
       | Citizen     | FNameGreaterThan50Char  | The length of the 'firstname' attribute of the 'contact' entity exceeded the maximum allowed length of '50'. |
-      | Citizen     | LNameGreaterThan50Char  | The length of the 'lastname' attribute of the 'contact' entity exceeded the maximum allowed length of '50'. |
+     | Citizen     | LNameGreaterThan50Char  | The length of the 'lastname' attribute of the 'contact' entity exceeded the maximum allowed length of '50'. |
 
 
   #2

@@ -202,6 +202,42 @@ class ActiveDirectoryAuthService {
                             console.log("--- Contact Secure Word Blank: " + SecureWord);                
                             console.log("--- Contact HINT Blank: " + Hint);                
                             break;
+            case "HintOnly":
+                                console.log("---  TESTING Creating a " + contacttype + " Contact with Hint Only ---");
+                                // b2cObject = b2cObjectID + postFix;
+                                SecureWord = this.testdata.getSecureWord("HintOnly");
+                                Hint = this.testdata.getHint("HintOnly");
+            
+                                console.log("--- Contact Secure Word Attribute is missing: " + SecureWord);                
+                                console.log("--- Contact HINT Blank: " + Hint);                
+                                break;
+            case "WordOnly":
+                                    console.log("---  TESTING Creating a " + contacttype + " Contact with Word Only ---");
+                                    // b2cObject = b2cObjectID + postFix;
+                                    SecureWord = this.testdata.getSecureWord("WordOnly");
+                                    Hint = this.testdata.getHint("WordOnly");
+                
+                                    console.log("--- Contact Secure Word : " + SecureWord);                
+                                    console.log("--- Contact HINT attribute is missing: " + Hint);                
+                                    break;    
+             case "HintBlank":
+                                        console.log("---  TESTING Creating a " + contacttype + " Contact with BLANK Hint ---");
+                                        // b2cObject = b2cObjectID + postFix;
+                                        SecureWord = this.testdata.getSecureWord("HintBlank");
+                                        Hint = this.testdata.getHint("HintBlank");
+                    
+                                        console.log("--- Contact Secure Word : " + SecureWord);                
+                                        console.log("--- Contact HINT is BLANK: " + Hint);                
+                                        break;   
+            case "WordBlank":
+                                            console.log("---  TESTING Creating a " + contacttype + " Contact with BLANK Word ---");
+                                            // b2cObject = b2cObjectID + postFix;
+                                            SecureWord = this.testdata.getSecureWord("WordBlank");
+                                            Hint = this.testdata.getHint("WordBlank");
+                        
+                                            console.log("--- Contact Secure Word is BLANK : " + SecureWord);                
+                                            console.log("--- Contact HINT is : " + Hint);                
+                                            break;                  
             case "DuplicateB2cObjectId":
                 console.log("---  TESTING creating a " + contacttype + "  Contact with Duplicate B2CObjectID ---");
                 b2cObject = this.testdata.getB2CObjectID("DuplicateB2cObjectId");

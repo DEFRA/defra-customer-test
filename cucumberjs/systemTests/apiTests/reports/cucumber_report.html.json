@@ -1,19 +1,19 @@
 [
   {
-    "description": "As an external API user \nI want to be able to call the defra_createEnrolment endpoint\nSo that I can create an Enrolment between an Organisation and a Defra service\n\n  Acceptance Criteria:",
+    "description": "As an external API user \nI want to be able to consume the D365 WebAPI Actions\nSo that I can create a Contact record in D365 Customer Master.\n\nAcceptance Criteria:\nThe D365 WebAPI Create Contact Actions can be called using the Microsoft provided guidelines",
     "elements": [
       {
-        "id": "create-enrolment-via-the-web-api;enroling-a-contact-and-a-ltd-organisation-to-a-defra-service-as-an-idm-admin-using---service-only",
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---contact-type-with-hintonly",
         "keyword": "Scenario",
-        "line": 42,
-        "name": "Enroling a Contact and a LTD Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY",
+        "line": 22,
+        "name": "Creating a UK - Citizen - Contact-type with HintOnly",
         "steps": [
           {
             "arguments": [],
             "keyword": "Before ",
             "result": {
               "status": "passed",
-              "duration": 698700
+              "duration": 488301
             },
             "hidden": true,
             "embeddings": [
@@ -23,98 +23,20 @@
               }
             ],
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)",
+            "name": "I create a new Citizen Contact with HintOnly then expected message outcome is Security Word and Security Hint both must have data.",
             "result": {
               "status": "passed",
-              "duration": 1088747800
+              "duration": 829945300
             },
-            "line": 32,
+            "line": 14,
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I send an API request to create a new true LTD organisation with Basic_Org and (accountid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 1503340601
-            },
-            "line": 33,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:48"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)",
-            "result": {
-              "status": "passed",
-              "duration": 3214459200
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 982980400
-            },
-            "line": 35,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:77"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Handshake contact to a defra service VMD_Licencing and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 2011023500
-            },
-            "line": 36,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:84"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call Enrolment Request for contact to a defra service VMD_Licencing and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "failed",
-              "duration": 478699399,
-              "error_message": "AssertionError: expected '\"Could not find a property named \\'defra_lobserviceuserlinkrequests\\' on type \\'Microsoft.Dynamics.CRM.defra_lobserviceuserlinkrequest\\'.\"' to include '(defra_lobserviceuserlinkid)'\n    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\pageobjects\\crm-token.js:2790:79)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
-            },
-            "line": 37,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:91"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "skipped"
-            },
-            "line": 38,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:98"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
             }
           }
         ],
@@ -125,31 +47,31 @@
           },
           {
             "name": "@api2-Done",
-            "line": 29
+            "line": 11
           },
           {
             "name": "@smoke-Test",
-            "line": 29
+            "line": 11
           },
           {
-            "name": "@SmokeEnrolments",
-            "line": 29
+            "name": "@SmokeContact",
+            "line": 11
           }
         ],
         "type": "scenario"
       },
       {
-        "id": "create-enrolment-via-the-web-api;enroling-a-contact-and-a-plc-organisation-to-a-defra-service-as-an-idm-admin-using---service-only",
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---contact-type-with-wordonly",
         "keyword": "Scenario",
-        "line": 43,
-        "name": "Enroling a Contact and a PLC Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY",
+        "line": 23,
+        "name": "Creating a UK - Citizen - Contact-type with WordOnly",
         "steps": [
           {
             "arguments": [],
             "keyword": "Before ",
             "result": {
               "status": "passed",
-              "duration": 261900
+              "duration": 209601
             },
             "hidden": true,
             "embeddings": [
@@ -159,98 +81,20 @@
               }
             ],
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)",
+            "name": "I create a new Citizen Contact with WordOnly then expected message outcome is Security Word and Security Hint both must have data.",
             "result": {
               "status": "passed",
-              "duration": 1554761500
+              "duration": 282930400
             },
-            "line": 32,
+            "line": 14,
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I send an API request to create a new true PLC organisation with Basic_Org and (accountid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 725083200
-            },
-            "line": 33,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:48"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)",
-            "result": {
-              "status": "passed",
-              "duration": 2167057201
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 579569800
-            },
-            "line": 35,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:77"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Handshake contact to a defra service VMD_Secure_Msg and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 1628663200
-            },
-            "line": 36,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:84"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call Enrolment Request for contact to a defra service VMD_Secure_Msg and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "failed",
-              "duration": 284881799,
-              "error_message": "AssertionError: expected '\"Could not find a property named \\'defra_lobserviceuserlinkrequests\\' on type \\'Microsoft.Dynamics.CRM.defra_lobserviceuserlinkrequest\\'.\"' to include '(defra_lobserviceuserlinkid)'\n    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\pageobjects\\crm-token.js:2790:79)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
-            },
-            "line": 37,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:91"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "skipped"
-            },
-            "line": 38,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:98"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
             }
           }
         ],
@@ -261,31 +105,31 @@
           },
           {
             "name": "@api2-Done",
-            "line": 29
+            "line": 11
           },
           {
             "name": "@smoke-Test",
-            "line": 29
+            "line": 11
           },
           {
-            "name": "@SmokeEnrolments",
-            "line": 29
+            "name": "@SmokeContact",
+            "line": 11
           }
         ],
         "type": "scenario"
       },
       {
-        "id": "create-enrolment-via-the-web-api;enroling-a-contact-and-a-llp-organisation-to-a-defra-service-as-an-idm-admin-using---service-only",
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---contact-type-with-hintblank",
         "keyword": "Scenario",
-        "line": 44,
-        "name": "Enroling a Contact and a LLP Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY",
+        "line": 24,
+        "name": "Creating a UK - Citizen - Contact-type with HintBlank",
         "steps": [
           {
             "arguments": [],
             "keyword": "Before ",
             "result": {
               "status": "passed",
-              "duration": 86400
+              "duration": 51299
             },
             "hidden": true,
             "embeddings": [
@@ -295,98 +139,20 @@
               }
             ],
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)",
+            "name": "I create a new Citizen Contact with HintBlank then expected message outcome is Security Word and Security Hint both must have data.",
             "result": {
               "status": "passed",
-              "duration": 618920599
+              "duration": 326585601
             },
-            "line": 32,
+            "line": 14,
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I send an API request to create a new true LLP organisation with Basic_Org and (accountid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 755063200
-            },
-            "line": 33,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:48"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)",
-            "result": {
-              "status": "passed",
-              "duration": 2665709700
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 582312500
-            },
-            "line": 35,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:77"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Handshake contact to a defra service VMD_Reporing and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 2243635901
-            },
-            "line": 36,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:84"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call Enrolment Request for contact to a defra service VMD_Reporing and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "failed",
-              "duration": 321235899,
-              "error_message": "AssertionError: expected '\"Could not find a property named \\'defra_lobserviceuserlinkrequests\\' on type \\'Microsoft.Dynamics.CRM.defra_lobserviceuserlinkrequest\\'.\"' to include '(defra_lobserviceuserlinkid)'\n    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\pageobjects\\crm-token.js:2790:79)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
-            },
-            "line": 37,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:91"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "skipped"
-            },
-            "line": 38,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:98"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
             }
           }
         ],
@@ -397,47 +163,105 @@
           },
           {
             "name": "@api2-Done",
-            "line": 29
+            "line": 11
           },
           {
             "name": "@smoke-Test",
-            "line": 29
+            "line": 11
           },
           {
-            "name": "@SmokeEnrolments",
-            "line": 29
+            "name": "@SmokeContact",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---contact-type-with-wordblank",
+        "keyword": "Scenario",
+        "line": 25,
+        "name": "Creating a UK - Citizen - Contact-type with WordBlank",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 97000
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new Citizen Contact with WordBlank then expected message outcome is Security Word and Security Hint both must have data.",
+            "result": {
+              "status": "passed",
+              "duration": 307686201
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Regression-Test",
+            "line": 1
+          },
+          {
+            "name": "@api2-Done",
+            "line": 11
+          },
+          {
+            "name": "@smoke-Test",
+            "line": 11
+          },
+          {
+            "name": "@SmokeContact",
+            "line": 11
           }
         ],
         "type": "scenario"
       }
     ],
-    "id": "create-enrolment-via-the-web-api",
+    "id": "create-contact--cm-146-as-a-web-api-user",
     "keyword": "Feature",
     "line": 2,
-    "name": "CREATE ENROLMENT via the Web API",
+    "name": "CREATE CONTACT -CM-146 As a Web API User",
     "tags": [
       {
         "name": "@Regression-Test",
         "line": 1
       }
     ],
-    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared_Final/cucumberjs/systemTests/apiTests/createEnrolment.feature"
+    "uri": "C:/Users/Johannes/Documents/GitHub/defra-customer-test/cucumberjs/systemTests/apiTests/createContactAPI.feature"
   },
   {
-    "description": "As an external API user \nI want to be able to call the defra_createEnrolment endpoint\nSo that I can create an Enrolment between an Organisation and a Defra service\n\n  Acceptance Criteria:",
+    "description": "As an external API user \nI want to be able to consume the D365 WebAPI Actions\nSo that I can create a Contact record in D365 Customer Master.\n\nAcceptance Criteria:\nThe D365 WebAPI Create Contact Actions can be called using the Microsoft provided guidelines",
     "elements": [
       {
-        "id": "create-enrolment-via-the-web-api;enroling-a-contact-and-a-ltd-organisation-to-a-defra-service-as-an-idm-admin-using---service-only",
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---contact-type-with-hintonly",
         "keyword": "Scenario",
-        "line": 42,
-        "name": "Enroling a Contact and a LTD Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY",
+        "line": 22,
+        "name": "Creating a UK - Citizen - Contact-type with HintOnly",
         "steps": [
           {
             "arguments": [],
             "keyword": "Before ",
             "result": {
               "status": "passed",
-              "duration": 856900
+              "duration": 383199
             },
             "hidden": true,
             "embeddings": [
@@ -447,98 +271,20 @@
               }
             ],
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)",
+            "name": "I create a new Citizen Contact with HintOnly then expected message outcome is Security Word and Security Hint both must have data.",
             "result": {
               "status": "passed",
-              "duration": 1392867001
+              "duration": 627102400
             },
-            "line": 32,
+            "line": 14,
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I send an API request to create a new true LTD organisation with Basic_Org and (accountid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 882691300
-            },
-            "line": 33,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:48"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)",
-            "result": {
-              "status": "passed",
-              "duration": 3265117401
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 594643200
-            },
-            "line": 35,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:77"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Handshake contact to a defra service VMD_Licencing and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 1890632201
-            },
-            "line": 36,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:84"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call Enrolment Request for contact to a defra service VMD_Licencing and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "failed",
-              "duration": 566206600,
-              "error_message": "AssertionError: expected '{\"@odata.context\":\"https://defra-custmstr-test.api.crm4.dynamics.com/api/data/v9.0/$metadata#defra_lobserviceuserlinkrequests/$entity\",\"@odata.etag\":\"W/\\\\\"91136383\\\\\"\",\"_defra_service_value\":\"a65e89e7-66b6-e811-a954-000d3a29b5de\",\"_defra_connectiondetail_value\":\"02a4a4cd-d8fb-e911-a813-000d3a20f8de\",\"statecode\":0,\"statuscode\":1,\"_defra_organisation_value\":\"cc6fd6c7-d8fb-e911-a813-000d3a20f8d4\",\"_createdby_value\":\"941c65fd-dbb1-e811-a953-000d3a28da35\",\"_ownerid_value\":\"7f80e370-96a8-e811-a953-000d3a39c345\",\"_owningteam_value\":\"7f80e370-96a8-e811-a953-000d3a39c345\",\"modifiedon\":\"2019-10-31T12:20:24Z\",\"_defra_serviceuser_value\":\"c4160dc9-d8fb-e911-a813-000d3a2109c9\",\"_modifiedby_value\":\"941c65fd-dbb1-e811-a953-000d3a28da35\",\"versionnumber\":91136383,\"defra_lobserviceuserlinkrequestid\":\"b6c6a0cb-d8fb-e911-a813-000d3a20f3f8\",\"createdon\":\"2019-10-31T12:20:24Z\",\"defra_uniquereference\":\"NA201924-W8-2010-Q8-3112\",\"_owningbusinessunit_value\":\"6978659a-51a2-e811-a83e-000d3ab4f534\",\"timezoneruleversionnumber\":null,\"_modifiedonbehalfby_value\":null,\"importsequencenumber\":null,\"overriddencreatedon\":null,\"utcconversiontimezonecode\":null,\"defra_name\":null,\"_owninguser_value\":null,\"_createdonbehalfby_value\":null}' to include '(defra_lobserviceuserlinkid)'\n    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\pageobjects\\crm-token.js:2780:65)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
-            },
-            "line": 37,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:91"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "skipped"
-            },
-            "line": 38,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:98"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
             }
           }
         ],
@@ -549,31 +295,31 @@
           },
           {
             "name": "@api2-Done",
-            "line": 29
+            "line": 11
           },
           {
             "name": "@smoke-Test",
-            "line": 29
+            "line": 11
           },
           {
-            "name": "@SmokeEnrolments",
-            "line": 29
+            "name": "@SmokeContact",
+            "line": 11
           }
         ],
         "type": "scenario"
       },
       {
-        "id": "create-enrolment-via-the-web-api;enroling-a-contact-and-a-plc-organisation-to-a-defra-service-as-an-idm-admin-using---service-only",
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---contact-type-with-wordonly",
         "keyword": "Scenario",
-        "line": 43,
-        "name": "Enroling a Contact and a PLC Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY",
+        "line": 23,
+        "name": "Creating a UK - Citizen - Contact-type with WordOnly",
         "steps": [
           {
             "arguments": [],
             "keyword": "Before ",
             "result": {
               "status": "passed",
-              "duration": 328399
+              "duration": 114199
             },
             "hidden": true,
             "embeddings": [
@@ -583,98 +329,20 @@
               }
             ],
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)",
+            "name": "I create a new Citizen Contact with WordOnly then expected message outcome is Security Word and Security Hint both must have data.",
             "result": {
               "status": "passed",
-              "duration": 823034801
+              "duration": 301829000
             },
-            "line": 32,
+            "line": 14,
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I send an API request to create a new true PLC organisation with Basic_Org and (accountid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 681461500
-            },
-            "line": 33,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:48"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)",
-            "result": {
-              "status": "passed",
-              "duration": 2771044799
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 488670401
-            },
-            "line": 35,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:77"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Handshake contact to a defra service VMD_Secure_Msg and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 1618773600
-            },
-            "line": 36,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:84"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call Enrolment Request for contact to a defra service VMD_Secure_Msg and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "failed",
-              "duration": 291215699,
-              "error_message": "AssertionError: expected '{\"@odata.context\":\"https://defra-custmstr-test.api.crm4.dynamics.com/api/data/v9.0/$metadata#defra_lobserviceuserlinkrequests/$entity\",\"@odata.etag\":\"W/\\\\\"91137065\\\\\"\",\"_defra_service_value\":\"a99fcef9-66b6-e811-a954-000d3a29b5de\",\"_defra_connectiondetail_value\":\"de230acf-d8fb-e911-a813-000d3a2109c9\",\"statecode\":0,\"statuscode\":1,\"_defra_organisation_value\":\"37a4a4cd-d8fb-e911-a813-000d3a20f8de\",\"_createdby_value\":\"941c65fd-dbb1-e811-a953-000d3a28da35\",\"_ownerid_value\":\"dd2acdd3-96a8-e811-a953-000d3a39c345\",\"_owningteam_value\":\"dd2acdd3-96a8-e811-a953-000d3a39c345\",\"modifiedon\":\"2019-10-31T12:20:31Z\",\"_defra_serviceuser_value\":\"c0c6a0cb-d8fb-e911-a813-000d3a20f3f8\",\"_modifiedby_value\":\"941c65fd-dbb1-e811-a953-000d3a28da35\",\"versionnumber\":91137065,\"defra_lobserviceuserlinkrequestid\":\"85b5c7d3-d8fb-e911-a813-000d3a20f8d4\",\"createdon\":\"2019-10-31T12:20:31Z\",\"defra_uniquereference\":\"NA201931-M5-2010-G2-3112\",\"_owningbusinessunit_value\":\"6a51b166-e3a5-e811-a840-000d3ab4fce4\",\"timezoneruleversionnumber\":null,\"_modifiedonbehalfby_value\":null,\"importsequencenumber\":null,\"overriddencreatedon\":null,\"utcconversiontimezonecode\":null,\"defra_name\":null,\"_owninguser_value\":null,\"_createdonbehalfby_value\":null}' to include '(defra_lobserviceuserlinkid)'\n    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\pageobjects\\crm-token.js:2780:65)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
-            },
-            "line": 37,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:91"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "skipped"
-            },
-            "line": 38,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:98"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
             }
           }
         ],
@@ -685,31 +353,31 @@
           },
           {
             "name": "@api2-Done",
-            "line": 29
+            "line": 11
           },
           {
             "name": "@smoke-Test",
-            "line": 29
+            "line": 11
           },
           {
-            "name": "@SmokeEnrolments",
-            "line": 29
+            "name": "@SmokeContact",
+            "line": 11
           }
         ],
         "type": "scenario"
       },
       {
-        "id": "create-enrolment-via-the-web-api;enroling-a-contact-and-a-llp-organisation-to-a-defra-service-as-an-idm-admin-using---service-only",
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---contact-type-with-hintblank",
         "keyword": "Scenario",
-        "line": 44,
-        "name": "Enroling a Contact and a LLP Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY",
+        "line": 24,
+        "name": "Creating a UK - Citizen - Contact-type with HintBlank",
         "steps": [
           {
             "arguments": [],
             "keyword": "Before ",
             "result": {
               "status": "passed",
-              "duration": 57800
+              "duration": 138599
             },
             "hidden": true,
             "embeddings": [
@@ -719,98 +387,20 @@
               }
             ],
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
             }
           },
           {
             "arguments": [],
             "keyword": "When ",
-            "name": "I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)",
+            "name": "I create a new Citizen Contact with HintBlank then expected message outcome is Security Word and Security Hint both must have data.",
             "result": {
               "status": "passed",
-              "duration": 830514700
+              "duration": 313313100
             },
-            "line": 32,
+            "line": 14,
             "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I send an API request to create a new true LLP organisation with Basic_Org and (accountid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 1598937100
-            },
-            "line": 33,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:48"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)",
-            "result": {
-              "status": "passed",
-              "duration": 2886659600
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 591151200
-            },
-            "line": 35,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:77"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Handshake contact to a defra service VMD_Reporing and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 1782149600
-            },
-            "line": 36,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:84"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call Enrolment Request for contact to a defra service VMD_Reporing and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "failed",
-              "duration": 304292300,
-              "error_message": "AssertionError: expected '{\"@odata.context\":\"https://defra-custmstr-test.api.crm4.dynamics.com/api/data/v9.0/$metadata#defra_lobserviceuserlinkrequests/$entity\",\"@odata.etag\":\"W/\\\\\"91137879\\\\\"\",\"_defra_service_value\":\"39c4599e-27de-e811-a842-000d3ab4f534\",\"_defra_connectiondetail_value\":\"6bc01bd4-d8fb-e911-a813-000d3a20f8de\",\"statecode\":0,\"statuscode\":1,\"_defra_organisation_value\":\"ad2f0cd5-d8fb-e911-a813-000d3a20feae\",\"_createdby_value\":\"941c65fd-dbb1-e811-a953-000d3a28da35\",\"_ownerid_value\":\"d3b02eb7-28de-e811-a842-000d3ab4f534\",\"_owningteam_value\":\"d3b02eb7-28de-e811-a842-000d3ab4f534\",\"modifiedon\":\"2019-10-31T12:20:39Z\",\"_defra_serviceuser_value\":\"29c01bd4-d8fb-e911-a813-000d3a20f8de\",\"_modifiedby_value\":\"941c65fd-dbb1-e811-a953-000d3a28da35\",\"versionnumber\":91137879,\"defra_lobserviceuserlinkrequestid\":\"67b6c7d3-d8fb-e911-a813-000d3a20f8d4\",\"createdon\":\"2019-10-31T12:20:39Z\",\"defra_uniquereference\":\"NA201939-W9-2010-C4-3112\",\"_owningbusinessunit_value\":\"f8b17e84-27de-e811-a842-000d3ab4f534\",\"timezoneruleversionnumber\":null,\"_modifiedonbehalfby_value\":null,\"importsequencenumber\":null,\"overriddencreatedon\":null,\"utcconversiontimezonecode\":null,\"defra_name\":null,\"_owninguser_value\":null,\"_createdonbehalfby_value\":null}' to include '(defra_lobserviceuserlinkid)'\n    at ActiveDirectoryAuthService.requestEnrolmentRequest (C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\pageobjects\\crm-token.js:2780:65)\n    at process._tickCallback (internal/process/next_tick.js:68:7)"
-            },
-            "line": 37,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:91"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "skipped"
-            },
-            "line": 38,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:98"
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
             }
           }
         ],
@@ -821,454 +411,88 @@
           },
           {
             "name": "@api2-Done",
-            "line": 29
+            "line": 11
           },
           {
             "name": "@smoke-Test",
-            "line": 29
+            "line": 11
           },
           {
-            "name": "@SmokeEnrolments",
-            "line": 29
+            "name": "@SmokeContact",
+            "line": 11
+          }
+        ],
+        "type": "scenario"
+      },
+      {
+        "id": "create-contact--cm-146-as-a-web-api-user;creating-a-uk---citizen---contact-type-with-wordblank",
+        "keyword": "Scenario",
+        "line": 25,
+        "name": "Creating a UK - Citizen - Contact-type with WordBlank",
+        "steps": [
+          {
+            "arguments": [],
+            "keyword": "Before ",
+            "result": {
+              "status": "passed",
+              "duration": 111100
+            },
+            "hidden": true,
+            "embeddings": [
+              {
+                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
+                "mime_type": "text/plain"
+              }
+            ],
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
+            }
+          },
+          {
+            "arguments": [],
+            "keyword": "When ",
+            "name": "I create a new Citizen Contact with WordBlank then expected message outcome is Security Word and Security Hint both must have data.",
+            "result": {
+              "status": "passed",
+              "duration": 359842000
+            },
+            "line": 14,
+            "match": {
+              "location": "C:\\Users\\Johannes\\Documents\\GitHub\\defra-customer-test\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
+            }
+          }
+        ],
+        "tags": [
+          {
+            "name": "@Regression-Test",
+            "line": 1
+          },
+          {
+            "name": "@api2-Done",
+            "line": 11
+          },
+          {
+            "name": "@smoke-Test",
+            "line": 11
+          },
+          {
+            "name": "@SmokeContact",
+            "line": 11
           }
         ],
         "type": "scenario"
       }
     ],
-    "id": "create-enrolment-via-the-web-api",
+    "id": "create-contact--cm-146-as-a-web-api-user",
     "keyword": "Feature",
     "line": 2,
-    "name": "CREATE ENROLMENT via the Web API",
+    "name": "CREATE CONTACT -CM-146 As a Web API User",
     "tags": [
       {
         "name": "@Regression-Test",
         "line": 1
       }
     ],
-    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared_Final/cucumberjs/systemTests/apiTests/createEnrolment.feature"
-  },
-  {
-    "description": "As an external API user \nI want to be able to call the defra_createEnrolment endpoint\nSo that I can create an Enrolment between an Organisation and a Defra service\n\n  Acceptance Criteria:",
-    "elements": [
-      {
-        "id": "create-enrolment-via-the-web-api;enroling-a-contact-and-a-ltd-organisation-to-a-defra-service-as-an-idm-admin-using---service-only",
-        "keyword": "Scenario",
-        "line": 42,
-        "name": "Enroling a Contact and a LTD Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Before ",
-            "result": {
-              "status": "passed",
-              "duration": 639500
-            },
-            "hidden": true,
-            "embeddings": [
-              {
-                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
-                "mime_type": "text/plain"
-              }
-            ],
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 1126754700
-            },
-            "line": 32,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I send an API request to create a new true LTD organisation with Basic_Org and (accountid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 949413800
-            },
-            "line": 33,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:48"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)",
-            "result": {
-              "status": "passed",
-              "duration": 2970824299
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 499390299
-            },
-            "line": 35,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:77"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Handshake contact to a defra service VMD_Licencing and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 2038266199
-            },
-            "line": 36,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:84"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call Enrolment Request for contact to a defra service VMD_Licencing and returned defra_lobserviceuserlinkrequestid",
-            "result": {
-              "status": "passed",
-              "duration": 314933900
-            },
-            "line": 37,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:91"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 1415103300
-            },
-            "line": 38,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:98"
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@Regression-Test",
-            "line": 1
-          },
-          {
-            "name": "@api2-Done",
-            "line": 29
-          },
-          {
-            "name": "@smoke-Test",
-            "line": 29
-          },
-          {
-            "name": "@SmokeEnrolments",
-            "line": 29
-          }
-        ],
-        "type": "scenario"
-      },
-      {
-        "id": "create-enrolment-via-the-web-api;enroling-a-contact-and-a-plc-organisation-to-a-defra-service-as-an-idm-admin-using---service-only",
-        "keyword": "Scenario",
-        "line": 43,
-        "name": "Enroling a Contact and a PLC Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Before ",
-            "result": {
-              "status": "passed",
-              "duration": 169900
-            },
-            "hidden": true,
-            "embeddings": [
-              {
-                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
-                "mime_type": "text/plain"
-              }
-            ],
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 607950000
-            },
-            "line": 32,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I send an API request to create a new true PLC organisation with Basic_Org and (accountid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 1432326800
-            },
-            "line": 33,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:48"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)",
-            "result": {
-              "status": "passed",
-              "duration": 2304112999
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 737812700
-            },
-            "line": 35,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:77"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Handshake contact to a defra service VMD_Secure_Msg and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 2402040300
-            },
-            "line": 36,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:84"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call Enrolment Request for contact to a defra service VMD_Secure_Msg and returned defra_lobserviceuserlinkrequestid",
-            "result": {
-              "status": "passed",
-              "duration": 290643400
-            },
-            "line": 37,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:91"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 2400612101
-            },
-            "line": 38,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:98"
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@Regression-Test",
-            "line": 1
-          },
-          {
-            "name": "@api2-Done",
-            "line": 29
-          },
-          {
-            "name": "@smoke-Test",
-            "line": 29
-          },
-          {
-            "name": "@SmokeEnrolments",
-            "line": 29
-          }
-        ],
-        "type": "scenario"
-      },
-      {
-        "id": "create-enrolment-via-the-web-api;enroling-a-contact-and-a-llp-organisation-to-a-defra-service-as-an-idm-admin-using---service-only",
-        "keyword": "Scenario",
-        "line": 44,
-        "name": "Enroling a Contact and a LLP Organisation to a Defra-Service as an IDM-ADMIN using - SERVICE ONLY",
-        "steps": [
-          {
-            "arguments": [],
-            "keyword": "Before ",
-            "result": {
-              "status": "passed",
-              "duration": 225000
-            },
-            "hidden": true,
-            "embeddings": [
-              {
-                "data": "Y2hyb21lLWRlc2t0b3AtdGVzdA==",
-                "mime_type": "text/plain"
-              }
-            ],
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\support\\hooks.js:12"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I create a new Non_Citizen Contact with BasicContact then expected message outcome is (contactid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 556408100
-            },
-            "line": 32,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:13"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I send an API request to create a new true LLP organisation with Basic_Org and (accountid,defra_uniquereference)",
-            "result": {
-              "status": "passed",
-              "duration": 1148338199
-            },
-            "line": 33,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:48"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Relationship action between Non_Citizen and same Org with Empl_Employer and returned (_defra_connectiondetailsid_value)",
-            "result": {
-              "status": "passed",
-              "duration": 2343727300
-            },
-            "line": 34,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:69"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Enrole Contact to an IDM service Admin-User and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 734576901
-            },
-            "line": 35,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:77"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I Handshake contact to a defra service VMD_Reporing and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 2362411400
-            },
-            "line": 36,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:84"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call Enrolment Request for contact to a defra service VMD_Reporing and returned defra_lobserviceuserlinkrequestid",
-            "result": {
-              "status": "passed",
-              "duration": 314996601
-            },
-            "line": 37,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:91"
-            }
-          },
-          {
-            "arguments": [],
-            "keyword": "When ",
-            "name": "I call defra Enrolement action with ServiceOnly and returned (defra_lobserviceuserlinkid)",
-            "result": {
-              "status": "passed",
-              "duration": 1696931599
-            },
-            "line": 38,
-            "match": {
-              "location": "C:\\Users\\Johannes\\Documents\\Projects\\Updated_latestv2_shared_Final\\cucumberjs\\systemTests\\apiTests\\step_definitions\\CreateAPI.js:98"
-            }
-          }
-        ],
-        "tags": [
-          {
-            "name": "@Regression-Test",
-            "line": 1
-          },
-          {
-            "name": "@api2-Done",
-            "line": 29
-          },
-          {
-            "name": "@smoke-Test",
-            "line": 29
-          },
-          {
-            "name": "@SmokeEnrolments",
-            "line": 29
-          }
-        ],
-        "type": "scenario"
-      }
-    ],
-    "id": "create-enrolment-via-the-web-api",
-    "keyword": "Feature",
-    "line": 2,
-    "name": "CREATE ENROLMENT via the Web API",
-    "tags": [
-      {
-        "name": "@Regression-Test",
-        "line": 1
-      }
-    ],
-    "uri": "C:/Users/Johannes/Documents/Projects/Updated_latestv2_shared_Final/cucumberjs/systemTests/apiTests/createEnrolment.feature"
+    "uri": "C:/Users/Johannes/Documents/GitHub/defra-customer-test/cucumberjs/systemTests/apiTests/createContactAPI.feature"
   }
 ]
