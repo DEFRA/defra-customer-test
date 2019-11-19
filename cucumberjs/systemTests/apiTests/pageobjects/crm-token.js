@@ -237,7 +237,72 @@ class ActiveDirectoryAuthService {
                         
                                             console.log("--- Contact Secure Word is BLANK : " + SecureWord);                
                                             console.log("--- Contact HINT is : " + Hint);                
-                                            break;                  
+                                            break;
+            case "WordLessthan6Char":
+                                                console.log("---  TESTING Creating a " + contacttype + " Contact with WordLessthan6Char Word ---");
+                                                // b2cObject = b2cObjectID + postFix;
+                                                SecureWord = this.testdata.getSecureWord("WordLessthan6Char");
+                                                Hint = this.testdata.getHint("WordLessthan6Char");
+                            
+                                                console.log("--- Contact Secure Word is WordLessthan6Char : " + SecureWord);                
+                                                console.log("--- Contact HINT is : " + Hint);                
+                                                break;
+            case "WordMorethan12Char":
+                                                    console.log("---  TESTING Creating a " + contacttype + " Contact with WordMorethan12Char Word ---");
+                                                    // b2cObject = b2cObjectID + postFix;
+                                                    SecureWord = this.testdata.getSecureWord("WordMorethan12Char");
+                                                    Hint = this.testdata.getHint("WordMorethan12Char");
+                                
+                                                    console.log("--- Contact Secure Word is WordMorethan12Char : " + SecureWord);                
+                                                    console.log("--- Contact HINT is : " + Hint);                
+                                                    break;
+            case "WordSpecialChar":
+                                                        console.log("---  TESTING Creating a " + contacttype + " Contact with WordSpecialChar Word ---");
+                                                        // b2cObject = b2cObjectID + postFix;
+                                                        SecureWord = this.testdata.getSecureWord("WordSpecialChar");
+                                                        Hint = this.testdata.getHint("WordSpecialChar");
+                                    
+                                                        console.log("--- Contact Secure Word is WordSpecialChar : " + SecureWord);                
+                                                        console.log("--- Contact HINT is : " + Hint);                
+                                                        break;  
+            case "WordInvalidRangeandSpecialChar":
+                                                            console.log("---  TESTING Creating a " + contacttype + " Contact with WordInvalidRangeandSpecialChar Word ---");
+                                                            // b2cObject = b2cObjectID + postFix;
+                                                            SecureWord = this.testdata.getSecureWord("WordInvalidRangeandSpecialChar");
+                                                            Hint = this.testdata.getHint("WordInvalidRangeandSpecialChar");
+                                        
+                                                            console.log("--- Contact Secure Word is WordInvalidRangeandSpecialChar  : " + SecureWord);                
+                                                            console.log("--- Contact HINT is : " + Hint);                
+                                                            break;  
+            case "HintLessthan100CharandSplChar":
+                                                                console.log("---  TESTING Creating a " + contacttype + " Contact with HintLessthan100CharandSplChar HINT ---");
+                                                                // b2cObject = b2cObjectID + postFix;
+                                                                SecureWord = this.testdata.getSecureWord("HintLessthan100CharandSplChar");
+                                                                Hint = this.testdata.getHint("HintLessthan100CharandSplChar");
+                                            
+                                                                console.log("--- Contact Secure Word is   : " + SecureWord);                
+                                                                console.log("--- Contact HINT is HintLessthan100CharandSplChar : " + Hint);                
+                                                                break;  
+            case "HintMorethan100Char":
+                                                                    console.log("---  TESTING Creating a " + contacttype + " Contact with HintMorethan100Char HINT ---");
+                                                                    // b2cObject = b2cObjectID + postFix;
+                                                                    SecureWord = this.testdata.getSecureWord("HintMorethan100Char");
+                                                                    Hint = this.testdata.getHint("HintMorethan100Char");
+                                                
+                                                                    console.log("--- Contact Secure Word is   : " + SecureWord);                
+                                                                    console.log("--- Contact HINT is HintMorethan100Char : " + Hint);                
+                                                                    break;      
+                                                                    
+            case "HintSplCharandMorethan100Char":
+                                                                        console.log("---  TESTING Creating a " + contacttype + " Contact with HintSplCharandMorethan100Char HINT ---");
+                                                                        // b2cObject = b2cObjectID + postFix;
+                                                                        SecureWord = this.testdata.getSecureWord("HintSplCharandMorethan100Char");
+                                                                        Hint = this.testdata.getHint("HintSplCharandMorethan100Char");
+                                                    
+                                                                        console.log("--- Contact Secure Word is   : " + SecureWord);                
+                                                                        console.log("--- Contact HINT is HintSplCharandMorethan100Char : " + Hint);                
+                                                                        break;  
+                                                
             case "DuplicateB2cObjectId":
                 console.log("---  TESTING creating a " + contacttype + "  Contact with Duplicate B2CObjectID ---");
                 b2cObject = this.testdata.getB2CObjectID("DuplicateB2cObjectId");

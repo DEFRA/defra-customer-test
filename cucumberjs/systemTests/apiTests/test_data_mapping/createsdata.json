@@ -66,6 +66,41 @@
 			"Hint": "JustHintandNoWord"
 		},
 		{
+			"testidentifier": "WordLessthan6Char",
+			"SecureWord": "12345",
+			"Hint": "HintWordlessthan6Chars"
+		},
+		{
+			"testidentifier": "WordMorethan12Char",
+			"SecureWord": "123456789012A",
+			"Hint": "WordisMorethan12Characters"
+		},
+		{
+			"testidentifier": "WordSpecialChar",
+			"SecureWord": "12345A$",
+			"Hint": "WordhasSplChar"
+		},
+		{
+			"testidentifier": "WordInvalidRangeandSpecialChar",
+			"SecureWord": "1234567890123$$",
+			"Hint": "Wordismorethan12charactersandcontainspecialcharacters"
+		},
+		{
+			"testidentifier": "HintLessthan100CharandSplChar",
+			"SecureWord": "12345678901",
+			"Hint": "ValidHintislessthan100andSplChar$"
+		},
+		{
+			"testidentifier": "HintMorethan100Char",
+			"SecureWord": "9878Word1",
+			"Hint": "100CharacterHint100CharacterHint100CharacterHint100CharacterHint100CharacterHint100CharacterHint100C22"
+		},
+		{
+			"testidentifier": "HintSplCharandMorethan100Char",
+			"SecureWord": "12345600A1",
+			"Hint": "100CharacterHintandSplChar100CharacterHint100CharacterHint100CharacterHint100CharacterHint100CharacterHint100C22"
+		},
+		{
 			"testidentifier": "CreateContactMsg",
 			"message": "(contactid,defra_uniquereference)"
 		},
