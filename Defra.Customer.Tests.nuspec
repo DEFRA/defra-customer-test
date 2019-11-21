@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>Defra.Customer.Tests</id>
+    <title>Defra CRM Customer Tests</title>
+    <version>1.0.0.0</version>
+    <authors>Defra DevOps</authors>
+    <owners>Defra Common Platform</owners>
+    <iconUrl>https://avatars1.githubusercontent.com/u/5528822?s=200&amp;v=4</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Defra CRM Customer Tests</description>
+    <copyright>Copyright Defra 2019</copyright>
+  </metadata>
+  <files>
+    <file src="node_modules\**\*.*" target="node_modules"/>
+    <file src="cucumberjs\**\*.*" target="cucumberjs"/>
+    <file src="*.json" />
+  </files>
+</package>
