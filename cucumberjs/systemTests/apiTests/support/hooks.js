@@ -7,7 +7,7 @@ var fs = require('fs');
 
 let frontEndVersion;
 let backEndVersion;
-
+/*
 module.exports = function () {
 
 	this.Before((scenario) => {
@@ -60,4 +60,4 @@ module.exports = function () {
 			reporter.generate(options);
 		}
 	});
-};
+};*/
