@@ -15,6 +15,7 @@
     <file src="node_modules\**\*.*" target="node_modules"/>
     <file src="cucumberjs\**\*.*" target="cucumberjs"/>
     <file src="*.json" />
+    <file src="*.ps1" />
     <file src="config.js" />
     <file src="configCRM.js" />
     <file src="cucumber.js" />
