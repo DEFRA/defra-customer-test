@@ -3,6 +3,7 @@ const getWorldParameters = require("./world").getWorldParameters;
 const config = require("../../../../config").config;
 const configCRM = require("../../../../configCRM").configCRM;
 const nock = require("nock");
+var fs = require('fs');
 
 let frontEndVersion;
 let backEndVersion;
@@ -11,7 +12,6 @@ module.exports = function () {
 
 	this.Before((scenario) => {
 		scenario.attach(getWorldParameters().platform);
-
 	});
 
 	this.registerHandler('ScenarioResult', async function (scenario) {
@@ -27,10 +27,14 @@ module.exports = function () {
 	this.registerHandler("AfterFeatures", () => {
 
 		if (process.argv.includes("--junit")) {
+			var reports = './reports';
+			if (!fs.existsSync(reports)){
+				fs.mkdirSync(reports);
+			}
 			const cucumberJunitConvert = require('cucumber-junit-convert');
 			const options = {
-				inputJsonFile: "reports/api-tests.json",
-				outputXmlFile: 'reports/cucumber_report_api.xml'
+				inputJsonFile: "./reports/api-tests.json",
+				outputXmlFile: './reports/cucumber_report_api.xml'
 			}
 			cucumberJunitConvert.convert(options);
 		}
