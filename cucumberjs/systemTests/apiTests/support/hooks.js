@@ -7,22 +7,12 @@ var fs = require('fs');
 
 let frontEndVersion;
 let backEndVersion;
-/*
-module.exports = function () {
 
+module.exports = function () {
+	
 	this.Before((scenario) => {
 		scenario.attach(getWorldParameters().platform);
 	});
-
-	this.registerHandler('ScenarioResult', async function (scenario) {
-		if (scenario.status === 'failed') {
-			//   const filename = await driver.browser.getCurrentUrl()
-			//   driver.takeScreenshotsAfterFailure(filename)
-			return driver.quitBrowser()
-		} else {
-			return driver.quitBrowser()
-		}
-	})
 
 	this.registerHandler("AfterFeatures", () => {
 
@@ -60,4 +50,4 @@ module.exports = function () {
 			reporter.generate(options);
 		}
 	});
-};*/
+};

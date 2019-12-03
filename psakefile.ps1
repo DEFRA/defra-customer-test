@@ -2,6 +2,7 @@ task default -depends Test
 
 task Test -depends Install, CreateOutputDir -Description  "Run node cucumber tests" {
     Exec {npm run test:chrome-api-test}
+    Get-ChildItem "./Reports/" -Recurse
 }
 
 task Install -Description "Adds required node modules into bin folder" {
