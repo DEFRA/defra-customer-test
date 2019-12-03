@@ -2,3 +2,4 @@ node_modules/
 *.nupkg
 cucumberjs/systemTests/guiTests/reports/**
 reports/
+.vs/
