@@ -39,7 +39,7 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
       | Citizen     | MissingCorAddress         | Correspondence address is required for a Contact                 |
       | Citizen     | MissingBuildNameNo        | Correspondence Address BuildingNumber orBuildingName is required |
     | Citizen     | MissingStreet             | Correspondence Address Street  is required         |
-      | Citizen     | MissingPostCode           | Correspondence Address MissingPostCode is required |
+#      | Citizen     | MissingPostCode           | Correspondence Address MissingPostCode is required | */
       | Citizen     | MissingCountry            | Correspondence Address Country is required         |
       | Citizen     | ContactMissingTnCDate     | DateTime is less than minumum value supported by CrmDateTime. |
       | Citizen     | ContactInvalidTnCDate     | DateTime is less than minumum value supported by CrmDateTime. |
