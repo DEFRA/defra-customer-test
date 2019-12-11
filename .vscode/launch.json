@@ -7,8 +7,14 @@
         {
             "type": "node",
             "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}\\index.js"
+            "name": "Launch Testing",
+            "console": "integratedTerminal",
+            "program": "${workspaceFolder}/node_modules/.bin/cucumber.js",
+            "args": [ "--debug", "./cucumberjs/systemTests/apiTests","-p","regression","--runlocal", "--junit","-f","json:./reports/api-tests.json-v"],
+            "outputCapture": "std",
+            "outFiles": [
+                "${workspaceRoot}/cucumberjs/systemTests/apiTests/*.feature"
+            ]
         }
     ]
 }
