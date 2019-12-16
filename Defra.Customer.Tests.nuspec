@@ -19,5 +19,6 @@
     <file src="config.js" />
     <file src="configCRM.js" />
     <file src="cucumber.js" />
+    <file src=".env" />
   </files>
 </package>
