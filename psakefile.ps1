@@ -1,3 +1,7 @@
+properties {
+    [version] $version = "1.0.0.1" 
+}
+
 task default -depends Test
 
 task Test -depends Install, CreateOutputDir -Description  "Run node cucumber tests" {
@@ -13,4 +17,8 @@ task CreateOutputDir -Description "Adds required node modules into bin folder" {
     if(!(Test-Path "./Reports/")){
         New-Item "Reports\" -ItemType "directory"
     }
+}
+
+task Pack  -Description "Pack" { 
+    Exec -cmd {nuget pack -NoDefaultExcludes -Version $version} 
 }
