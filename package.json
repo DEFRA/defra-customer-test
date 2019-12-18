@@ -49,11 +49,13 @@
     "eslint:fix": "eslint --fix cucumberjs",
     "start": "node echoargs.js $*",
     "test:chrome-gui-test": "node node_modules/cucumber/bin/cucumber.js cucumberjs/systemTests/guiTests -p chrome-gui-test -f json:cucumberjs/systemTests/guiTests/reports/cucumber_report_gui.json",
-    "test:chrome-api-test": "node node_modules/cucumber/bin/cucumber.js cucumberjs/systemTests/apiTests -p chrome-api-test --runlocal --junit -f json:./reports/api-tests.json"
+    "test:chrome-api-test": "node node_modules/cucumber/bin/cucumber.js cucumberjs/systemTests/apiTests -p chrome-api-test --runlocal --junit -f json:./reports/api-tests.json",
+    "debug": "node --inspect-brk=5858 node_modules/cucumber/bin/cucumber.js cucumberjs/systemTests/apiTests --profile chrome-api-test"
   },
   "dependencies": {
     "adal-node": "^0.1.28",
     "body-parser": "^1.18.3",
-    "cucumber-junit-convert": "^1.1.0"
+    "cucumber-junit-convert": "^1.1.0",
+    "dotenv": "^8.2.0"
   }
 }
