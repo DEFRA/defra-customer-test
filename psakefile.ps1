@@ -9,6 +9,16 @@ task Test -depends Install, CreateOutputDir -Description  "Run node cucumber tes
     Get-ChildItem "./Reports/" -Recurse
 }
 
+task Smoke -depends Install, CreateOutputDir -Description  "Run node cucumber tests" {
+    Exec {npm run test:chrome-smoke-test}
+    Get-ChildItem "./Reports/" -Recurse
+}
+
+task htmlreports -depends Install, CreateOutputDir -Description  "Run node cucumber tests" {
+    Exec {npm run test:chrome-htmlreports-test}
+    Get-ChildItem "./Reports/" -Recurse
+}
+
 task Install -Description "Adds required node modules into bin folder" {
     Exec {npm install}
 }
