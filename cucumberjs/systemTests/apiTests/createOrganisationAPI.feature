@@ -1,4 +1,5 @@
-@Regression-Test
+@Regression-Test 
+
 Feature: CREATING an ORGANISATION AS a Web API User
   As an external API user 
   I want to be able to consume the D365 WebAPI Actions
@@ -35,7 +36,7 @@ Feature: CREATING an ORGANISATION AS a Web API User
       | true | LTD     | CRNGreaterThan           | The length of the 'defra_cmcrn' attribute of the 'account' entity exceeded the maximum allowed length of '8'.|
       | true | LTD     | CRNLessThan              | Company House Number should be 8 characters long           |
       | true | LTD     | MissingRegAddress        | Registered address is required for an Organisation         |
-      | true | LTD     | MissingStreet            | Registration Address Street  is required                   |
+      | true | LTD     | MissingStreet            | (accountid,defra_uniquereference)                   |
       | true | LTD     | MissingBuildingNameAndNo | Registration Address BuildingNumber orBuildingName is required  |
       # | true | LTD     | MissingPostCode          | Registration Address Postcode is required             |
       | true | LTD     | MissingCountry           | Registration Address Country is required              |
@@ -57,7 +58,7 @@ Feature: CREATING an ORGANISATION AS a Web API User
      | true  | PLC     | CRNGreaterThan           | The length of the 'defra_cmcrn' attribute of the 'account' entity exceeded the maximum allowed length of '8'.|
      | true  | PLC     | CRNLessThan              | Company House Number should be 8 characters long            |
      | true  | PLC     | MissingRegAddress        | Registered address is required for an Organisation          |
-     | true  | PLC     | MissingStreet            | Registration Address Street  is required                    |
+     | true  | PLC     | MissingStreet            | (accountid,defra_uniquereference)                    |
      | true  | PLC     | MissingBuildingNameAndNo | Registration Address BuildingNumber orBuildingName is required  |
     #  | true  | PLC     | MissingPostCode          | Registration Address Postcode is required |
      | true  | PLC     | MissingCountry           | Registration Address Country is required  |
@@ -80,7 +81,7 @@ Feature: CREATING an ORGANISATION AS a Web API User
       | true  | LLP     | CRNGreaterThan           | The length of the 'defra_cmcrn' attribute of the 'account' entity exceeded the maximum allowed length of '8'.|
       | true  | LLP     | CRNLessThan              | Company House Number should be 8 characters long                |
       | true  | LLP     | MissingRegAddress        | Registered address is required for an Organisation              |
-      | true  | LLP     | MissingStreet            | Registration Address Street  is required                        |
+      | true  | LLP     | MissingStreet            | (accountid,defra_uniquereference)                        |
       | true  | LLP     | MissingBuildingNameAndNo | Registration Address BuildingNumber orBuildingName is required  |
       # | true  | LLP     | MissingPostCode          | Registration Address Postcode is required    |
       | true  | LLP     | MissingCountry           | Registration Address Country is required     |
@@ -112,7 +113,7 @@ Feature: CREATING an ORGANISATION AS a Web API User
     | SoleTrad | MissingOrgName           | Name is required                                   |
     | SoleTrad | MissingOrgType           | Edm Object passed should have the options selected.|
     | SoleTrad | MissingRegAddress        | Registered address is required for an Organisation |
-    | SoleTrad | MissingStreet            | Registration Address Street  is required           |
+    | SoleTrad | MissingStreet            | (accountid,defra_uniquereference)           |
     | SoleTrad | MissingBuildingNameAndNo | Registration Address BuildingNumber orBuildingName is required  |
     | SoleTrad | With_CRN                 | (accountid,defra_uniquereference)         |
     | SoleTrad | MissingCountry           | Registration Address Country is required  |
@@ -128,7 +129,7 @@ Feature: CREATING an ORGANISATION AS a Web API User
       | Gov     | MissingOrgName           | Name is required                                    |
       | Gov     | MissingOrgType           | Edm Object passed should have the options selected. |
       | Gov     | MissingRegAddress        | Registered address is required for an Organisation  |
-      | Gov     | MissingStreet            | Registration Address Street  is required            |
+      | Gov     | MissingStreet            | (accountid,defra_uniquereference)          |
       | Gov     | MissingBuildingNameAndNo | Registration Address BuildingNumber orBuildingName is required  |
       | Gov     | With_CRN                 | (accountid,defra_uniquereference)         |
       | Gov     | MissingCountry           | Registration Address Country is required  |
@@ -145,7 +146,7 @@ Feature: CREATING an ORGANISATION AS a Web API User
   #     | NotForPr | MissingOrgName           | Name is required                                            |
   #     | NotForPr | MissingOrgType           | Edm Object passed should have the options selected.         |
   #     | NotForPr | MissingRegAddress        | Registered address is required for an Organisation          |
-  #     | NotForPr | MissingStreet            | Registration Address Street  is required                    |
+  #     | NotForPr | MissingStreet            | (accountid,defra_uniquereference)                    |
   #     | NotForPr | MissingBuildingNameAndNo | Registration Address BuildingNumber orBuildingName is required  |
   
   #9
@@ -159,7 +160,7 @@ Feature: CREATING an ORGANISATION AS a Web API User
      | CompAuth | MissingOrgName           | Name is required                                    |
      | CompAuth | MissingOrgType           | Edm Object passed should have the options selected. |
      | CompAuth | MissingRegAddress        | Registered address is required for an Organisation  |
-     | CompAuth | MissingStreet            | Registration Address Street  is required            |
+     | CompAuth | MissingStreet            | (accountid,defra_uniquereference)            |
      | CompAuth | MissingBuildingNameAndNo | Registration Address BuildingNumber orBuildingName is required  |
      | CompAuth | MissingCountry           | Registration Address Country is required  |
 

@@ -8,7 +8,7 @@ Acceptance Criteria:
 The D365 WebAPI Create Contact Actions can be called using the Microsoft provided guidelines
 
   #1
-  @api2-Done @smoke-Test @SmokeContact
+  @api2-Done @smoke-Test @SmokeContact1
   Scenario Outline: Creating a UK - <ContactType> - Contact-type with <ValidationType>
     # Given I am a Web API user
     When I create a new <ContactType> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
@@ -38,8 +38,8 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
       | Citizen     | InvalidEmailAddr2         | Invalid email address |
       | Citizen     | MissingCorAddress         | Correspondence address is required for a Contact                 |
       | Citizen     | MissingBuildNameNo        | Correspondence Address BuildingNumber orBuildingName is required |
-    | Citizen     | MissingStreet             | Correspondence Address Street  is required         |
-      | Citizen     | MissingPostCode           | Correspondence Address MissingPostCode is required |
+    | Citizen     | MissingStreet             |  (contactid,defra_uniquereference)        |
+      | Citizen     | MissingPostCode           | Correspondence address is required for a Contact |
       | Citizen     | MissingCountry            | Correspondence Address Country is required         |
       | Citizen     | ContactMissingTnCDate     | DateTime is less than minumum value supported by CrmDateTime. |
       | Citizen     | ContactInvalidTnCDate     | DateTime is less than minumum value supported by CrmDateTime. |
@@ -50,7 +50,7 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
 
 
   #2
-  @api2-Done @smoke-Test
+  @api2-Done @smoke-Test @SmokeContact1
   Scenario Outline: Creating a UK - <ContactType> - Contact-type with <ValidationType>
     # Given I am a Web API user
     When I create a new <ContactType> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
@@ -64,11 +64,11 @@ The D365 WebAPI Create Contact Actions can be called using the Microsoft provide
       | Non_Citizen | MissingLastName           | LastName is a required field                                         |
       | Non_Citizen | DuplicateEmailAddr        | A record that has the attribute values Principal Email Address already exists. |
       | Non_Citizen | InvalidEmailAddr2         | Invalid email address             |
-      | Non_Citizen | MissingCorAddress         | (contactid,defra_uniquereference) |
-      | Non_Citizen | MissingBuildNameNo        | (contactid,defra_uniquereference) |
+      | Non_Citizen | MissingCorAddress         | Correspondence address is required for a Contact |
+      | Non_Citizen | MissingBuildNameNo        | Correspondence address is required for a Contact:Correspondence Address BuildingNumber orBuildingName is required |
       | Non_Citizen | MissingStreet             | (contactid,defra_uniquereference) |
-      # | Non_Citizen | MissingPostCode           | (contactid,defra_uniquereference) |
-      | Non_Citizen | MissingCountry            | (contactid,defra_uniquereference)|
+      | Non_Citizen | MissingPostCode           |Correspondence address is required for a Contact |
+      | Non_Citizen | MissingCountry            | Correspondence Address Country is required|
       | Non_Citizen | ContactMissingTnCDate     | DateTime is less than minumum value supported by CrmDateTime. |
       | Non_Citizen | ContactInvalidTnCDate     | DateTime is less than minumum value supported by CrmDateTime. |
       | Non_Citizen | ContactMissingTnCVersion  | T&C version and date both must have data. |

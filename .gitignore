@@ -1,3 +1,4 @@
 
-node_modules/.bin/_mocha
+node_modules
 configCRM.js
+config.js
