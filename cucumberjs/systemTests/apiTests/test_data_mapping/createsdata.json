@@ -1,4 +1,25 @@
 {
+	"InitialMatch": [
+		{
+			"testidentifier": "B2CObjID",
+			"ValidB2CObjID": "2331ed9b-c51a-47d2-bd41-d41aa79464a8",
+			"MissingB2CObjID":"de4387ba-d479-42fb-8d96-49c92435e927",
+			"NoB2CObjID": "",
+			"SecureDetailsSet":"1f9f1deb-9ed8-4bac-9d66-be0bd6061340",
+			"SecureDetailsNotSet":"1f9f1deb-9ed8-4bac-9d66-be0bd6061341"
+
+		}
+		
+	],
+
+
+	"AuthZ": [
+		{
+			"testidentifier": "ValidB2CObjID",
+			"ValidB2CObjID": "c479a942-635e-4a40-b99a-bbba5c2f7a50",
+			"validServiceID": "8b5214ee-62b6-e811-a954-000d3a29b5de"
+		}
+	],
 	"Contact": [
 		{
 			"testidentifier": "BasicContact",
@@ -8,13 +29,13 @@
 			"Hint": "BasicContacthint123",
 			"isCitizen": true,
 			"title": "1",
-			"firstname": "PratsQA",
-			"middlename": "",
-			"lastname": "D365Rockstar",
+			"firstname": "Test",
+			"middlename": "Kai",
+			"lastname": "Contact",
 			"source": 2,
-			"email": "@yopmailxx.com",
+			"email": "@fishexp.com",
 			"dob": "1982-12-02",
-			"gender": "2",
+			"gender": "1",
 			"telephone": "02089754212",
 			"buildingname": "Horizon House",
 			"buildingnumber": "123",
@@ -32,6 +53,78 @@
 			"cookiespolicyacceptedversion": "1.0",
 			"cookiespolicyacceptedon": "2018-10-17"
 		},
+		{
+			"testidentifier": "ContCorrAddress",
+			"buildingname": "CORR House",
+			"buildingnumber": "101",
+			"street": "CORR Street",
+			"locality": null,
+			"subbuildingname": null,
+			"postcode": "TW6 7YT",
+			"town": "CORR Town",
+			"dependentlocality": null,
+			"country": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)"
+		},
+		{
+			"testidentifier": "ContBusiAddress",
+			"buildingname": "BUSI House",
+			"buildingnumber": "200",
+			"street": "BUSINESS Street",
+			"locality": null,
+			"subbuildingname": null,
+			"postcode": "KT6 78DD",
+			"town": "BUSINESS Town",
+			"dependentlocality": null,
+			"country": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)"
+		},
+		{
+			"testidentifier": "ContBillAddress",
+			"buildingname": "BILL House",
+			"buildingnumber": "300",
+			"street": "BILL Street",
+			"locality": "Northamptonshire",
+			"subbuildingname": "GERMAN SUB",
+			"postcode": "TT6 9ZX",
+			"town": "BILL Town",
+			"dependentlocality": "BILL DEP-LOC",
+			"country": "/defra_countries(F49CF73A-FA9C-E811-A950-000D3A3A2566)"
+		},
+		{
+			"testidentifier": "NonUKContCorrAddress",
+			"buildingname": "FRANCE CORR House",
+			"buildingnumber": "101",
+			"street": "FRANCE CORR Street",
+			"locality": null,
+			"subbuildingname": null,
+			"internationalpostalcode": "11115577",
+			"town": "FRANCE CORR Town",
+			"dependentlocality": null,
+			"country": "/defra_countries(b69bf73a-fa9c-e811-a950-000d3a3a2566)"
+		},
+		{
+			"testidentifier": "NonUKContBusiAddress",
+			"buildingname": "Belgium BUSI House",
+			"buildingnumber": "200",
+			"street": "Belgium BUSINESS Street",
+			"locality": null,
+			"subbuildingname": null,
+			"internationalpostalcode": "26545-555",
+			"town": "Belgium BUSINESS Town",
+			"dependentlocality": null,
+			"country": "/defra_countries(4a9bf73a-fa9c-e811-a950-000d3a3a2566)"
+		},
+		{
+			"testidentifier": "NonUKContBillAddress",
+			"buildingname": "GERM BILL-House",
+			"buildingnumber": "300",
+			"street": "GERM BILL-Street",
+			"locality": "GERMANY",
+			"subbuildingname": "GERMAN SUB",
+			"internationalpostalcode": "335-898-65",
+			"town": "GERM BILL-Town",
+			"dependentlocality": "GERM DEP-LOC",
+			"country": "/defra_countries(c49bf73a-fa9c-e811-a950-000d3a3a2566)"
+		}, 
 		{
 			"testidentifier": "ValidWordandHint",
 			"SecureWord": "Word123",
@@ -104,7 +197,6 @@
 			"testidentifier": "CreateContactMsg",
 			"message": "(contactid,defra_uniquereference)"
 		},
-
 		{
 			"testidentifier": "CreateContactErrMsg",
 			"message": "(contactid,defra_uniquereference)"
@@ -188,7 +280,7 @@
 		},
 		{
 			"testidentifier": "WrogPostcodeTest",
-			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-",	
+			"b2cobjectid": "7b1ad2d0-7946-11e8-8d36-",
 			"postcode": "ZZZZZ"
 		},
 		{
@@ -231,7 +323,7 @@
 			"charityNoNI": "",
 			"charityNoScot": "",
 			"orgCRN": "29325992",
-			"orgEmail": "@test.com",
+			"orgEmail": "@orgfishexp.com",
 			"orgTelephone": "+4421459012",
 			"orgValWithCompaniesHouse": false,
 			"orgAddType": 1,
@@ -309,7 +401,7 @@
 		},
 		{
 			"testidentifier": "MissingOrgNameCheck",
-			"orgName": ""	
+			"orgName": ""
 		},
 		{
 			"testidentifier": "DetailsSoleTraderCheck",
@@ -321,7 +413,7 @@
 			"orgName": "Prince's Trust ",
 			"charityNo": "12456"
 		},
-		{                      
+		{
 			"testidentifier": "CharityOrgNoGreaterThan",
 			"charityNo": "1234567891011"
 		},
@@ -345,23 +437,23 @@
 		{
 			"testidentifier": "MissingOrgType",
 			"orgName": "Missing Org TYPE ",
-			"orgType": ""			
+			"orgType": ""
 		},
 		{
 			"testidentifier": "MissingCRNCheck",
-			"orgCRN": ""			
+			"orgCRN": ""
 		},
 		{
 			"testidentifier": "DuplicateCRNCheck",
-			"orgCRN": "29111422"		
+			"orgCRN": "29111422"
 		},
 		{
 			"testidentifier": "CRNGreaterThanCheck",
-			"orgCRN": "45123569875"		
+			"orgCRN": "45123569875"
 		},
 		{
 			"testidentifier": "CRNLessThanCheck",
-			"orgCRN": "54267"		
+			"orgCRN": "54267"
 		},
 		{
 			"testidentifier": "OrgNameGrt160CharLong",
@@ -379,23 +471,23 @@
 			"orgRegcounty": "",
 			"orgRegtown": "",
 			"orgRegcountry": "",
-			"orgRegpostcode": ""		
+			"orgRegpostcode": ""
 		},
 		{
 			"testidentifier": "MissingStreetCheck",
 			"orgName": "Org Street Address",
-			"orgRegaddstreet": ""	
+			"orgRegaddstreet": ""
 		},
 		{
 			"testidentifier": "Missing_Postcode",
 			"orgName": "Org Missing Postcode",
-			"orgRegpostcode": ""	
+			"orgRegpostcode": ""
 		},
 		{
 			"testidentifier": "MissingBuildingNameAndNo",
 			"orgName": "Org Missing Name and No",
 			"orgRegaddbuildingname": "",
-			"orgRegaddbuildingno": ""	
+			"orgRegaddbuildingno": ""
 		},
 		{
 			"testidentifier": "BasicOrgSoleTrader",
@@ -445,7 +537,7 @@
 			"orgCorpostcode": ""
 		},
 		{
-			"testidentifier": "NoneUKOrg_WithAdd",	
+			"testidentifier": "NoneUKOrg_WithAdd",
 			"orgRegaddbuildingname": "",
 			"orgRegaddbuildingno": "101",
 			"orgRegaddstreet": "Kerpen Strass",

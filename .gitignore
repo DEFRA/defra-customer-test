@@ -1,6 +1,3 @@
-node_modules/
-*.nupkg
-cucumberjs/systemTests/guiTests/reports/**
-reports/
-.vs/
-*.txt
+
+node_modules/.bin/_mocha
+configCRM.js

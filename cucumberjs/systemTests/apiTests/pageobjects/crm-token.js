@@ -3,6 +3,7 @@ const request = require("request");
 const chai = require("chai");
 const configCRM = require("../../../../configCRM").configCRM;
 const fs = require('fs');
+const { url } = require('inspector');
 
 let resp;
 let today = new Date().toLocaleString();
@@ -74,6 +75,151 @@ class ActiveDirectoryAuthService {
     }
 
     //**************USE THIS**********************/
+
+    async certificateApi(ValidationType,StatusMsgCont) {
+        var ValidB2CObjID = this.testdata.getInitialMatch("B2CObjID");
+        var MissingB2CObjID = this.testdata.getInitialMatchMissingB2CID("B2CObjID");
+        var NoB2CObjID = this.testdata.getInitialMatchNoB2CID("B2CObjID");
+        var SecureDetailsSet = this.testdata.getSecureDetailsSet("B2CObjID");
+        var SecureDetailsNotSet = this.testdata.getSecureDetailsNotSet("B2CObjID");
+
+
+
+var url1="";
+        console.log("The VALID B2C ID IS "+ ValidB2CObjID)
+        console.log("MISSING B2C ID "+ MissingB2CObjID)
+        console.log("NO B2C ID "+ NoB2CObjID)
+
+switch (ValidationType)
+{
+case "ValidB2CObjID": 
+    url1 ='https://cus-tst.azure.defra.cloud/api/v1.0/InitialMatch?B2CObjectId='+ValidB2CObjID
+    break;
+case "MissingB2CObjID":
+    url1 ='https://cus-tst.azure.defra.cloud/api/v1.0/InitialMatch?B2CObjectId='+MissingB2CObjID
+    break;
+case "NoB2CObjID":
+    url1 ='https://cus-tst.azure.defra.cloud/api/v1.0/InitialMatch?B2CObjectId='+NoB2CObjID
+    break;
+case "SecureDetailsSet":
+    url1 ='https://cus-tst.azure.defra.cloud/api/v1.0/InitialMatch?B2CObjectId='+SecureDetailsSet
+    break;
+case "SecureDetailsNotSet":
+    url1 ='https://cus-tst.azure.defra.cloud/api/v1.0/InitialMatch?B2CObjectId='+SecureDetailsNotSet
+    break;
+
+ default:break;
+}
+
+
+const options = {
+            method: 'GET',
+            url: url1,
+            pfx: fs.readFileSync('QuantClientCert001a.pfx'),
+            passphrase: 'defra123',
+            headers: {
+                Cookie: 'ARRAffinity=75ddd5225fe95ac7c182c95ddb06572176e41e2582bc2a571de4d3544b0ad899'
+            }
+        };
+        var initializePromise = await this.initialize(options);
+        statusCodeVal = initializePromise.statusCode;
+        console.log("Response Status message: " + initializePromise.statusMessage);
+        var statusCode = initializePromise.statusCode;
+        console.log("");
+        console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+        console.log("TEXT      : " + initializePromise.statusMessage);
+        console.log("BODY" + initializePromise.body);
+
+        if (initializePromise.statusCode === 200 || initializePromise.statusCode === 201) {
+            //let responseData = JSON.parse(initializePromise.body);
+            console.log("");
+            console.log("--- Assertion TEXT: " + StatusMsgCont);
+            console.log("--- Response BODY : " + JSON.stringify(initializePromise.body));
+            console.log("");
+
+            chai.expect(JSON.stringify(initializePromise.body)).contain(StatusMsgCont);
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+
+        }
+        else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
+            console.log('statusCode:' + initializePromise.body);
+            console.log("TEXT: " + initializePromise.statusMessage);
+
+            chai.expect(JSON.stringify(initializePromise.body)).contain(StatusMsgCont);
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+        }
+        else if (error) throw new Error(error);
+
+    }
+
+        //**************USE THIS**********************/
+
+    //----------------------------------API with Initial Match CERTIFICATE ENDS---------------------------------
+
+    //**************USE THIS for AUTHZ certificate**********************/
+
+    async authzcertificateApi(ValidationType1,ValidationType2,StatusMsgCont) {
+        var validb2cObjectID = this.testdata.getAuthZObjID(ValidationType1);
+        var validServiceID = this.testdata.getAuthZServiceID(ValidationType1);
+
+        console.log("WHAT IS IT "+ validb2cObjectID)
+
+        const options = {
+            method: 'GET',
+            url: 'https://cus-tst.azure.defra.cloud/api/v1.0/Authz?ServiceID='+validServiceID+'&B2CObjectId='+validb2cObjectID,
+            pfx: fs.readFileSync('QuantClientCert001a.pfx'),
+            passphrase: 'defra123',
+            headers: {
+                Cookie: 'ARRAffinity=75ddd5225fe95ac7c182c95ddb06572176e41e2582bc2a571de4d3544b0ad899'
+            }
+        };
+        var initializePromise = await this.initialize(options);
+        statusCodeVal = initializePromise.statusCode;
+        console.log("Response Status message: " + initializePromise.statusMessage);
+        var statusCode = initializePromise.statusCode;
+        console.log("");
+        console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+        console.log("TEXT      : " + initializePromise.statusMessage);
+        console.log("BODY" + initializePromise.body);
+
+        if (initializePromise.statusCode === 200 || initializePromise.statusCode === 201) {
+            //let responseData = JSON.parse(initializePromise.body);
+            console.log("");
+            console.log("--- Assertion TEXT: " + StatusMsgCont);
+            console.log("--- Response BODY : " + JSON.stringify(initializePromise.body));
+            console.log("");
+
+            chai.expect(JSON.stringify(initializePromise.body)).contain(StatusMsgCont);
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+
+        }
+        else if (initializePromise.statusCode !== 200 || initializePromise.statusCode !== 201) {
+            console.log('statusCode:' + initializePromise.body.message);
+            console.log("TEXT: " + initializePromise.statusMessage);
+
+            chai.expect(JSON.stringify(initializePromise.body.message)).contain(StatusMsgCont);
+
+            fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
+                if (err) throw err;
+            });
+        }
+        else if (error) throw new Error(error);
+
+    }
+
+    
+    //----------------------------------API with AUTHZ CERTIFICATE ENDS---------------------------------
+
+
     async requestCreateContact(token, contacttype, validationtype, statusMsg) {
         // get data from createcontact.json using test-data.js
         // get me the B2CObjID for BasicContactTest testIdentifier from createcontact.json
@@ -81,7 +227,6 @@ class ActiveDirectoryAuthService {
         var ggcredentialID = this.testdata.getGGcredentialID("BasicContact");
         var SecureWord = this.testdata.getSecureWord("BasicContact");
         var Hint = this.testdata.getHint("BasicContact");
-
         var isCitizen = this.testdata.getIsCitizen("BasicContact");
         var title = this.testdata.getTitle("BasicContact");
         var firstName = this.testdata.getFirstName("BasicContact");
@@ -92,6 +237,7 @@ class ActiveDirectoryAuthService {
         var gender = this.testdata.getGender("BasicContact");
         var telephone = this.testdata.getTelephone("BasicContact");
         var email = this.testdata.getEmail("BasicContact");
+        // Contact Basic Address
         var buildingName = this.testdata.getBuildingName("BasicContact");
         var buildingNumber = this.testdata.getBuildingNumber("BasicContact");
         var street = this.testdata.getStreet("BasicContact");
@@ -99,6 +245,55 @@ class ActiveDirectoryAuthService {
         var town = this.testdata.getTown("BasicContact");
         var country = this.testdata.getCountry("BasicContact");
         var postcode = this.testdata.getPostcode("BasicContact");
+        // Contact Correspondence Address
+        var contcorrbuildingName = this.testdata.getBuildingName("ContCorrAddress");
+        var contcorrbuildingNumber = this.testdata.getBuildingNumber("ContCorrAddress");
+        var contcorrstreet = this.testdata.getStreet("ContCorrAddress");
+        var contcorrlocality = this.testdata.getLocality("ContCorrAddress");
+        var contcorrtown = this.testdata.getTown("ContCorrAddress");
+        var contcorrcountry = this.testdata.getCountry("ContCorrAddress");
+        var contcorrpostcode = this.testdata.getPostcode("ContCorrAddress");
+        // Contact Business Address
+        var contbusinessbuildingName = this.testdata.getBuildingName("ContBusiAddress");
+        var contbusinessbuildingNumber = this.testdata.getBuildingNumber("ContBusiAddress");
+        var contbusinessstreet = this.testdata.getStreet("ContBusiAddress");
+        var contbusinesslocality = this.testdata.getLocality("ContBusiAddress");
+        var contbusinesstown = this.testdata.getTown("ContBusiAddress");
+        var contbusinesscountry = this.testdata.getCountry("ContBusiAddress");
+        var contbusinesspostcode = this.testdata.getPostcode("ContBusiAddress");
+        // Contact Billing Address
+        var contbillbuildingName = this.testdata.getBuildingName("ContBillAddress");
+        var contbillbuildingNumber = this.testdata.getBuildingNumber("ContBillAddress");
+        var contbillstreet = this.testdata.getStreet("ContBillAddress");
+        var contbilllocality = this.testdata.getLocality("ContBillAddress");
+        var contbilltown = this.testdata.getTown("ContBillAddress");
+        var contbillcountry = this.testdata.getCountry("ContBillAddress");
+        var contbillpostcode = this.testdata.getPostcode("ContBillAddress");
+          // NoneUK Contact Correspondence Address
+          var nonukcontcorrbuildingName = this.testdata.getBuildingName("NonUKContCorrAddress");
+          var nonukcontcorrbuildingNumber = this.testdata.getBuildingNumber("NonUKContCorrAddress");
+          var nonukcontcorrstreet = this.testdata.getStreet("NonUKContCorrAddress");
+          var nonukcontcorrlocality = this.testdata.getLocality("NonUKContCorrAddress");
+          var nonukcontcorrtown = this.testdata.getTown("NonUKContCorrAddress");
+          var nonukcontcorrcountry = this.testdata.getCountry("NonUKContCorrAddress");
+          var nonukcontintercorpostcode = this.testdata.getInternationalPostcode("NonUKContCorrAddress");
+          // NoneUK Contact Business Address
+          var nonukcontbusinessbuildingName = this.testdata.getBuildingName("NonUKContBusiAddress");
+          var nonukcontbusinessbuildingNumber = this.testdata.getBuildingNumber("NonUKContBusiAddress");
+          var nonukcontbusinessstreet = this.testdata.getStreet("NonUKContBusiAddress");
+          var nonukcontbusinesslocality = this.testdata.getLocality("NonUKContBusiAddress");
+          var nonukcontbusinesstown = this.testdata.getTown("NonUKContBusiAddress");
+          var nonukcontbusinesscountry = this.testdata.getCountry("NonUKContBusiAddress");
+          var nonukcontinterBusinesspostcode = this.testdata.getInternationalPostcode("NonUKContBusiAddress");
+          // NoneUK Contact Billing Address
+          var nonukcontbillbuildingName = this.testdata.getBuildingName("NonUKContBillAddress");
+          var nonukcontbillbuildingNumber = this.testdata.getBuildingNumber("NonUKContBillAddress");
+          var nonukcontbillstreet = this.testdata.getStreet("NonUKContBillAddress");
+          var nonukcontbilllocality = this.testdata.getLocality("NonUKContBillAddress");
+          var nonukcontbilltown = this.testdata.getTown("NonUKContBillAddress");
+          var nonukcontbillcountry = this.testdata.getCountry("NonUKContBillAddress");
+          var nonukcontinterbillpostcode = this.testdata.getInternationalPostcode("NonUKContBillAddress");
+        // Ploicy and Terms & Conditions
         var tacsacceptedversion = this.testdata.getTacsacceptedversion("BasicContact");
         var tacsacceptedon = this.testdata.getTacsacceptedone("BasicContact")
         var privacyPolicyVersio  = this.testdata.getPrivacypolicyacceptedversion("BasicContact");
@@ -129,12 +324,19 @@ class ActiveDirectoryAuthService {
             isCitizen = this.testdata.getIsCitizen("NonCitizenContact");
             console.log("--- isCitizen:        " + isCitizen);
         }
+     
+        var coruprn = Math.floor(100000000000 + Math.random() * 900000000000).toString().slice(0,12);
+        var busiuprn= Math.floor(100000000000 + Math.random() * 900000000000).toString().slice(0,12);
+        var billuprn= Math.floor(100000000000 + Math.random() * 900000000000).toString().slice(0,12);
+        // console.log("**** Correspondence address uprn = " + coruprn);
+        // console.log("**** Business address uprn       = " + busiuprn);
+        // console.log("**** Billing address uprn       = " + billuprn);
 
         var b2cObject = b2cObjectID + mixMix + "-11e8-" + postFix;
         console.log("--- b2cObject:        " + b2cObject);
 
         var contEmail = this.testdata.getEmail("BasicContact");
-        email = (Math.random().toString().slice(2,5)) + "admin" + (Math.random().toString().slice(2,5)) + contEmail;
+        email = "sysTest"+(Math.random().toString().slice(2,5)) + "MMO" + (Math.random().toString().slice(2,5)) + contEmail;
             console.log("--- email-Address:    " + email);
 
         var ggCredentials = ggcredentialID + Math.random().toString().slice(2,5);
@@ -146,10 +348,40 @@ class ActiveDirectoryAuthService {
                 console.log("---  TESTING Creating a BASIC - " + contacttype + " - Contact ---");
                 console.log("");
                 // b2cObject = b2cObjectID + postFix;
-                firstName = firstName + Math.random().toString().slice(2,5);
+               // firstName = firstName + Math.random().toString().slice(2,5);
                 lastName = lastName + Math.random().toString().slice(2,5); 
                 console.log("--- firstName: " + firstName);   
                 console.log("--- lastName: " + lastName);   
+                // console.log("--- b2cObject: " + b2cObject);
+                break;
+            case "UKCorAdd_OthersUKAddresses":
+                console.log("---  TESTING Creating a BASIC - " + contacttype + " - Contact with 2 Addresses ---");
+                console.log("");
+                // b2cObject = b2cObjectID + postFix;
+                // firstName = firstName + Math.random().toString().slice(2,5);
+                lastName = lastName + Math.random().toString().slice(2,5); 
+                console.log("--- firstName: " + firstName);   
+                console.log("--- lastName: " + lastName);   
+                // console.log("--- b2cObject: " + b2cObject);
+                break;
+            case "NonUKCor_OthersUKAddresses":
+                console.log("---  TESTING Creating a BASIC - " + contacttype + " - Contact with 2 Addresses ---");
+                console.log("");
+                // b2cObject = b2cObjectID + postFix;
+                // firstName = firstName + Math.random().toString().slice(2, 5);
+                lastName = lastName + Math.random().toString().slice(2, 5);
+                console.log("--- firstName: " + firstName);
+                console.log("--- lastName: " + lastName);
+                // console.log("--- b2cObject: " + b2cObject);
+                break;
+            case "NonUKCor_NonUKOtherAddresses":
+                console.log("---  TESTING Creating a BASIC - " + contacttype + " - Contact with 2 Addresses ---");
+                console.log("");
+                // b2cObject = b2cObjectID + postFix;
+                // firstName = firstName + Math.random().toString().slice(2, 5);
+                lastName = lastName + Math.random().toString().slice(2, 5);
+                console.log("--- firstName: " + firstName);
+                console.log("--- lastName: " + lastName);
                 // console.log("--- b2cObject: " + b2cObject);
                 break;
             case "BasicContactCitizen":
@@ -176,133 +408,131 @@ class ActiveDirectoryAuthService {
                 console.log("--- Contact LastName: " + lastName);                
                 break;
             case "ValidWordandHint":
-                    console.log("---  TESTING Creating a " + contacttype + " Contact with Valid Secure Word and Hint ---");
-                    // b2cObject = b2cObjectID + postFix;
-                    SecureWord = this.testdata.getSecureWord("ValidWordandHint");
-                    Hint = this.testdata.getHint("ValidWordandHint");
+                console.log("---  TESTING Creating a " + contacttype + " Contact with Valid Secure Word and Hint ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("ValidWordandHint");
+                Hint = this.testdata.getHint("ValidWordandHint");
 
-                    console.log("--- Contact Secure Word ValidWord: " + SecureWord);                
-                    console.log("--- Contact HINT ValidHint: " + Hint);                
+                console.log("--- Contact Secure Word ValidWord: " + SecureWord);
+                console.log("--- Contact HINT ValidHint: " + Hint);
                     break;
             case "ValidWord6CharHint100Char":
-                        console.log("---  TESTING Creating a " + contacttype + " Contact with Valid Word6 Char and Hint 100Char ---");
-                        // b2cObject = b2cObjectID + postFix;
-                        SecureWord = this.testdata.getSecureWord("ValidWord6CharHint100Char");
-                        Hint = this.testdata.getHint("ValidWord6CharHint100Char");
-    
-                        console.log("--- Contact Secure Word ValidWord6Char: " + SecureWord);                
-                        console.log("--- Contact HINT ValidHint100Char: " + Hint);                
-                        break;
+                console.log("---  TESTING Creating a " + contacttype + " Contact with Valid Word6 Char and Hint 100Char ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("ValidWord6CharHint100Char");
+                Hint = this.testdata.getHint("ValidWord6CharHint100Char");
+
+                console.log("--- Contact Secure Word ValidWord6Char: " + SecureWord);
+                console.log("--- Contact HINT ValidHint100Char: " + Hint);
+                break;
             case "BlankWordandHint":
-                            console.log("---  TESTING Creating a " + contacttype + " Contact with BlankWordandHint ---");
-                            // b2cObject = b2cObjectID + postFix;
-                            SecureWord = this.testdata.getSecureWord("BlankWordandHint");
-                            Hint = this.testdata.getHint("BlankWordandHint");
-        
-                            console.log("--- Contact Secure Word Blank: " + SecureWord);                
-                            console.log("--- Contact HINT Blank: " + Hint);                
+                console.log("---  TESTING Creating a " + contacttype + " Contact with BlankWordandHint ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("BlankWordandHint");
+                Hint = this.testdata.getHint("BlankWordandHint");
+
+                console.log("--- Contact Secure Word Blank: " + SecureWord);
+                console.log("--- Contact HINT Blank: " + Hint);
                             break;
             case "HintOnly":
-                                console.log("---  TESTING Creating a " + contacttype + " Contact with Hint Only ---");
-                                // b2cObject = b2cObjectID + postFix;
-                                SecureWord = this.testdata.getSecureWord("HintOnly");
-                                Hint = this.testdata.getHint("HintOnly");
-            
-                                console.log("--- Contact Secure Word Attribute is missing: " + SecureWord);                
-                                console.log("--- Contact HINT Blank: " + Hint);                
-                                break;
+                console.log("---  TESTING Creating a " + contacttype + " Contact with Hint Only ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("HintOnly");
+                Hint = this.testdata.getHint("HintOnly");
+
+                console.log("--- Contact Secure Word Attribute is missing: " + SecureWord);
+                console.log("--- Contact HINT Blank: " + Hint);
+                break;
             case "WordOnly":
-                                    console.log("---  TESTING Creating a " + contacttype + " Contact with Word Only ---");
-                                    // b2cObject = b2cObjectID + postFix;
-                                    SecureWord = this.testdata.getSecureWord("WordOnly");
-                                    Hint = this.testdata.getHint("WordOnly");
-                
-                                    console.log("--- Contact Secure Word : " + SecureWord);                
-                                    console.log("--- Contact HINT attribute is missing: " + Hint);                
-                                    break;    
-             case "HintBlank":
-                                        console.log("---  TESTING Creating a " + contacttype + " Contact with BLANK Hint ---");
-                                        // b2cObject = b2cObjectID + postFix;
-                                        SecureWord = this.testdata.getSecureWord("HintBlank");
-                                        Hint = this.testdata.getHint("HintBlank");
-                    
-                                        console.log("--- Contact Secure Word : " + SecureWord);                
-                                        console.log("--- Contact HINT is BLANK: " + Hint);                
-                                        break;   
+                console.log("---  TESTING Creating a " + contacttype + " Contact with Word Only ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("WordOnly");
+                Hint = this.testdata.getHint("WordOnly");
+
+                console.log("--- Contact Secure Word : " + SecureWord);
+                console.log("--- Contact HINT attribute is missing: " + Hint);
+                                    break;
+            case "HintBlank":
+                console.log("---  TESTING Creating a " + contacttype + " Contact with BLANK Hint ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("HintBlank");
+                Hint = this.testdata.getHint("HintBlank");
+
+                console.log("--- Contact Secure Word : " + SecureWord);
+                console.log("--- Contact HINT is BLANK: " + Hint);
+                break;
             case "WordBlank":
-                                            console.log("---  TESTING Creating a " + contacttype + " Contact with BLANK Word ---");
-                                            // b2cObject = b2cObjectID + postFix;
-                                            SecureWord = this.testdata.getSecureWord("WordBlank");
-                                            Hint = this.testdata.getHint("WordBlank");
-                        
-                                            console.log("--- Contact Secure Word is BLANK : " + SecureWord);                
-                                            console.log("--- Contact HINT is : " + Hint);                
+                console.log("---  TESTING Creating a " + contacttype + " Contact with BLANK Word ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("WordBlank");
+                Hint = this.testdata.getHint("WordBlank");
+
+                console.log("--- Contact Secure Word is BLANK : " + SecureWord);
+                console.log("--- Contact HINT is : " + Hint);
                                             break;
             case "WordLessthan6Char":
-                                                console.log("---  TESTING Creating a " + contacttype + " Contact with WordLessthan6Char Word ---");
-                                                // b2cObject = b2cObjectID + postFix;
-                                                SecureWord = this.testdata.getSecureWord("WordLessthan6Char");
-                                                Hint = this.testdata.getHint("WordLessthan6Char");
-                            
-                                                console.log("--- Contact Secure Word is WordLessthan6Char : " + SecureWord);                
-                                                console.log("--- Contact HINT is : " + Hint);                
-                                                break;
+                console.log("---  TESTING Creating a " + contacttype + " Contact with WordLessthan6Char Word ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("WordLessthan6Char");
+                Hint = this.testdata.getHint("WordLessthan6Char");
+
+                console.log("--- Contact Secure Word is WordLessthan6Char : " + SecureWord);
+                console.log("--- Contact HINT is : " + Hint);
+                break;
             case "WordMorethan12Char":
-                                                    console.log("---  TESTING Creating a " + contacttype + " Contact with WordMorethan12Char Word ---");
-                                                    // b2cObject = b2cObjectID + postFix;
-                                                    SecureWord = this.testdata.getSecureWord("WordMorethan12Char");
-                                                    Hint = this.testdata.getHint("WordMorethan12Char");
-                                
-                                                    console.log("--- Contact Secure Word is WordMorethan12Char : " + SecureWord);                
-                                                    console.log("--- Contact HINT is : " + Hint);                
+                console.log("---  TESTING Creating a " + contacttype + " Contact with WordMorethan12Char Word ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("WordMorethan12Char");
+                Hint = this.testdata.getHint("WordMorethan12Char");
+
+                console.log("--- Contact Secure Word is WordMorethan12Char : " + SecureWord);
+                console.log("--- Contact HINT is : " + Hint);
                                                     break;
             case "WordSpecialChar":
-                                                        console.log("---  TESTING Creating a " + contacttype + " Contact with WordSpecialChar Word ---");
-                                                        // b2cObject = b2cObjectID + postFix;
-                                                        SecureWord = this.testdata.getSecureWord("WordSpecialChar");
-                                                        Hint = this.testdata.getHint("WordSpecialChar");
-                                    
-                                                        console.log("--- Contact Secure Word is WordSpecialChar : " + SecureWord);                
-                                                        console.log("--- Contact HINT is : " + Hint);                
-                                                        break;  
+                console.log("---  TESTING Creating a " + contacttype + " Contact with WordSpecialChar Word ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("WordSpecialChar");
+                Hint = this.testdata.getHint("WordSpecialChar");
+
+                console.log("--- Contact Secure Word is WordSpecialChar : " + SecureWord);
+                console.log("--- Contact HINT is : " + Hint);
+                break;
             case "WordInvalidRangeandSpecialChar":
-                                                            console.log("---  TESTING Creating a " + contacttype + " Contact with WordInvalidRangeandSpecialChar Word ---");
-                                                            // b2cObject = b2cObjectID + postFix;
-                                                            SecureWord = this.testdata.getSecureWord("WordInvalidRangeandSpecialChar");
-                                                            Hint = this.testdata.getHint("WordInvalidRangeandSpecialChar");
-                                        
-                                                            console.log("--- Contact Secure Word is WordInvalidRangeandSpecialChar  : " + SecureWord);                
-                                                            console.log("--- Contact HINT is : " + Hint);                
-                                                            break;  
+                console.log("---  TESTING Creating a " + contacttype + " Contact with WordInvalidRangeandSpecialChar Word ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("WordInvalidRangeandSpecialChar");
+                Hint = this.testdata.getHint("WordInvalidRangeandSpecialChar");
+
+                console.log("--- Contact Secure Word is WordInvalidRangeandSpecialChar  : " + SecureWord);
+                console.log("--- Contact HINT is : " + Hint);
+                                                            break;
             case "HintLessthan100CharandSplChar":
-                                                                console.log("---  TESTING Creating a " + contacttype + " Contact with HintLessthan100CharandSplChar HINT ---");
-                                                                // b2cObject = b2cObjectID + postFix;
-                                                                SecureWord = this.testdata.getSecureWord("HintLessthan100CharandSplChar");
-                                                                Hint = this.testdata.getHint("HintLessthan100CharandSplChar");
-                                            
-                                                                console.log("--- Contact Secure Word is   : " + SecureWord);                
-                                                                console.log("--- Contact HINT is HintLessthan100CharandSplChar : " + Hint);                
-                                                                break;  
+                console.log("---  TESTING Creating a " + contacttype + " Contact with HintLessthan100CharandSplChar HINT ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("HintLessthan100CharandSplChar");
+                Hint = this.testdata.getHint("HintLessthan100CharandSplChar");
+
+                console.log("--- Contact Secure Word is   : " + SecureWord);
+                console.log("--- Contact HINT is HintLessthan100CharandSplChar : " + Hint);
+                break;
             case "HintMorethan100Char":
-                                                                    console.log("---  TESTING Creating a " + contacttype + " Contact with HintMorethan100Char HINT ---");
-                                                                    // b2cObject = b2cObjectID + postFix;
-                                                                    SecureWord = this.testdata.getSecureWord("HintMorethan100Char");
-                                                                    Hint = this.testdata.getHint("HintMorethan100Char");
-                                                
-                                                                    console.log("--- Contact Secure Word is   : " + SecureWord);                
-                                                                    console.log("--- Contact HINT is HintMorethan100Char : " + Hint);                
-                                                                    break;      
-                                                                    
+                console.log("---  TESTING Creating a " + contacttype + " Contact with HintMorethan100Char HINT ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("HintMorethan100Char");
+                Hint = this.testdata.getHint("HintMorethan100Char");
+
+                console.log("--- Contact Secure Word is   : " + SecureWord);
+                console.log("--- Contact HINT is HintMorethan100Char : " + Hint);
+                break;                                                                        
             case "HintSplCharandMorethan100Char":
-                                                                        console.log("---  TESTING Creating a " + contacttype + " Contact with HintSplCharandMorethan100Char HINT ---");
-                                                                        // b2cObject = b2cObjectID + postFix;
-                                                                        SecureWord = this.testdata.getSecureWord("HintSplCharandMorethan100Char");
-                                                                        Hint = this.testdata.getHint("HintSplCharandMorethan100Char");
-                                                    
-                                                                        console.log("--- Contact Secure Word is   : " + SecureWord);                
-                                                                        console.log("--- Contact HINT is HintSplCharandMorethan100Char : " + Hint);                
-                                                                        break;  
-                                                
+                console.log("---  TESTING Creating a " + contacttype + " Contact with HintSplCharandMorethan100Char HINT ---");
+                // b2cObject = b2cObjectID + postFix;
+                SecureWord = this.testdata.getSecureWord("HintSplCharandMorethan100Char");
+                Hint = this.testdata.getHint("HintSplCharandMorethan100Char");
+
+                console.log("--- Contact Secure Word is   : " + SecureWord);
+                console.log("--- Contact HINT is HintSplCharandMorethan100Char : " + Hint);
+                break;
             case "DuplicateB2cObjectId":
                 console.log("---  TESTING creating a " + contacttype + "  Contact with Duplicate B2CObjectID ---");
                 b2cObject = this.testdata.getB2CObjectID("DuplicateB2cObjectId");
@@ -333,20 +563,28 @@ class ActiveDirectoryAuthService {
             case "MissingCorAddress":
                 console.log("--- TESTING creating a new " + contacttype + " Contact with MISSING Corresponding Address ---");            
                 // b2cObject = b2cObjectID + postFix;
-                buildingName = this.testdata.getBuildingName("ContactMissingCorAddress");
-                buildingNumber = this.testdata.getBuildingNumber("ContactMissingCorAddress");
-                street = this.testdata.getStreet("ContactMissingCorAddress");
-                country = this.testdata.getCountry("ContactMissingCorAddress");
-                postcode = this.testdata.getPostcode("ContactMissingCorAddress");
+                // buildingName = this.testdata.getBuildingName("ContactMissingCorAddress");
+                // buildingNumber = this.testdata.getBuildingNumber("ContactMissingCorAddress");
+                // street = this.testdata.getStreet("ContactMissingCorAddress");
+                // country = this.testdata.getCountry("ContactMissingCorAddress");
+                // postcode = this.testdata.getPostcode("ContactMissingCorAddress");
+                contcorrbuildingName = this.testdata.getBuildingName("ContactMissingCorAddress");
+                contcorrbuildingNumber = this.testdata.getBuildingNumber("ContactMissingCorAddress");
+                contcorrstreet = this.testdata.getStreet("ContactMissingCorAddress");
+                contcorrcountry = this.testdata.getCountry("ContactMissingCorAddress");
+                contcorrpostcode = this.testdata.getPostcode("ContactMissingCorAddress");
                 console.log("");
                 break;
             case "MissingBuildNameNo":
                 console.log("--- TESTING creating a " + contacttype + " Contact with MISSING Building_Name OR Number fields ---");            
                 // b2cObject = b2cObjectID + postFix;     
-                buildingName = this.testdata.getBuildingName("ContactMissingCorAddress");
-                buildingNumber = this.testdata.getBuildingNumber("ContactMissingCorAddress");
-                console.log("buildingName: " + buildingName);
-                console.log("buildingNumber: " + buildingNumber);
+                // buildingName = this.testdata.getBuildingName("ContactMissingCorAddress");
+                // buildingNumber = this.testdata.getBuildingNumber("ContactMissingCorAddress");
+
+                contcorrbuildingName = this.testdata.getBuildingName("ContactMissingCorAddress");
+                contcorrbuildingNumber = this.testdata.getBuildingNumber("ContactMissingCorAddress");
+                console.log("buildingName: " + contcorrbuildingName);
+                console.log("buildingNumber: " + contcorrbuildingNumber);
                 console.log("");
                 break;
             case "MissingStreet":
@@ -365,8 +603,8 @@ class ActiveDirectoryAuthService {
             case "MissingPostCode":
                 console.log("--- TESTING creating a " + contacttype + " Contact with MISSING Post-code field ---");            
                 // b2cObject = b2cObjectID + postFix;     
-                postcode = this.testdata.getPostcode("ContactMissingCorAddress");
-                console.log("postcode: " + postcode);
+                contcorrpostcode = this.testdata.getPostcode("ContactMissingCorAddress");
+                console.log("postcode: " + contcorrpostcode);
                 break;
             case "ContactMissingTnCDate":
                 console.log("--- TESTING creating a " + contacttype + "  Contact with MISSING TandC Date ---");
@@ -415,46 +653,173 @@ class ActiveDirectoryAuthService {
 
         var bodyObject;
 
-        if(validationtype == "MissingCountry"){
-            bodyObject = { 
-                'defra_title': title, 'defra_b2cobjectid': b2cObject, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
-                'defra_cmcreateascitizen': isCitizen,
-                'defra_cmcreationsource': source,
-                'defra_addrcorbuildingname': buildingName,
-                'defra_addrcorbuildingnumber': buildingNumber,
-                'defra_addrcorstreet': street,
-                'defra_addrcorlocality': locality,
-                'defra_addrcortown': town,
-                'defra_addrcorpostcode': postcode,
-                'defra_tacsacceptedversion': tacsacceptedversion,
-                'defra_tacsacceptedon': tacsacceptedon,
-                'defra_cookiespolicyacceptedversion': cookiesVersion,
-                'defra_cookiespolicyacceptedon': cookiesDate,
-                'defra_privacypolicyacceptedversion': privacyPolicyVersio,
-                'defra_privacypolicyacceptedon': privacyPolicyDate      
+        switch(validationtype){
+            case "MissingCountry":
+                bodyObject = { 
+                    'defra_title': title, 'defra_b2cobjectid': b2cObject, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
+                    'defra_cmcreateascitizen': isCitizen,
+                    'defra_cmcreationsource': source,
+                    'defra_addrcorbuildingname': buildingName,
+                    'defra_addrcorbuildingnumber': buildingNumber,
+                    'defra_addrcorstreet': street,
+                    'defra_addrcorlocality': locality,
+                    'defra_addrcortown': town,
+                    'defra_addrcorpostcode': postcode,
+                    'defra_tacsacceptedversion': tacsacceptedversion,
+                    'defra_tacsacceptedon': tacsacceptedon,
+                    'defra_cookiespolicyacceptedversion': cookiesVersion,
+                    'defra_cookiespolicyacceptedon': cookiesDate,
+                    'defra_privacypolicyacceptedversion': privacyPolicyVersio,
+                    'defra_privacypolicyacceptedon': privacyPolicyDate      
+                    }
+            break;
+            case "UKCorAdd_OthersUKAddresses":
+                bodyObject = { 
+                    'defra_title': title, 'defra_b2cobjectid': b2cObject, 'defra_ggcredentialid': ggCredentials, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
+                    'defra_cmcreateascitizen': isCitizen,
+                    'defra_securityword': SecureWord,
+                    'defra_securityhint': Hint,
+                    'defra_cmcreationsource': source, 
+                    // Correspondence Address
+                    'defra_addrcoruprn': coruprn,
+                    'defra_addrcorbuildingname': contcorrbuildingName,
+                    'defra_addrcorbuildingnumber': contcorrbuildingNumber,
+                    'defra_addrcorstreet': contcorrstreet,
+                    'defra_addrcorlocality': contcorrlocality,
+                    'defra_addrcortown': contcorrtown,
+                    'defra_addrcorcountry@odata.bind': contcorrcountry,
+                    'defra_addrcorpostcode': contcorrpostcode,
+                    // Business Address
+                    'defra_addrbusacuprn': busiuprn,
+                    'defra_addrbusacbuildingname': contbusinessbuildingName,
+                    'defra_addrbusacbuildingnumber': contbusinessbuildingNumber,
+                    'defra_addrbusacstreet': contbusinessstreet,
+                    'defra_addrbusaclocality': contbusinesslocality,
+                    'defra_addrbusactown': contbusinesstown,
+                    'defra_addrbusaccountry@odata.bind': contbusinesscountry,
+                    'defra_addrbusacpostcode': contbusinesspostcode,
+                    // Billing Address
+                    // 'defra_addrbilluprn': billuprn,
+                    // 'defra_addrbillbuildingname': contbillbuildingName,
+                    // 'defra_addrbillbuildingnumber': contbillbuildingNumber,
+                    // 'defra_addrbillstreet': contbillstreet,
+                    // 'defra_addrbilllocality': contbilllocality,
+                    // 'defra_addrbilltown': contbilltown,
+                    // 'defra_addrbillcountry@odata.bind': contbillcountry,
+                    // 'defra_addrbillpostcode': contbillpostcode,
+                    // Cookies, Policy and T&Condition
+                    'defra_tacsacceptedversion': tacsacceptedversion,
+                    'defra_tacsacceptedon': tacsacceptedon,
+                    'defra_cookiespolicyacceptedversion': cookiesVersion,
+                    'defra_cookiespolicyacceptedon': cookiesDate,
+                    'defra_privacypolicyacceptedversion': privacyPolicyVersio,
+                    'defra_privacypolicyacceptedon': privacyPolicyDate      
+                    }
+                break;
+            case "NonUKCor_OthersUKAddresses":
+                    bodyObject = { 
+                        'defra_title': title, 'defra_b2cobjectid': b2cObject, 'defra_ggcredentialid': ggCredentials, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
+                        'defra_cmcreateascitizen': isCitizen,
+                        'defra_securityword': SecureWord,
+                        'defra_securityhint': Hint,
+                        'defra_cmcreationsource': source, 
+                         //NoneUK Correspondence Address
+                        'defra_addrcorbuildingname': nonukcontcorrbuildingName,
+                        'defra_addrcorbuildingnumber': nonukcontcorrbuildingNumber,
+                        'defra_addrcorstreet': nonukcontcorrstreet,
+                        'defra_addrcorlocality': nonukcontcorrlocality,
+                        'defra_addrcortown': nonukcontcorrtown,
+                        'defra_addrcorcountry@odata.bind': nonukcontcorrcountry,
+                        'defra_addrcorinternationalpostalcode': nonukcontintercorpostcode,
+                         //UK Business Address
+                         'defra_addrbusacuprn': busiuprn,
+                         'defra_addrbusacbuildingname': contbusinessbuildingName,
+                         'defra_addrbusacbuildingnumber': contbusinessbuildingNumber,
+                         'defra_addrbusacstreet': contbusinessstreet,
+                         'defra_addrbusaclocality': contbusinesslocality,
+                         'defra_addrbusactown': contbusinesstown,
+                         'defra_addrbusaccountry@odata.bind': contbusinesscountry,
+                         'defra_addrbusacpostcode': contbusinesspostcode,
+                        //NoneUK Billing Address
+                        // 'defra_addrbillbuildingname': nonukcontbillbuildingName,
+                        // 'defra_addrbillbuildingnumber': nonukcontbillbuildingNumber,
+                        // 'defra_addrbillstreet': nonukcontbillstreet,
+                        // 'defra_addrbilllocality': nonukcontbilllocality,
+                        // 'defra_addrbilltown': nonukcontbilltown,
+                        // 'defra_addrbillcountry@odata.bind': nonukcontbillcountry,
+                        // 'defra_addrbillinternationalpostalcode': nonukcontinterbillpostcode,
+                        // Cookies, Policies, T&Conditions
+                        'defra_tacsacceptedversion': tacsacceptedversion,
+                        'defra_tacsacceptedon': tacsacceptedon,
+                        'defra_cookiespolicyacceptedversion': cookiesVersion,
+                        'defra_cookiespolicyacceptedon': cookiesDate,
+                        'defra_privacypolicyacceptedversion': privacyPolicyVersio,
+                        'defra_privacypolicyacceptedon': privacyPolicyDate      
+                        }
+                    break;
+            case "NonUKCor_NonUKOtherAddresses":
+                bodyObject = { 
+                    'defra_title': title, 'defra_b2cobjectid': b2cObject, 'defra_ggcredentialid': ggCredentials, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
+                    'defra_cmcreateascitizen': isCitizen,
+                    'defra_securityword': SecureWord,
+                    'defra_securityhint': Hint,
+                    'defra_cmcreationsource': source, 
+                     //NoneUK Correspondence Address
+                    'defra_addrcorbuildingname': nonukcontcorrbuildingName,
+                    'defra_addrcorbuildingnumber': nonukcontcorrbuildingNumber,
+                    'defra_addrcorstreet': nonukcontcorrstreet,
+                    'defra_addrcorlocality': nonukcontcorrlocality,
+                    'defra_addrcortown': nonukcontcorrtown,
+                    'defra_addrcorcountry@odata.bind': nonukcontcorrcountry,
+                    'defra_addrcorinternationalpostalcode': nonukcontintercorpostcode,
+                     //UK Business Address
+                    //  'defra_addrbusacuprn': busiuprn,
+                    //  'defra_addrbusacbuildingname': contbusinessbuildingName,
+                    //  'defra_addrbusacbuildingnumber': contbusinessbuildingNumber,
+                    //  'defra_addrbusacstreet': contbusinessstreet,
+                    //  'defra_addrbusaclocality': contbusinesslocality,
+                    //  'defra_addrbusactown': contbusinesstown,
+                    //  'defra_addrbusaccountry@odata.bind': contbusinesscountry,
+                    //  'defra_addrbusacpostcode': contbusinesspostcode,
+                    //NoneUK Billing Address
+                    'defra_addrbillbuildingname': nonukcontbillbuildingName,
+                    'defra_addrbillbuildingnumber': nonukcontbillbuildingNumber,
+                    'defra_addrbillstreet': nonukcontbillstreet,
+                    'defra_addrbilllocality': nonukcontbilllocality,
+                    'defra_addrbilltown': nonukcontbilltown,
+                    'defra_addrbillcountry@odata.bind': nonukcontbillcountry,
+                    'defra_addrbillinternationalpostalcode': nonukcontinterbillpostcode,
+                    //Cookies, Policies, T&Conditions
+                    'defra_tacsacceptedversion': tacsacceptedversion,
+                    'defra_tacsacceptedon': tacsacceptedon,
+                    'defra_cookiespolicyacceptedversion': cookiesVersion,
+                    'defra_cookiespolicyacceptedon': cookiesDate,
+                    'defra_privacypolicyacceptedversion': privacyPolicyVersio,
+                    'defra_privacypolicyacceptedon': privacyPolicyDate      
+                    }
+                break;
+            default:
+                bodyObject = { 
+                    'defra_title': title, 'defra_b2cobjectid': b2cObject, 'defra_ggcredentialid': ggCredentials, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
+                    'defra_cmcreateascitizen': isCitizen,
+                    'defra_securityword': SecureWord,
+                    'defra_securityhint': Hint,
+                    'defra_cmcreationsource': source,
+                    'defra_addrcorbuildingname': contcorrbuildingName,
+                    'defra_addrcorbuildingnumber': contcorrbuildingNumber,
+                    'defra_addrcorstreet': contcorrstreet,
+                    'defra_addrcorlocality': contcorrlocality,
+                    'defra_addrcortown': contcorrtown,
+                    'defra_addrcorcountry@odata.bind': contcorrcountry,
+                    'defra_addrcorpostcode': contcorrpostcode,
+                    'defra_tacsacceptedversion': tacsacceptedversion,
+                    'defra_tacsacceptedon': tacsacceptedon,
+                    'defra_cookiespolicyacceptedversion': cookiesVersion,
+                    'defra_cookiespolicyacceptedon': cookiesDate,
+                    'defra_privacypolicyacceptedversion': privacyPolicyVersio,
+                    'defra_privacypolicyacceptedon': privacyPolicyDate
                 }
-        }
-        else{
-            bodyObject = { 
-                'defra_title': title, 'defra_b2cobjectid': b2cObject, 'defra_ggcredentialid': ggCredentials, 'gendercode': gender, 'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
-                'defra_cmcreateascitizen': isCitizen,
-                'defra_securityword': SecureWord,
-                'defra_securityhint': Hint,
-                'defra_cmcreationsource': source,
-                'defra_addrcorbuildingname': buildingName,
-                'defra_addrcorbuildingnumber': buildingNumber,
-                'defra_addrcorstreet': street,
-                'defra_addrcorlocality': locality,
-                'defra_addrcortown': town,
-                'defra_addrcorcountry@odata.bind': country,
-                'defra_addrcorpostcode': postcode,
-                'defra_tacsacceptedversion': tacsacceptedversion,
-                'defra_tacsacceptedon': tacsacceptedon,
-                'defra_cookiespolicyacceptedversion': cookiesVersion,
-                'defra_cookiespolicyacceptedon': cookiesDate,
-                'defra_privacypolicyacceptedversion': privacyPolicyVersio,
-                'defra_privacypolicyacceptedon': privacyPolicyDate      
-                }
+                break;
         }
 
         //options for api response :- need to change postman token so used random 12 digit in the end
@@ -551,7 +916,7 @@ class ActiveDirectoryAuthService {
         //options for api response :- need to change postman token so used random 12 digit in the end
 
         var orgName = this.testdata.getOrgName("BasicOrgDetails");
-        const orgIsUK = this.testdata.getOrgIsUK("BasicOrgDetails");
+        const orgIsUK  = this.testdata.getOrgIsUK("BasicOrgDetails");
         var orgType = this.testdata.getOrgType("BasicOrgDetails");
         var charityNo = this.testdata.getCharityNo("BasicOrgDetails");
         var orgCRN = this.testdata.getOrgCRN("BasicOrgDetails");
@@ -574,7 +939,9 @@ class ActiveDirectoryAuthService {
         var orgCorcounty = this.testdata.getOrgCorCounty("BasicOrgDetails");
         var orgCortown = this.testdata.getOrgCorTown("BasicOrgDetails");
         var orgCorcountry = this.testdata.getOrgCorCountry("BasicOrgDetails");   
-        var orgCorpostcode = this.testdata.getOrgCorPostcode("BasicOrgDetails");  
+        var orgCorpostcode = this.testdata.getOrgCorPostcode("BasicOrgDetails"); 
+       // var orgParentOrg = this.testdata.getOrgParentOrg("BasicOrgDetails"); 
+  
 
         switch (validationtype) {
 
@@ -584,7 +951,15 @@ class ActiveDirectoryAuthService {
                 orgEmail = Math.random().toString(36) + "@gmail.com";
                 orgCRN = Math.random().toString().slice(2,10);
                 console.log("ORGANISATION CRN:- " + orgCRN);
+                //orgParentOrg = this.testdata.getOrgType("BasicOrg_LTD");
                 break;
+             case "Child_Org":
+                    console.log("--- Creating a ChiLD Organisation ---");
+                    orgParentOrg = this.testdata.getOrgType("BasicOrg_LTD");
+                    console.log("Child Org Name is :- " + orgCRN);
+                    //orgParentOrg = this.testdata.getOrgType("BasicOrg_LTD");
+                    break;
+
             case "BasicOrg_LTD":
                 console.log("--- Creating a Basic LTD-Organisation ---");
                 orgName = orgName + "LTD" + "-" + Math.random().toString(36).substr(2, 5);
@@ -748,6 +1123,7 @@ class ActiveDirectoryAuthService {
                 'defra_addrregcounty': orgRegcounty,
                 'defra_addrregtown': orgRegtown,
                 'defra_addrregcountry@odata.bind': orgRegcountry,
+                //'parentaccountid@odata.bind':orgParentOrg,
                 'defra_addrregpostcode': orgRegpostcode, 
                 'defra_addrcorbuildingname': orgCoraddbuildingname,
                 'defra_addrcorbuildingnumber': orgCoraddbuildingno,
@@ -862,6 +1238,8 @@ class ActiveDirectoryAuthService {
         var orgCortown = this.testdata.getOrgCorTown("BasicOrgDetails");
         var orgCorcountry = this.testdata.getOrgCorCountry("BasicOrgDetails");   
         var orgCorpostcode = this.testdata.getOrgCorPostcode("BasicOrgDetails");   
+        var orgParentOrg = this.testdata.getOrgParentOrg("BasicOrgDetails");   
+
         
         console.log("*** It's Uk org: " + orgIsUK);
 
@@ -888,7 +1266,9 @@ class ActiveDirectoryAuthService {
                 orgEmail = Math.random().toString(36) + "@ltdtest.com";
                 orgCRN = Math.random().toString().slice(2,10);
                 break;
-             case "MissingOrgName":
+
+                
+            case "MissingOrgName":
                 console.log("*** MISSING Organisation Name TEST ***");
                 orgName = this.testdata.getOrgName("MissingOrgNameCheck");
                 var email = this.testdata.getOrgEmail("BasicOrgDetails");
@@ -1014,19 +1394,32 @@ class ActiveDirectoryAuthService {
                 break;
             case "NonUkOrg_NoCRN_Address":         
                 orgName = "NoneUK_Org" + "-" + orgtype + "-" + Math.random().toString(36).substr(2, 5);
+                console.log('orgname'+orgName)
                 orgCRN = this.testdata.getOrgCRN("MissingCRNCheck");
+                console.log('orgCRN'+orgCRN)
                 var email = this.testdata.getOrgEmail("BasicOrgDetails");
                 orgEmail = "NonUK_" + orgtype + (Math.random().toString().slice(2,5)) + email; 
+                console.log('orgEmail'+orgEmail)
                 orgRegaddbuildingname = this.testdata.getOrgRegBuildingName("NoneUKOrg_WithAdd")
+                console.log('orgRegaddbuildingname'+orgRegaddbuildingname)
                 orgRegaddbuildingno  = this.testdata.getOrgRegBuildingNo("NoneUKOrg_WithAdd")
+                console.log('orgRegaddbuildingno'+orgRegaddbuildingno)
                 orgRegcountry = this.testdata.getOrgRegCountry("NoneUKOrg_WithAdd")
-                orgRegaddstreet = this.testdata.getOrgRegStreet ("NoneUKOrg_WithAdd")  
+                console.log('orgRegcountry'+orgRegcountry)
+                orgRegaddstreet = this.testdata.getOrgRegStreet ("NoneUKOrg_WithAdd") 
+                console.log('orgRegaddstreet'+orgRegaddstreet) 
                 orgRegpostcode = this.testdata.getOrgRegPostcode("NoneUKOrg_WithAdd");  
+                console.log('orgRegpostcode'+orgRegpostcode)
                 orgCoraddbuildingname = this.testdata.getOrgCorBuildingName("NoneUKOrg_WithAdd")
+                console.log('orgCoraddbuildingname'+orgCoraddbuildingname)
                 orgCoraddbuildingno  = this.testdata.getOrgCorBuildingNo("NoneUKOrg_WithAdd")
+                console.log('orgCoraddbuildingno'+orgCoraddbuildingno)
                 orgCorcountry = this.testdata.getOrgCorCountry("NoneUKOrg_WithAdd")
+                console.log('orgCorcountry'+orgCorcountry)
                 orgCoraddstreet = this.testdata.getOrgCorStreet ("NoneUKOrg_WithAdd")
-                orgCorpostcode = this.testdata.getOrgRegPostcode("NoneUKOrg_WithAdd");  
+                console.log('orgCoraddstreet'+orgCoraddstreet)
+                orgCorpostcode = this.testdata.getOrgRegPostcode("NoneUKOrg_WithAdd"); 
+                console.log('orgCorpostcode'+orgCorpostcode) 
                 break;
             case "NonUkOrg_CRN_NoAdd":              
                 orgName = orgName + orgtype + "-" + Math.random().toString(36).substr(2, 5) + "-Non-UK";
@@ -1117,6 +1510,8 @@ class ActiveDirectoryAuthService {
                 'defra_addrcorcounty': orgCorcounty,
                 'defra_addrcortown': orgCortown,
                 'defra_addrcorcountry@odata.bind': orgCorcountry,
+                'parentaccountid@odata.bind': orgParentOrg,
+                'defra_hierarchylevel':"910400003",
                 'defra_addrcorpostcode': orgCorpostcode 
             }
         }
@@ -2639,6 +3034,36 @@ class ActiveDirectoryAuthService {
                 "defra_enrolmentstatus": 3,
             };
             break;
+            case "FishExports": 
+            console.log("---  TESTING Handshake to a " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(b8717ec3-66b6-e811-a954-000d3a29b5de)",	
+                "defra_enrolmentstatus": 3,
+            };
+            break;
+            case "PlantsCompleteApproved": 
+            console.log("---  TESTING Handshake for a " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(a4d44b69-6bf2-ea11-a815-000d3ab4653d)",	
+                "defra_enrolmentstatus": 3,
+            };
+            break;
+            case "PlantsPendingorIncompleteEnrolment": 
+            console.log("---  TESTING Handshake to a " + DefraService + " service ---");
+            bodyObject = {
+                "defra_connectiondetail@odata.bind": connectionDetails,
+                "defra_ServiceUser@odata.bind": customerID,		
+                "defra_Organisation@odata.bind": organID,             
+                "defra_service@odata.bind": "/defra_lobservices(a4d44b69-6bf2-ea11-a815-000d3ab4653d)",	
+                "defra_enrolmentstatus": 1,
+            };
+            break;
             case "VMD_Reporing": 
             console.log("---  TESTING Handshake to a " + DefraService + " service ---");
             bodyObject = {
@@ -2839,8 +3264,35 @@ class ActiveDirectoryAuthService {
                 "defra_service@odata.bind": "/defra_lobservices(8b5214ee-62b6-e811-a954-000d3a29b5de)",	
             };
             break;
-        default:
-            console.log("Invalide data TYPE !!");
+            case "FishExports":
+                console.log("---  TESTING ENROLEMENT using FISH EXPORTS 'FishExports Service' AND ServiceRole 'Admin' ---");
+                bodyObject = {
+                    "defra_connectiondetail@odata.bind": connectionDetails,
+                    "defra_serviceuser@odata.bind": customerID,		
+                    "defra_organisation@odata.bind": organID,             
+                    "defra_service@odata.bind": "/defra_lobservices(b8717ec3-66b6-e811-a954-000d3a29b5de)",	
+                };
+            break;
+            case "PlantsCompleteApproved":
+                console.log("---  TESTING ENROLEMENT using PLANTS 'PLANTS Service' AND ServiceRole 'Admin' ---");
+                bodyObject = {
+                    "defra_connectiondetail@odata.bind": connectionDetails,
+                    "defra_serviceuser@odata.bind": customerID,		
+                    "defra_organisation@odata.bind": organID,             
+                    "defra_service@odata.bind": "/defra_lobservices(a4d44b69-6bf2-ea11-a815-000d3ab4653d)",	
+                };
+            break;
+            case "PlantsPendingorIncompleteEnrolment":
+                console.log("---  TESTING ENROLEMENT using PLANTS 'PLANTS Service' AND ServiceRole 'Admin' ---");
+                bodyObject = {
+                    "defra_connectiondetail@odata.bind": connectionDetails,
+                    "defra_serviceuser@odata.bind": customerID,		
+                    "defra_organisation@odata.bind": organID,             
+                    "defra_service@odata.bind": "/defra_lobservices(a4d44b69-6bf2-ea11-a815-000d3ab4653d)",	
+                };
+            break;
+            default:
+                console.log("Invalide data TYPE !!");
             break;
         }
 
@@ -3031,6 +3483,39 @@ class ActiveDirectoryAuthService {
                 "defra_ServiceRole@odata.bind":"/defra_lobserivceroles(f830c35e-71b6-e811-a954-000d3a29b5de)",
                 "defra_enrolmentstatus": 2,
             };
+            break;
+            case "FishExports":
+                console.log("---  TESTING ENROLEMENT using FISH EXPORTS 'FishExports Service' AND ServiceRole 'Admin' ---");
+                bodyObject = {
+                    "defra_ServiceUser@odata.bind": customerID,		
+                    "defra_Organisation@odata.bind": organID, 
+                    "defra_connectiondetail@odata.bind": connectionDetails,
+                    "defra_service@odata.bind": "/defra_lobservices(b8717ec3-66b6-e811-a954-000d3a29b5de)",	
+                    "defra_ServiceRole@odata.bind":"/defra_lobserivceroles(23016fc5-7acc-e811-a95b-000d3a29ba60)",
+                    "defra_enrolmentstatus": 2,
+                };
+            break;
+            case "PlantsCompleteApproved":
+                console.log("---  TESTING ENROLEMENT using PLANTS 'PLANTS Service' AND ServiceRole 'Admin' ---");
+                bodyObject = {
+                    "defra_ServiceUser@odata.bind": customerID,		
+                    "defra_Organisation@odata.bind": organID, 
+                    "defra_connectiondetail@odata.bind": connectionDetails,
+                    "defra_service@odata.bind": "/defra_lobservices(a4d44b69-6bf2-ea11-a815-000d3ab4653d)",	
+                    "defra_ServiceRole@odata.bind":"/defra_lobserivceroles(f2a8f026-6df2-ea11-a815-000d3ab4653d)",
+                    "defra_enrolmentstatus": 3,
+                };
+            break;
+            case "PlantsPendingorIncompleteEnrolment":
+                console.log("---  TESTING ENROLEMENT using PLANTS 'PLANTS Service' AND ServiceRole 'Admin' ---");
+                bodyObject = {
+                    "defra_ServiceUser@odata.bind": customerID,		
+                    "defra_Organisation@odata.bind": organID, 
+                    "defra_connectiondetail@odata.bind": connectionDetails,
+                    "defra_service@odata.bind": "/defra_lobservices(a4d44b69-6bf2-ea11-a815-000d3ab4653d)",	
+                    "defra_ServiceRole@odata.bind":"/defra_lobserivceroles(f2a8f026-6df2-ea11-a815-000d3ab4653d)",
+                    "defra_enrolmentstatus": 1,
+                };
             break;
             case "ServiceRoleOnly":
             console.log("---  TESTING ENROLEMENT using VMD 'Apply to Licence'- Service-Role ONLY ---");
@@ -3645,6 +4130,421 @@ class ActiveDirectoryAuthService {
         fs.appendFileSync('CRM Logs.txt', '\n' + today + JSON.stringify(initializePromise) + '\n' + '------------------------', function (err) {
             if (err) throw err;
         });
+    }
+
+    // --- API core-Contact details EDIT / UPDATE / MODIFY ---
+
+
+    async requestEditContactXX(token, contacttype, validationtype, editedField, statusMsg) {
+        // get data from createcontact.json using test-data.js
+        // get me the B2CObjID for BasicContactTest testIdentifier from createcontact.json
+        var b2cObjectID = this.testdata.getB2CObjectID("BasicContact");
+        var ggcredentialID = this.testdata.getGGcredentialID("BasicContact");
+        var SecureWord = this.testdata.getSecureWord("BasicContact");
+        var Hint = this.testdata.getHint("BasicContact");
+        var isCitizen = this.testdata.getIsCitizen("BasicContact");
+        var title = this.testdata.getTitle("BasicContact");
+        var firstName = this.testdata.getFirstName("BasicContact");
+        var middleName = this.testdata.getMiddleName("BasicContact");
+        var lastName = this.testdata.getLastName("BasicContact");
+        var source = this.testdata.getSource("BasicContact");
+        var DOB = this.testdata.getDOB("BasicContact");
+        var gender = this.testdata.getGender("BasicContact");
+        var telephone = this.testdata.getTelephone("BasicContact");
+        var email = this.testdata.getEmail("BasicContact");
+        // Contact Correspondence Address
+        var contcorrbuildingName = this.testdata.getBuildingName("ContCorrAddress");
+        var contcorrbuildingNumber = this.testdata.getBuildingNumber("ContCorrAddress");
+        var contcorrstreet = this.testdata.getStreet("ContCorrAddress");
+        var contcorrlocality = this.testdata.getLocality("ContCorrAddress");
+        var contcorrtown = this.testdata.getTown("ContCorrAddress");
+        var contcorrcountry = this.testdata.getCountry("ContCorrAddress");
+        var contcorrpostcode = this.testdata.getPostcode("ContCorrAddress");
+            // Ploicy and Terms & Conditions
+        var tacsacceptedversion = this.testdata.getTacsacceptedversion("BasicContact");
+        var tacsacceptedon = this.testdata.getTacsacceptedone("BasicContact")
+        var privacyPolicyVersio  = this.testdata.getPrivacypolicyacceptedversion("BasicContact");
+        var privacyPolicyDate = this.testdata.getPrivacypolicyacceptedon("BasicContact")
+        var cookiesVersion = this.testdata.getCookiespolicyacceptedversion("BasicContact");
+        var cookiesDate = this.testdata.getCookiespolicyacceptedon("BasicContact")
+
+        //generate random 12 digit number - used to generate unique Postman token 
+        const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
+
+        // apended in B2CObjID to generate random unique B2CObjectId   
+        // const elevenDigitRandomNum = Math.floor(Math.pow(10, 11 - 1) + Math.random() * (Math.pow(10, 11) - Math.pow(10, 11 - 1) - 1));
+
+        console.log("");
+     
+        var coruprn = Math.floor(100000000000 + Math.random() * 900000000000).toString().slice(0,12);
+        // var busiuprn= Math.floor(100000000000 + Math.random() * 900000000000).toString().slice(0,12);
+        // var billuprn= Math.floor(100000000000 + Math.random() * 900000000000).toString().slice(0,12);
+        // console.log("**** Correspondence address uprn = " + coruprn);
+        // console.log("**** Business address uprn       = " + busiuprn);
+        // console.log("**** Billing address uprn       = " + billuprn);
+
+         // let mixRandom = Math.floor(Math.random() * (Math.pow(10, 4))) + 1000;
+        // let mixMix = mixRandom.toString().substring(0,4);
+        // console.log("mixMax value: " + mixMix);
+
+            // creating a random unique b2cObject  
+        let midRandon = Math.floor(Math.pow(10, 2 - 1) + Math.random() * (Math.pow(10, 2) - Math.pow(10, 2 - 1) - 1));
+        let randonOne = Math.floor(Math.pow(10, 2 - 1) + Math.random() * (Math.pow(10, 2) - Math.pow(10, 2 - 1) - 1));
+        let randonTwo = Math.floor(Math.pow(10, 2 - 1) + Math.random() * (Math.pow(10, 2) - Math.pow(10, 2 - 1) - 1));
+        let postFix = "8d" + midRandon + "-de6a" + randonOne + "ac" + randonTwo + "a8";
+
+        let randomNo = Math.floor(1000 + Math.random() * 9000).toString().slice(0,4);
+
+        var b2cObject = b2cObjectID + randomNo + "-11e8-" + postFix;
+        console.log("--- b2cObject:        " + b2cObject);
+
+            // creating a random unique EMAIL-address 
+        var contEmail = this.testdata.getEmail("BasicContact");
+        email = "testEMAIL-" + (Math.floor(1000 + Math.random() * 9000).toString().slice(0,4)) + contEmail;
+        console.log("--- email-Address:    " + email);
+
+            // creating a random unique ggCredential  
+        var ggCredentials = ggcredentialID + Math.random().toString().slice(2,5);
+        console.log("--- GG-Credential-ID: " + ggCredentials);
+        console.log("");
+
+        firstName = firstName + Math.random().toString().slice(2,5);
+        lastName = lastName + Math.random().toString().slice(2,5); 
+        console.log("--- First-Name : " + firstName);   
+        console.log("--- Middle-Name: " + middleName);  
+        console.log("--- Last-Name  : " + lastName);  
+
+        // Validate IF the Contact-type is a CITIZEN or NONE-CITIZEN
+        if (contacttype == "Citizen" || contacttype == "N_plus_one") {
+            isCitizen = true;
+            console.log("--- isCitizen  :  " + isCitizen);
+        } else {
+            isCitizen = false;
+            console.log("--- isCitizen  :  " + isCitizen);
+        }
+
+        var bodyObject;
+
+        switch(validationtype){
+            case "Citizen":
+                bodyObject = { 
+                    'defra_title': title, 'defra_b2cobjectid': b2cObject, 'gendercode': gender, 
+                    'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 
+                    'emailaddress1': email, 'birthdate': DOB, 'telephone1': telephone,
+                    'defra_cmcreateascitizen': isCitizen,
+                    'defra_cmcreationsource': source,
+
+                    'defra_addrcorbuildingname': contcorrbuildingName,
+                    'defra_addrcorbuildingnumber': contcorrbuildingNumber,
+                    'defra_addrcorstreet': contcorrstreet,
+                    'defra_addrcorlocality': contcorrlocality,
+                    'defra_addrcortown': contcorrtown,
+                    'defra_addrcorpostcode': contcorrpostcode,
+
+                    'defra_tacsacceptedversion': tacsacceptedversion,
+                    'defra_tacsacceptedon': tacsacceptedon,
+                    'defra_cookiespolicyacceptedversion': cookiesVersion,
+                    'defra_cookiespolicyacceptedon': cookiesDate,
+                    'defra_privacypolicyacceptedversion': privacyPolicyVersio,
+                    'defra_privacypolicyacceptedon': privacyPolicyDate      
+                    }
+            break;           
+            default:
+                bodyObject = { 
+                    'defra_title': title, 'defra_b2cobjectid': b2cObject, 'defra_ggcredentialid': ggCredentials, 'gendercode': gender,
+                    'firstname': firstName, 'middlename': middleName, 'lastname': lastName, 'emailaddress1': email, 
+                    'birthdate': DOB, 'telephone1': telephone,
+                    'defra_cmcreateascitizen': isCitizen,
+                    'defra_cmcreationsource': source,
+
+                    'defra_addrcorbuildingname': contcorrbuildingName,
+                    'defra_addrcorbuildingnumber': contcorrbuildingNumber,
+                    'defra_addrcorstreet': contcorrstreet,
+                    'defra_addrcorlocality': contcorrlocality,
+                    'defra_addrcortown': contcorrtown,
+                    'defra_addrcorcountry@odata.bind': contcorrcountry,
+                    'defra_addrcorpostcode': contcorrpostcode,
+
+                    'defra_tacsacceptedversion': tacsacceptedversion,
+                    'defra_tacsacceptedon': tacsacceptedon,
+                    'defra_cookiespolicyacceptedversion': cookiesVersion,
+                    'defra_cookiespolicyacceptedon': cookiesDate,
+                    'defra_privacypolicyacceptedversion': privacyPolicyVersio,
+                    'defra_privacypolicyacceptedon': privacyPolicyDate
+                }
+                break;
+        }
+
+        //options for api response :- need to change postman token so used random 12 digit in the end
+        const options = {
+            method: 'POST',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/contacts?$select=contactid,defra_uniquereference',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                // Prefer: 'odata-include-annotations=OData.Community.Display.V1.FormattedValue',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },         
+
+            body: bodyObject,
+            json: true
+        };
+
+        //Calling request to return a promise so that it will use the returning values and perform the rest of the assertions/actions
+        var initializePromise = await this.initialize(options);
+        statusCodeVal = initializePromise.statusCode;
+
+        if (statusCodeVal === 200 || statusCodeVal === 201) {
+            console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+            console.log("TEXT:       " + initializePromise.statusMessage);
+            //console.log("Contact-ID: " + JSON.stringify(response.body["contactid"]));
+            console.log("");  
+            console.log("Assertion TEXT: " + statusMsg);
+            console.log("Response BODY : " + JSON.stringify(initializePromise.body));
+            console.log("");
+            
+            contactID = JSON.stringify(initializePromise.body["contactid"]);
+            console.log("--- ContactID: " + contactID);
+
+            if(contacttype == "Citizen" || contacttype == "Non_Citizen"){
+                fs.writeFile('contactid.json', contactID, 'utf8', function (err) {
+                    if (err) {reject(err); }
+                });
+                console.log("*** ContactID for CITIZEN has been written to FILE !! - 'contactid.json'");
+            }
+            else {
+                fs.writeFile('contactidNPlusOne.json', contactID, 'utf8', function (err) {
+                    if (err) {reject(err); };
+                });
+                console.log("*** ContactID for NPlusOne has been written to FILE !! - 'contactid.json'");
+            }
+
+            // Asserting the expected response body contains the expected statusMsg
+            chai.expect(JSON.stringify(initializePromise.body)).contains(statusMsg);
+        }
+        else if (statusCodeVal !== 200 || statusCodeVal !== 201) {
+            console.log("");
+            console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+            console.log("TEXT:       " + initializePromise.statusMessage);
+
+            console.log("");
+            var errorText = JSON.stringify(initializePromise.body.error["message"]);
+            console.log("--- Assertion TEXT:  " + statusMsg);
+            console.log("--- Responce  BODY: " + errorText);
+
+            chai.expect(errorText).contains(statusMsg);
+
+            // console.log("");
+            // console.log("------------ END -------------------")
+        }
+
+        // --------------------------------------  EDITING the Contacts <editedField> ------------------------
+        
+        var externalJSON = fs.readFile('contactid.json', 'utf8', function(err, data){
+            if(err){
+                console.log(err);
+            }else  {
+                console.log(data);
+            }
+        });
+
+        console.log("************** " + externalJSON);
+
+        console.log("--- Edited field: " + editedField); 
+        // console.log("--- SAVED ContactID: " + typeof(parseInt(contactID)));
+
+
+        var bodyObject;
+
+        switch(editedField){
+            case "Firstname":
+                bodyObject = { 
+                    'firstname': "firstNameUPDATED", 
+                    }
+            break;      
+            case "Lastname":
+                bodyObject = { 
+                    'lastname': 'lastNameUPDATED', 
+                    }
+            break;      
+            default:
+                console.log("No value was PASSED .....");
+                break;
+        }
+        
+
+        const optionUpdate = {
+            method: 'PATCH',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/contacts(6e081cfb-3f01-ea11-a811-000d3a20f8d4)',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                // Prefer: 'odata-include-annotations=OData.Community.Display.V1.FormattedValue',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },         
+
+            body: bodyObject,
+            json: true
+        };
+
+        console.log("+++++++ " + url);
+         //Calling request to return a promise so that it will use the returning values and perform the rest of the assertions/actions
+         var initializePromise = await this.initialize(optionUpdate);
+         statusCodeVal = initializePromise.statusCode;
+
+         if (statusCodeVal === 200 || statusCodeVal === 201) {
+            console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+            console.log("TEXT:       " + initializePromise.statusMessage);
+            //console.log("Contact-ID: " + JSON.stringify(response.body["contactid"]));
+            console.log("");  
+            console.log("Assertion TEXT: " + statusMsg);
+            console.log("Response BODY : " + JSON.stringify(initializePromise.body));
+            console.log("");
+
+            contactID = JSON.stringify(initializePromise.body["contactid"]);
+            console.log("--- ContactID: " + contactID);
+
+            if(contacttype == "Citizen" || contacttype == "Non_Citizen"){
+                fs.writeFile('contactid.json', contactID, 'utf8', function (err) {
+                    if (err) {reject(err); }
+                });
+            }
+            else {
+                fs.writeFile('contactidNPlusOne.json', contactID, 'utf8', function (err) {
+                    if (err) {reject(err); };
+                });
+            }
+
+            // Asserting the expected response body contains the expected statusMsg
+            chai.expect(JSON.stringify(initializePromise.body)).contains(statusMsg);
+        }
+        else if (statusCodeVal !== 200 || statusCodeVal !== 201) {
+            console.log("");
+            console.log("statusCode:", JSON.stringify(initializePromise) && initializePromise.statusCode);
+            console.log("TEXT:       " + initializePromise.statusMessage);
+
+            console.log("");
+            var errorText = JSON.stringify(initializePromise.body.error["message"]);
+            console.log("--- Assertion TEXT:  " + statusMsg);
+            console.log("--- Responce  BODY: " + errorText);
+
+            chai.expect(errorText).contains(statusMsg);
+
+            // console.log("");
+            // console.log("------------ END -------------------")
+        }
+
+        console.log("");
+        console.log("------------- The END ----------------");
+
+    }
+   
+    async requestEditContact(token, EditedField, UpdateMsgCont) {
+    console.log("");
+    console.log("************ EDITING newly created Contacts details *******************");
+
+    const val = Math.floor(Math.pow(10, 12 - 1) + Math.random() * (Math.pow(10, 12) - Math.pow(10, 12 - 1) - 1));
+
+        // get data from createcontact.json using test-data.js
+        var externalJSON = await this.readFilesJSON('contactid.json')    
+        const savedContactID = JSON.parse(externalJSON); //now it an object
+
+        var bodyObject;
+
+        switch(EditedField){
+            case "firstName":
+                bodyObject = {        
+                    'firstname': 'UPDATED-fName'
+                }
+            break;  
+            case "lastName":
+                bodyObject = {        
+                    'lastname': 'UPDATED-lName',
+                }
+            break;        
+            case "phone":
+                bodyObject = {        
+                    'telephone1': '777777777'
+                }
+            break;  
+            case "email":    
+                bodyObject = {        
+                    'emailaddress1': 'UPDATED-email-' + (Math.floor(1000 + Math.random() * 9000).toString().slice(0,4))+ '@test.com'
+                }
+            break; 
+            default:
+                console.log("-- ERROR - INVALIDE data field PASSED !! --");
+            break;
+        }
+
+        var objKEY = Object.keys(bodyObject);
+        // console.log(">>>> bodyObject KEY      : " + objKEY);
+        // console.log(">>>> bodyObject Key VALUE: " + bodyObject[objKEY]);
+
+        console.log("");
+        //options for api response :- need to change postman token so used random 12 digit in the end
+        const apiUpdateRequest = {
+            method: 'PATCH',
+            url: configCRM.appUrlCRM + 'api/data/v9.0/contacts(' + savedContactID + ')',
+            headers:
+            {
+                'postman-token': configCRM.postmantoken + val,
+                'cache-control': 'no-cache',
+                // Prefer: 'odata-include-annotations=OData.Community.Display.V1.FormattedValue',
+                Prefer: 'return=representation',
+                'OData-MaxVersion': '4.0',
+                'OData-Version': '4.0',
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer ' + token,
+                Accept: 'application/json'
+            },
+
+            body: bodyObject,
+            json: true
+        };    
+
+        //Calling request to return a promise so that it will use the returning values and perform the rest of the assertions/actions
+        var updateAPIResults = await this.initialize(apiUpdateRequest);
+        statusCodeVal = updateAPIResults.statusCode;
+
+        if (statusCodeVal === 200 || statusCodeVal === 201) {
+            console.log("statusCode:", JSON.stringify(updateAPIResults) && updateAPIResults.statusCode);
+            console.log("TEXT:       " + updateAPIResults.statusMessage);
+            console.log("");
+            console.log("Assersion VALUE in Response BODY: " + bodyObject[objKEY]);  
+            console.log("Response BODY : " + JSON.stringify(updateAPIResults.body));
+            console.log("");
+            
+            chai.expect(JSON.stringify(updateAPIResults.statusMessage)).contains(UpdateMsgCont);
+            chai.expect(JSON.stringify(updateAPIResults.body)).contains(bodyObject[objKEY]);
+        }
+        else if (statusCodeVal !== 200 || statusCodeVal !== 201) {
+            console.log("");
+            console.log("statusCode:", JSON.stringify(updateAPIResults) && updateAPIResults.statusCode);
+            console.log("TEXT:       " + updateAPIResults.statusMessage);
+
+            console.log("");
+            var errorText = JSON.stringify(updateAPIResults.body.error["message"]);
+            console.log("--- Responce  BODY: " + errorText);
+
+            // chai.expect(errorText).contains(statusMsg);
+
+            console.log("");
+            console.log("------------ END -------------------")
+        }
+
     }
 
 }

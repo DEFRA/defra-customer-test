@@ -10,11 +10,33 @@ module.exports = function () {
 
     this.World = World;
 
+    this.defineStep(/^I call Initial Match API request with (.*?) then expected message outcome is (.*?)$/, { timeout: 2000000 }, async function (ValidationType, StatusMsgCont) {
+        await this.activeDirectoryAuthService.certificateApi(ValidationType, StatusMsgCont);
+
+    });
+    this.defineStep(/^I pass No b2cobjectidvalue in Initial Match API request with (.*?) then expected message outcome is (.*?)$/, { timeout: 2000000 }, async function (ValidationType, StatusMsgCont) {
+        await this.activeDirectoryAuthService.NoB2CcertificateApi(ValidationType, StatusMsgCont);
+
+    });
+
+    this.defineStep(/^I call AUTHZ API request with (.*?) and (.*?) then expected message outcome is (.*?)$/, { timeout: 2000000 }, async function (ValidationType1,ValidationType2, StatusMsgCont) {
+        await this.activeDirectoryAuthService.authzcertificateApi(ValidationType1,ValidationType2,StatusMsgCont);
+
+    });
+
+
     this.defineStep(/^I create a new (.*?) Contact with (.*?) then expected message outcome is (.*?)$/, { timeout: 2000000 }, async function (ContactType, ValidationType, StatusMsgCont) {
         //generate token
         const token = await this.activeDirectoryAuthService.getToken();
         //console.log(token)
         await this.activeDirectoryAuthService.requestCreateContact(token, ContactType, ValidationType, StatusMsgCont);    
+    });
+
+    this.defineStep(/^I EDIT the newly created Contacts (.*?) field then expected message outcome is (.*?)$/, { timeout: 2000000 }, async function (EditedField, UpdateMsgCont) {
+        //generate token
+        const token = await this.activeDirectoryAuthService.getToken();
+        //console.log(token)
+        await this.activeDirectoryAuthService.requestEditContact(token, EditedField, UpdateMsgCont);    
     });
 
     this.defineStep(/^I send an API request to create a new contact$/, { timeout: 2000000 }, async function () {

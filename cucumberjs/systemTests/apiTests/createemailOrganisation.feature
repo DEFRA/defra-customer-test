@@ -17,7 +17,7 @@ SO that I can create additional emails for an organisation in dynamics
       |  \"status\":\"success\",\"code\":200,\"message\":\"\"}"}  | 
     #Then I should be able to create an additional address for an organisation 
 
-    @api
+  @api
   Scenario Outline: Create addional email -Failure1-Point to Point integration via direct API calls
     # Given I am a Web API user 
     # And I have created a post request payload in JSON format 

@@ -16,8 +16,61 @@ class TestData {
 		return actualAsset;
 	}
 
+
 	// ------ 
-	
+	getInitialMatch(testDataObj) {
+		console.log("Testdata obj1 = " + testDataObj)
+		const actualAsset = this.testdata.select('//InitialMatch/*[@testidentifier="'+ testDataObj +'"]');
+		console.log("OBJECT ID " + actualAsset.ValidB2CObjID)
+		return actualAsset.ValidB2CObjID;
+
+
+	}
+
+	getInitialMatchNoB2CID(testDataObj) { 
+		const actualAsset = this.testdata.select('//InitialMatch/*[@testidentifier="'+ testDataObj +'"]');
+		console.log("OBJECT ID with NOB2C passed in request " + actualAsset.NoB2CObjID)
+		return actualAsset.NoB2CObjID;
+	}
+
+	getInitialMatchMissingB2CID(testDataObj) {
+		console.log("Testdata obj1 = " + testDataObj)
+		const actualAsset = this.testdata.select('//InitialMatch/*[@testidentifier="'+ testDataObj +'"]');
+		console.log("MISSING B2C OBJECT ID " + actualAsset.MissingB2CObjID)
+		return actualAsset.MissingB2CObjID;
+
+
+	}
+	getSecureDetailsSet(testDataObj) {
+		console.log("Testdata obj1 = " + testDataObj)
+		const actualAsset = this.testdata.select('//InitialMatch/*[@testidentifier="'+ testDataObj +'"]');
+		console.log("MISSING B2C OBJECT ID " + actualAsset.MissingB2CObjID)
+		return actualAsset.SecureDetailsSet;
+
+
+	}
+	getSecureDetailsNotSet(testDataObj) {
+		console.log("Testdata obj1 = " + testDataObj)
+		const actualAsset = this.testdata.select('//InitialMatch/*[@testidentifier="'+ testDataObj +'"]');
+		console.log("MISSING B2C OBJECT ID " + actualAsset.MissingB2CObjID)
+		return actualAsset.SecureDetailsNotSet;
+
+
+	}
+
+	getAuthZObjID(testDataObj) {
+		console.log("Testdata obj1 = " + testDataObj)
+		const actualAsset = this.testdata.select('//AuthZ/*[@testidentifier="'+ testDataObj +'"]');
+		console.log("OBJECT ID " + actualAsset.ValidB2CObjID)
+		return actualAsset.ValidB2CObjID;
+	}
+
+	getAuthZServiceID(testDataObj) {
+		console.log("Testdata obj1 = " + testDataObj)
+		const actualAsset = this.testdata.select('//AuthZ/*[@testidentifier="'+ testDataObj +'"]');
+		console.log("OBJECT ID " + actualAsset.validServiceID)
+		return actualAsset.validServiceID;
+	}
 
 	getSecureWord(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
@@ -183,6 +236,11 @@ class TestData {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.postcode;
 	}
+	
+	getInternationalPostcode(testDataObj) {
+		const actualAsset = this.getAsset(testDataObj);
+		return actualAsset.internationalpostalcode;
+	}
 
 	getCountry(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
@@ -197,6 +255,11 @@ class TestData {
 	getLOBserviceID(testDataObj) {
 		const actualAsset = this.getAsset(testDataObj);
 		return actualAsset.lobserviceid;
+	}
+
+	getOrgParentOrg(testDataObj) {
+		const actualAsset = this.getAssetOrg(testDataObj);
+		return actualAsset.orgParentOrg;
 	}
 
 	getOrgIsUK(testDataObj) {
