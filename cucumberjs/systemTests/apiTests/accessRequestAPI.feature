@@ -43,10 +43,6 @@ So that I can create an Access-Request between a Contact and an LOB service
     When I send an API request to create a new <isUK> <OrgType> organisation with <ValidationTypeOrg> and <StatusMsgOrg>
     When I call defra Relationship action between <ContactType> and same Org with <RoleType> and returned <StatusMsgCreate>
     When I Enrole <ContactType> to an IDM service <IDMServcie> and returned <StatusMsgIDMService>
-    When I Handshake contact to a defra service <DefraService> and returned <StatusMsgDefraService>
-    When I Enrole to an LoB service <ServAndServRole> and returned <StatusMsgService>
-    When I create a new <ContactType2> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
-    When I call defra Relationship action between <ContactType2> and same Org with <RoleType> and returned <StatusMsgCreate>
     When I Enrole <ContactType2> to an IDM service <IDMServcie2> and returned <StatusMsgIDMService>
     When I create access request for N-plus1-Contact and Org-1 to <LoBService> with excpected outcome <StatusMsgCreate>
     When I <accessAction> created access request
