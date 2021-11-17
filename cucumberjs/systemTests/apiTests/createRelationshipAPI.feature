@@ -19,35 +19,4 @@ Feature: CREATE RELATIONSHIP - AS a Web API User
       | isUK | ContactType | ValidationType | StatusMsgCont                     |OrgType | ValidationTypeOrg | StatusMsgOrg                      | RoleType        | StatusMsgCreate                    |
       | true | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) |LTD     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) |
       | true | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) |LTD     | Basic_Org         | (accountid,defra_uniquereference) | Agent_AgentCust | (_defra_connectiondetailsid_value) |
-      | true | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) |LTD     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) |
-      | true | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) |LTD     | Basic_Org         | (accountid,defra_uniquereference) | Agent_AgentCust | (_defra_connectiondetailsid_value) |
-      | true | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) |LTD     | Basic_Org         | (accountid,defra_uniquereference) | Empl_Employer   | (_defra_connectiondetailsid_value) |
-      | true | Non_Citizen | BasicContact   | (contactid,defra_uniquereference) |LTD     | Basic_Org         | (accountid,defra_uniquereference) | Agent_AgentCust | (_defra_connectiondetailsid_value) |
-
-
-  @api2-Done-?? @ignore
-  Scenario Outline: Creating a <RoleType> Relationship with missing <RoleType>
-    # Given I am a Web API user
-    When I create a new <ContactType> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
-    When I send an API request to create a new <isUK> <OrgType> organisation with <ValidationType> and <StatusMsgOrg>
-    # When I call defra Relationship action with <RoleType> and returned <StatusMsgCreate> 
-    When I call defra Relationship action between <ContactType> and same Org with <RoleType> and returned <StatusMsgCreate>
-    #Then I should be able to create the requested relationship for the records in context
-    Examples:
-      | ContactType |  ValidationType | StatusMsgCont                     | OrgType | ValidationTypeOrg | StatusMsgOrg                      | RoleType        | StatusMsgCreate |
-      | Non_Citizen |  BasicContact   | (contactid,defra_uniquereference) | LTD     | Basic_Org         | (accountid,defra_uniquereference) | Empl_NoTonFrom  | error message   |
-      | Non_Citizen |  BasicContact   | (contactid,defra_uniquereference) | LTD     | Basic_Org         | (accountid,defra_uniquereference) | Empl_NoTo       | error message   |
-      | Non_Citizen |  BasicContact   | (contactid,defra_uniquereference) | LTD     | Basic_Org         | (accountid,defra_uniquereference) | Empl_NoFrom     | error message   |
-
-
-@api2-Done @smoke-Test
-  Scenario Outline: Creating a <RoleType> Relationship
-    # Given I am a Web API user
-    When I create a new <ContactType> Contact with <ValidationType> then expected message outcome is <StatusMsgCont>
-    # When I call defra Relationship action with <RoleType> and returned <StatusMsgCreate> 
-    When I call defra Relationship action between <ContactType> and same Org with <RoleType> and returned <StatusMsgCreate>
-    #Then I should be able to create the requested relationship for the records in context
-    Examples:
-      | ContactType| ValidationType      | StatusMsgCont                     | RoleType | StatusMsgCreate                    |
-      | Citizen    | BasicContactCitizen | (contactid,defra_uniquereference) | Citizen  | (_defra_connectiondetailsid_value) |
-   
+     
