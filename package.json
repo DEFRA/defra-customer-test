@@ -24,7 +24,7 @@
     "html2canvas": "^1.0.0-alpha.12",
     "iedriver": "^3.5.1",
     "image-downloader": "^3.3.0",
-    "jsdom": "^11.10.0",
+    "jsdom": "^16.5.0",
     "jsel": "^1.1.4",
     "mkdirp": "^0.5.1",
     "mocha": "^4.1.0",
